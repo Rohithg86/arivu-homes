@@ -1,0 +1,38 @@
+﻿import type { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "Arivu Constructions",
+  description: "End-to-end construction, design, and project management services in Bangalore",
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body className="min-h-dvh bg-white text-gray-900 antialiased">
+        <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
+          <div className="max-w-6xl mx-auto flex items-center justify-between px-6 h-16">
+            <Link href="/" className="flex items-center gap-3">
+              <Image src="/logo.svg" alt="Arivu Constructions" width={120} height={28} priority />
+            </Link>
+            <nav className="flex items-center gap-6 text-sm">
+              <Link href="/services" className="hover:text-blue-600">Services</Link>
+              <Link href="/team" className="hover:text-blue-600">Team</Link>
+              <Link href="/gallery" className="hover:text-blue-600">Gallery</Link>
+              <Link href="/admin" className="px-3 py-1.5 rounded bg-gray-900 text-white hover:bg-gray-800">Admin</Link>
+            </nav>
+          </div>
+        </header>
+        {children}
+        <footer className="border-t mt-16">
+          <div className="max-w-6xl mx-auto px-6 py-10 text-sm text-gray-600">
+            <div>Bangalore  +91-XXXXXXXXXX  contact@arivuconstructions.com</div>
+            <div className="mt-1"> {new Date().getFullYear()} Arivu Constructions</div>
+          </div>
+        </footer>
+      </body>
+    </html>
+  );
+}
