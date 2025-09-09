@@ -6,8 +6,8 @@ export async function POST(request: NextRequest) {
     const { projectInfo, categories } = body;
 
     // Calculate totals
-    const totalAmount = categories.reduce((sum: number, category: any) => {
-      return sum + category.items.reduce((itemSum: number, item: any) => {
+    const totalAmount = categories.reduce((sum: number, category: { items: Array<{ quantity: number; rate: number }> }) => {
+      return sum + category.items.reduce((itemSum: number, item: { quantity: number; rate: number }) => {
         return itemSum + (item.quantity * item.rate);
       }, 0);
     }, 0);
@@ -19,9 +19,9 @@ export async function POST(request: NextRequest) {
     // Generate BOQ report
     const boqReport = {
       projectInfo,
-      categories: categories.map((category: any) => ({
+      categories: categories.map((category: { items: Array<{ quantity: number; rate: number }> }) => ({
         ...category,
-        subtotal: category.items.reduce((sum: number, item: any) => sum + (item.quantity * item.rate), 0)
+        subtotal: category.items.reduce((sum: number, item: { quantity: number; rate: number }) => sum + (item.quantity * item.rate), 0)
       })),
       summary: {
         subtotal: totalAmount,

@@ -205,7 +205,7 @@ export default function ProjectsPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
                 <select
                   value={newProject.status}
-                  onChange={(e) => setNewProject({...newProject, status: e.target.value as any})}
+                  onChange={(e) => setNewProject({...newProject, status: e.target.value as "Planning" | "In Progress" | "Near Completion" | "Completed"})}
                   className="w-full border border-gray-300 rounded-lg px-3 py-2"
                 >
                   <option value="Planning">Planning</option>

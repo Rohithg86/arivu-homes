@@ -159,10 +159,10 @@ export default function ShashankDBio() {
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Design Philosophy</h3>
               <div className="bg-purple-50 p-6 rounded-lg">
                 <blockquote className="text-lg italic text-gray-700 mb-4">
-                  "Architecture is not just about creating beautiful spaces; it's about creating 
+                  &ldquo;Architecture is not just about creating beautiful spaces; it&apos;s about creating 
                   spaces that enhance human experience while respecting the environment and 
                   ensuring structural integrity. Every design should tell a story and serve 
-                  a purpose beyond aesthetics."
+                  a purpose beyond aesthetics.&rdquo;
                 </blockquote>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>

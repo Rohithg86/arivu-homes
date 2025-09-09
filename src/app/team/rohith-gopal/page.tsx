@@ -52,7 +52,7 @@ export default function RohithGopalBio() {
                 Rohith Gopal brings exceptional leadership and strategic vision to Arivu Constructions. 
                 With a deep understanding of the construction industry and a passion for delivering 
                 excellence, he has been instrumental in establishing Arivu as a trusted name in 
-                Bangalore's construction landscape.
+                Bangalore&apos;s construction landscape.
               </p>
               <p className="text-gray-700 leading-relaxed">
                 His expertise spans across project management, client relations, business development, 
