@@ -4,8 +4,8 @@ import Image from "next/image";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Arivu Constructions",
-  description: "End-to-end construction, design, and project management services in Bangalore",
+  title: "Arivu Homes Private Limited - Building Dreams with Precision",
+  description: "Building Dreams with Precision • Crafting Excellence Since Day One. End-to-end construction, architectural design, structural engineering, and project management services in Bangalore.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -15,7 +15,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
           <div className="max-w-6xl mx-auto flex items-center justify-between px-6 h-16">
             <Link href="/" className="flex items-center gap-3">
-              <Image src="/logo.svg" alt="Arivu Constructions" width={120} height={28} priority />
+              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-lg">A</span>
+              </div>
+              <span className="text-xl font-bold text-gray-900">Arivu Homes</span>
             </Link>
             <nav className="flex items-center gap-6 text-sm">
               <Link href="/services" className="hover:text-blue-600">Services</Link>
@@ -28,8 +31,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <footer className="border-t mt-16">
           <div className="max-w-6xl mx-auto px-6 py-10 text-sm text-gray-600">
-            <div>Bangalore  +91-XXXXXXXXXX  contact@arivuconstructions.com</div>
-            <div className="mt-1"> {new Date().getFullYear()} Arivu Constructions</div>
+            <div>Bangalore  +91-XXXXXXXXXX  contact@arivuhomes.com</div>
+            <div className="mt-1">© {new Date().getFullYear()} Arivu Homes Private Limited</div>
           </div>
         </footer>
       </body>

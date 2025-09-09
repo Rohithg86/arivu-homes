@@ -16,14 +16,74 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 flex items-center">
           <div className="max-w-6xl mx-auto px-6 text-white">
-            <h1 className="text-4xl md:text-5xl font-bold">Arivu Constructions</h1>
-            <p className="mt-3 max-w-2xl text-white/90">End-to-end construction, architectural design, structural engineering, and project management services in Bangalore.</p>
-            <p className="mt-1 text-white/80"><strong>Managing Partner:</strong> Rohith Gopal  <strong>Chief Engineer:</strong> Chethan Shrinivas  <strong>Senior Architect &amp; Structural Engineer:</strong> Shashank D</p>
-            <div className="mt-6 flex gap-3">
-              <Link href="/services" className="bg-white text-gray-900 px-4 py-2 rounded shadow hover:bg-gray-100">Explore Services</Link>
-              <a href="#contact" className="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-500">Contact Us</a>
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
+                <span className="text-2xl font-bold text-blue-600">A</span>
+              </div>
+              <h1 className="text-5xl md:text-7xl font-bold text-white">Arivu Homes</h1>
+            </div>
+            <p className="text-lg md:text-xl text-white/90 mb-2 font-medium">Building Dreams with Precision • Crafting Excellence Since Day One</p>
+            <p className="text-sm md:text-base text-white/80 max-w-2xl">End-to-end construction, architectural design, structural engineering, and project management services in Bangalore.</p>
+            <div className="mt-4 space-y-2">
+              <p className="text-white/80">
+                <strong className="text-blue-200">Managing Partner:</strong> 
+                <Link href="/team/rohith-gopal" className="ml-2 text-blue-100 hover:text-white underline decoration-blue-300 hover:decoration-white transition-all">Rohith Gopal</Link>
+              </p>
+              <p className="text-white/80">
+                <strong className="text-green-200">Chief Engineer:</strong> 
+                <Link href="/team/chethan-shrinivas" className="ml-2 text-green-100 hover:text-white underline decoration-green-300 hover:decoration-white transition-all">Chethan Shrinivas</Link>
+              </p>
+              <p className="text-white/80">
+                <strong className="text-purple-200">Senior Architect &amp; Structural Engineer:</strong> 
+                <Link href="/team/shashank-d" className="ml-2 text-purple-100 hover:text-white underline decoration-purple-300 hover:decoration-white transition-all">Shashank D</Link>
+              </p>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link href="/services" className="bg-white text-gray-900 px-6 py-3 rounded-lg shadow-lg hover:bg-gray-50 hover:shadow-xl transition-all duration-300 font-semibold">
+                Explore Services
+              </Link>
+              <Link href="/projects" className="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold">
+                View Projects
+              </Link>
+              <Link href="/boq" className="bg-gradient-to-r from-violet-500 to-purple-600 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold">
+                BOQ Calculator
+              </Link>
+              <a href="#contact" className="bg-gradient-to-r from-sky-500 to-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold">
+                Contact Us
+              </a>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Quick Access Section */}
+      <section className="max-w-6xl mx-auto px-6 py-8">
+        <h2 className="text-2xl font-bold text-center mb-8">Quick Access</h2>
+        <div className="grid gap-6 md:grid-cols-3">
+          <Link href="/projects" className="bg-gradient-to-br from-emerald-500 via-green-600 to-teal-600 text-white rounded-xl p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🏗️</div>
+            <h3 className="text-xl font-bold mb-3">Current Projects</h3>
+            <p className="text-emerald-100 leading-relaxed">Track ongoing construction projects in Bangalore with completion status and budget monitoring.</p>
+            <div className="mt-4 text-emerald-200 text-sm font-medium group-hover:text-white transition-colors">
+              View Projects →
+            </div>
+          </Link>
+          <Link href="/boq" className="bg-gradient-to-br from-violet-500 via-purple-600 to-indigo-600 text-white rounded-xl p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">📊</div>
+            <h3 className="text-xl font-bold mb-3">BOQ Calculator</h3>
+            <p className="text-violet-100 leading-relaxed">Calculate construction costs and quantities with detailed breakdown by category.</p>
+            <div className="mt-4 text-violet-200 text-sm font-medium group-hover:text-white transition-colors">
+              Calculate Costs →
+            </div>
+          </Link>
+          <Link href="/team" className="bg-gradient-to-br from-sky-500 via-blue-600 to-cyan-600 text-white rounded-xl p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">👥</div>
+            <h3 className="text-xl font-bold mb-3">Meet Our Team</h3>
+            <p className="text-sky-100 leading-relaxed">Learn about our experienced professionals and their expertise.</p>
+            <div className="mt-4 text-sky-200 text-sm font-medium group-hover:text-white transition-colors">
+              View Team →
+            </div>
+          </Link>
         </div>
       </section>
 
@@ -35,18 +95,56 @@ export default function Home() {
           { name:'Architectural Design', desc:'Concept to working drawings', slug:'architectural-design' },
           { name:'Structural Engineering', desc:'Analysis, detailing, peer review', slug:'structural-engineering' },
           { name:'Project Management', desc:'Cost control, timelines, quality', slug:'project-management' },
-        ].map((s)=> (
-          <Link href={`/services/${s.slug}`} key={s.slug} className="border rounded-lg p-5 hover:shadow-md transition">
-            <h3 className="font-semibold">{s.name}</h3>
-            <p className="text-sm text-gray-600 mt-1">{s.desc}</p>
-          </Link>
-        ))}
+        ].map((s, index)=> {
+          const colors = [
+            { bg: 'bg-gradient-to-br from-blue-50 to-indigo-100', border: 'border-blue-200', text: 'text-blue-900', desc: 'text-blue-700', hover: 'hover:from-blue-100 hover:to-indigo-200' },
+            { bg: 'bg-gradient-to-br from-green-50 to-emerald-100', border: 'border-green-200', text: 'text-green-900', desc: 'text-green-700', hover: 'hover:from-green-100 hover:to-emerald-200' },
+            { bg: 'bg-gradient-to-br from-purple-50 to-violet-100', border: 'border-purple-200', text: 'text-purple-900', desc: 'text-purple-700', hover: 'hover:from-purple-100 hover:to-violet-200' },
+            { bg: 'bg-gradient-to-br from-orange-50 to-amber-100', border: 'border-orange-200', text: 'text-orange-900', desc: 'text-orange-700', hover: 'hover:from-orange-100 hover:to-amber-200' },
+            { bg: 'bg-gradient-to-br from-teal-50 to-cyan-100', border: 'border-teal-200', text: 'text-teal-900', desc: 'text-teal-700', hover: 'hover:from-teal-100 hover:to-cyan-200' },
+            { bg: 'bg-gradient-to-br from-rose-50 to-pink-100', border: 'border-rose-200', text: 'text-rose-900', desc: 'text-rose-700', hover: 'hover:from-rose-100 hover:to-pink-200' }
+          ];
+          const colorScheme = colors[index % colors.length];
+          
+          return (
+            <Link 
+              href={`/services/${s.slug}`} 
+              key={s.slug} 
+              className={`${colorScheme.bg} ${colorScheme.border} border-2 rounded-xl p-6 hover:shadow-lg ${colorScheme.hover} transition-all duration-300 hover:scale-105 group`}
+            >
+              <h3 className={`font-bold text-lg ${colorScheme.text} group-hover:scale-105 transition-transform duration-300`}>{s.name}</h3>
+              <p className={`text-sm ${colorScheme.desc} mt-2 leading-relaxed`}>{s.desc}</p>
+              <div className={`mt-4 text-xs ${colorScheme.desc} font-medium group-hover:translate-x-1 transition-transform duration-300`}>
+                Learn More →
+              </div>
+            </Link>
+          );
+        })}
       </section>
 
       <section id="contact" className="max-w-6xl mx-auto px-6 pb-16">
-        <div className="rounded-xl border p-6 bg-gray-50">
-          <h2 className="text-xl font-semibold">Contact</h2>
-          <p className="text-gray-600 mt-1">Bangalore  +91-XXXXXXXXXX  contact@arivuconstructions.com</p>
+        <div className="bg-gradient-to-br from-slate-50 to-gray-100 rounded-2xl border-2 border-slate-200 p-8 shadow-lg">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Get In Touch</h2>
+            <p className="text-gray-600 mb-6">Ready to start your construction project? Contact our team today.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-white rounded-xl p-6 shadow-md">
+                <div className="text-2xl mb-3">📍</div>
+                <h3 className="font-semibold text-gray-900 mb-2">Location</h3>
+                <p className="text-gray-600">Bangalore, Karnataka</p>
+              </div>
+              <div className="bg-white rounded-xl p-6 shadow-md">
+                <div className="text-2xl mb-3">📞</div>
+                <h3 className="font-semibold text-gray-900 mb-2">Phone</h3>
+                <p className="text-gray-600">+91-XXXXXXXXXX</p>
+              </div>
+              <div className="bg-white rounded-xl p-6 shadow-md">
+                <div className="text-2xl mb-3">✉️</div>
+                <h3 className="font-semibold text-gray-900 mb-2">Email</h3>
+                <p className="text-gray-600">contact@arivuhomes.com</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
