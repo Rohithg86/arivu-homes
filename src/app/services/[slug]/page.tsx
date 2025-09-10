@@ -64,8 +64,9 @@ const serviceContent: Record<string, {title:string; intro:string; bullets:string
   },
 };
 
-export default function ServiceDetails({ params }: { params: { slug: string } }){
-  const data = serviceContent[params.slug];
+export default async function ServiceDetails({ params }: { params: Promise<{ slug: string }> }){
+  const { slug } = await params;
+  const data = serviceContent[slug];
   if(!data) return notFound();
   return (
     <main className="max-w-6xl mx-auto px-6 py-12">
