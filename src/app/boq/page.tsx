@@ -86,15 +86,29 @@ export default function BOQPage() {
     date: new Date().toISOString().split('T')[0],
   });
 
-  const updateItem = (categoryIndex: number, itemIndex: number, field: keyof BOQItem, value: string | number) => {
+  const updateItem = (
+    categoryIndex: number,
+    itemIndex: number,
+    field: keyof BOQItem,
+    value: string | number
+  ) => {
     const newCategories = [...categories];
     const item = newCategories[categoryIndex].items[itemIndex];
     
-    if (field === 'quantity' || field === 'rate') {
-      item[field] = Number(value);
+    if (field === 'quantity') {
+      item.quantity = Number(value);
       item.amount = item.quantity * item.rate;
-    } else {
-      item[field] = value;
+    } else if (field === 'rate') {
+      item.rate = Number(value);
+      item.amount = item.quantity * item.rate;
+    } else if (field === 'description') {
+      item.description = String(value);
+    } else if (field === 'unit') {
+      item.unit = String(value);
+    } else if (field === 'id') {
+      item.id = String(value);
+    } else if (field === 'category') {
+      item.category = String(value);
     }
     
     // Recalculate category subtotal

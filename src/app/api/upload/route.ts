@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     const url = `/uploads/${fileName}`
     const created = await prisma.asset.create({ data: { type, title, description, url } })
     return NextResponse.json(created, { status: 201 })
-  } catch (e) {
+  } catch (_e) {
     return NextResponse.json({ error: 'upload failed' }, { status: 500 })
   }
 }
