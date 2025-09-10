@@ -13,29 +13,26 @@ export default function Home() {
           className="h-[46vh] sm:h-[54vh] w-full object-cover object-center"
           priority
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/55" />
         <div className="absolute inset-0 flex items-center">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 text-white">
-            <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
-                <span className="text-xl sm:text-2xl font-bold text-blue-600">A</span>
-              </div>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">Arivu Homes</h1>
+            <div className="mb-4">
+              <img src="/logo-house.svg" alt="Arivu Homes" className="h-10 sm:h-14 w-auto" />
             </div>
             <p className="text-base sm:text-lg md:text-xl text-white/90 mb-2 font-medium max-w-3xl">Building Dreams with Precision • Crafting Excellence Since Day One</p>
             <p className="text-xs sm:text-sm md:text-base text-white/80 max-w-2xl">End-to-end construction, architectural design, structural engineering, and project management services in Bangalore.</p>
             <div className="mt-4 space-y-2">
-              <p className="text-white/80">
-                <strong className="text-blue-200">Managing Partner:</strong> 
-                <Link href="/team/rohith-gopal" className="ml-2 text-blue-100 hover:text-white underline decoration-blue-300 hover:decoration-white transition-all">Rohith Gopal</Link>
+              <p>
+                <span className="inline-block px-2 py-1 rounded bg-blue-600/90">Managing Partner:</span>
+                <Link href="/team/rohith-gopal" className="ml-2 inline-block px-2 py-1 rounded bg-black/70 hover:bg-black/80 underline">Rohith Gopal</Link>
               </p>
-              <p className="text-white/80">
-                <strong className="text-green-200">Chief Engineer:</strong> 
-                <Link href="/team/chethan-shrinivas" className="ml-2 text-green-100 hover:text-white underline decoration-green-300 hover:decoration-white transition-all">Chethan Shrinivas</Link>
+              <p>
+                <span className="inline-block px-2 py-1 rounded bg-green-600/90">Chief Engineer:</span>
+                <Link href="/team/chethan-shrinivas" className="ml-2 inline-block px-2 py-1 rounded bg-black/70 hover:bg-black/80 underline">Chethan Shrinivas</Link>
               </p>
-              <p className="text-white/80">
-                <strong className="text-purple-200">Senior Architect &amp; Structural Engineer:</strong> 
-                <Link href="/team/shashank-d" className="ml-2 text-purple-100 hover:text-white underline decoration-purple-300 hover:decoration-white transition-all">Shashank D</Link>
+              <p>
+                <span className="inline-block px-2 py-1 rounded bg-purple-600/90">Senior Architect &amp; Structural Engineer:</span>
+                <Link href="/team/shashank-d" className="ml-2 inline-block px-2 py-1 rounded bg-black/70 hover:bg-black/80 underline">Shashank D</Link>
               </p>
             </div>
             <div className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4">
@@ -136,12 +133,12 @@ export default function Home() {
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="text-2xl mb-3">📞</div>
                 <h3 className="font-semibold text-gray-900 mb-2">Phone</h3>
-                <p className="text-gray-600">+91-XXXXXXXXXX</p>
+                <p className="text-gray-600">+91-9986767464</p>
               </div>
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="text-2xl mb-3">✉️</div>
                 <h3 className="font-semibold text-gray-900 mb-2">Email</h3>
-                <p className="text-gray-600">contact@arivuhomes.com</p>
+                <p className="text-gray-600">arivuhomes@gmail.com</p>
               </div>
             </div>
           </div>

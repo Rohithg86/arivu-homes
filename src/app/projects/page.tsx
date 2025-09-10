@@ -367,17 +367,57 @@ export default function ProjectsPage() {
                 </div>
 
                 <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
+                  <div className="flex items-center justify-between gap-2">
                     <span className="text-gray-600">Budget:</span>
-                    <span className="font-medium">{formatCurrency(project.budget)}</span>
+                    <input
+                      type="number"
+                      value={project.budget}
+                      onChange={(e)=>{
+                        const updated=[...projects];
+                        updated.find(p=>p.id===project.id)!.budget = Number(e.target.value);
+                        setProjects(updated);
+                      }}
+                      className="w-28 border rounded px-2 py-1 text-right"
+                    />
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex items-center justify-between gap-2">
                     <span className="text-gray-600">Spent:</span>
-                    <span className="font-medium">{formatCurrency(project.actualCost)}</span>
+                    <input
+                      type="number"
+                      value={project.actualCost}
+                      onChange={(e)=>{
+                        const updated=[...projects];
+                        updated.find(p=>p.id===project.id)!.actualCost = Number(e.target.value);
+                        setProjects(updated);
+                      }}
+                      className="w-28 border rounded px-2 py-1 text-right"
+                    />
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Remaining:</span>
-                    <span className="font-medium">{formatCurrency(project.budget - project.actualCost)}</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-gray-600">Name:</span>
+                    <input
+                      type="text"
+                      value={project.name}
+                      onChange={(e)=>{
+                        const updated=[...projects];
+                        updated.find(p=>p.id===project.id)!.name = e.target.value;
+                        setProjects(updated);
+                      }}
+                      className="w-48 border rounded px-2 py-1"
+                    />
+                  </div>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-gray-600">Location:</span>
+                    <input
+                      type="text"
+                      value={project.location}
+                      onChange={(e)=>{
+                        const updated=[...projects];
+                        updated.find(p=>p.id===project.id)!.location = e.target.value;
+                        setProjects(updated);
+                      }}
+                      className="w-48 border rounded px-2 py-1"
+                    />
                   </div>
                 </div>
 

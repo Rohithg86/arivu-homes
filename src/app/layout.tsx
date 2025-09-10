@@ -14,10 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
           <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 h-16">
             <Link href="/" className="flex items-center gap-2 sm:gap-3">
-              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg">A</span>
-              </div>
-              <span className="text-xl font-bold text-gray-900">Arivu Homes</span>
+              <img src="/logo-house.svg" alt="Arivu Homes" className="h-8 w-auto sm:h-9" />
             </Link>
             <nav className="hidden sm:flex items-center gap-4 sm:gap-6 text-sm">
               <Link href="/services" className="hover:text-blue-600">Services</Link>
@@ -32,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <footer className="border-t mt-16">
           <div className="max-w-6xl mx-auto px-6 py-10 text-sm text-gray-600">
-            <div>Bangalore  +91-XXXXXXXXXX  contact@arivuhomes.com</div>
+            <div>Bangalore  +91-9986767464  arivuhomes@gmail.com</div>
             <div className="mt-1">© {new Date().getFullYear()} Arivu Homes Private Limited</div>
           </div>
         </footer>
