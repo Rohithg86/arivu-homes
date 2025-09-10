@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
           <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 h-16">
             <Link href="/" className="flex items-center gap-2 sm:gap-3">
-              <img src="/logo-house.svg" alt="Arivu Homes" className="h-8 w-auto sm:h-9" />
+              <span className="text-lg sm:text-xl font-bold tracking-tight text-gray-900">Arivu Homes</span>
             </Link>
             <nav className="hidden sm:flex items-center gap-4 sm:gap-6 text-sm">
               <Link href="/services" className="hover:text-blue-600">Services</Link>

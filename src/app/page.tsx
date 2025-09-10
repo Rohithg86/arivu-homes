@@ -16,23 +16,21 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/55" />
         <div className="absolute inset-0 flex items-center">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 text-white">
-            <div className="mb-4">
-              <img src="/logo-house.svg" alt="Arivu Homes" className="h-10 sm:h-14 w-auto" />
-            </div>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-2">Arivu Homes</h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 mb-2 font-medium max-w-3xl">Building Dreams with Precision • Crafting Excellence Since Day One</p>
             <p className="text-xs sm:text-sm md:text-base text-white/80 max-w-2xl">End-to-end construction, architectural design, structural engineering, and project management services in Bangalore.</p>
-            <div className="mt-4 space-y-2">
+            <div className="mt-3 space-y-1.5">
               <p>
-                <span className="inline-block px-2 py-1 rounded bg-blue-600/90">Managing Partner:</span>
-                <Link href="/team/rohith-gopal" className="ml-2 inline-block px-2 py-1 rounded bg-black/70 hover:bg-black/80 underline">Rohith Gopal</Link>
+                <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur">Managing Partner:</span>
+                <Link href="/team/rohith-gopal" className="ml-2 underline">Rohith Gopal</Link>
               </p>
               <p>
-                <span className="inline-block px-2 py-1 rounded bg-green-600/90">Chief Engineer:</span>
-                <Link href="/team/chethan-shrinivas" className="ml-2 inline-block px-2 py-1 rounded bg-black/70 hover:bg-black/80 underline">Chethan Shrinivas</Link>
+                <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur">Chief Engineer:</span>
+                <Link href="/team/chethan-shrinivas" className="ml-2 underline">Chethan Shrinivas</Link>
               </p>
               <p>
-                <span className="inline-block px-2 py-1 rounded bg-purple-600/90">Senior Architect &amp; Structural Engineer:</span>
-                <Link href="/team/shashank-d" className="ml-2 inline-block px-2 py-1 rounded bg-black/70 hover:bg-black/80 underline">Shashank D</Link>
+                <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur">Senior Architect &amp; Structural Engineer:</span>
+                <Link href="/team/shashank-d" className="ml-2 underline">Shashank D</Link>
               </p>
             </div>
             <div className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4">
@@ -57,27 +55,27 @@ export default function Home() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
         <h2 className="text-2xl font-bold text-center mb-8">Quick Access</h2>
         <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
-          <Link href="/projects" className="bg-gradient-to-br from-emerald-500 via-green-600 to-teal-600 text-white rounded-xl p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+          <Link href="/projects" className="glass-card rounded-xl p-6 hover:shadow-lg transition-all duration-300 group">
             <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🏗️</div>
             <h3 className="text-xl font-bold mb-3">Current Projects</h3>
-            <p className="text-emerald-100 leading-relaxed">Track ongoing construction projects in Bangalore with completion status and budget monitoring.</p>
-            <div className="mt-4 text-emerald-200 text-sm font-medium group-hover:text-white transition-colors">
+            <p className="text-gray-700 leading-relaxed">Track ongoing construction projects in Bangalore with completion status and budget monitoring.</p>
+            <div className="mt-4 text-gray-600 text-sm font-medium group-hover:text-gray-900 transition-colors">
               View Projects →
             </div>
           </Link>
-          <Link href="/boq" className="bg-gradient-to-br from-violet-500 via-purple-600 to-indigo-600 text-white rounded-xl p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+          <Link href="/boq" className="glass-card rounded-xl p-6 hover:shadow-lg transition-all duration-300 group">
             <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">📊</div>
             <h3 className="text-xl font-bold mb-3">BOQ Calculator</h3>
-            <p className="text-violet-100 leading-relaxed">Calculate construction costs and quantities with detailed breakdown by category.</p>
-            <div className="mt-4 text-violet-200 text-sm font-medium group-hover:text-white transition-colors">
+            <p className="text-gray-700 leading-relaxed">Calculate construction costs and quantities with detailed breakdown by category.</p>
+            <div className="mt-4 text-gray-600 text-sm font-medium group-hover:text-gray-900 transition-colors">
               Calculate Costs →
             </div>
           </Link>
-          <Link href="/team" className="bg-gradient-to-br from-sky-500 via-blue-600 to-cyan-600 text-white rounded-xl p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+          <Link href="/team" className="glass-card rounded-xl p-6 hover:shadow-lg transition-all duration-300 group">
             <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">👥</div>
             <h3 className="text-xl font-bold mb-3">Meet Our Team</h3>
-            <p className="text-sky-100 leading-relaxed">Learn about our experienced professionals and their expertise.</p>
-            <div className="mt-4 text-sky-200 text-sm font-medium group-hover:text-white transition-colors">
+            <p className="text-gray-700 leading-relaxed">Learn about our experienced professionals and their expertise.</p>
+            <div className="mt-4 text-gray-600 text-sm font-medium group-hover:text-gray-900 transition-colors">
               View Team →
             </div>
           </Link>
@@ -107,11 +105,11 @@ export default function Home() {
             <Link 
               href={`/services/${s.slug}`} 
               key={s.slug} 
-              className={`${colorScheme.bg} ${colorScheme.border} border-2 rounded-xl p-6 hover:shadow-lg ${colorScheme.hover} transition-all duration-300 hover:scale-105 group`}
+              className={`glass-card border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all duration-300 group`}
             >
-              <h3 className={`font-bold text-lg ${colorScheme.text} group-hover:scale-105 transition-transform duration-300`}>{s.name}</h3>
-              <p className={`text-sm ${colorScheme.desc} mt-2 leading-relaxed`}>{s.desc}</p>
-              <div className={`mt-4 text-xs ${colorScheme.desc} font-medium group-hover:translate-x-1 transition-transform duration-300`}>
+              <h3 className={`font-bold text-lg text-gray-900 group-hover:scale-105 transition-transform duration-300`}>{s.name}</h3>
+              <p className={`text-sm text-gray-700 mt-2 leading-relaxed`}>{s.desc}</p>
+              <div className={`mt-4 text-xs text-gray-600 font-medium group-hover:translate-x-1 transition-transform duration-300`}>
                 Learn More →
               </div>
             </Link>
