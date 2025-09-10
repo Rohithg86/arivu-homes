@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 
 interface Project {
@@ -24,6 +24,7 @@ export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [showAddForm, setShowAddForm] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [currentUploadIndex, setCurrentUploadIndex] = useState<number | null>(null);
   const [newProject, setNewProject] = useState<Partial<Project>>({
     name: "",
     location: "",
@@ -121,41 +122,47 @@ export default function ProjectsPage() {
   };
 
   const handleUploadImage = (projectIndex: number) => {
+    setCurrentUploadIndex(projectIndex);
     fileInputRef.current?.click();
-    const onChange = async (e: Event) => {
-      const input = e.target as HTMLInputElement;
-      if (!input.files || input.files.length === 0) return;
-      const file = input.files[0];
-      const base64 = await file.arrayBuffer().then(b=> Buffer.from(b).toString('base64'));
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'SITE_PHOTO',
-          title: projects[projectIndex].name,
-          description: 'Project image',
-          fileName: file.name,
-          fileBase64: `data:${file.type};base64,${base64}`,
-        })
-      });
-      const data = await res.json();
-      if (res.ok && data.url) {
-        const updated = [...projects];
-        updated[projectIndex].images = [data.url, ...updated[projectIndex].images];
-        setProjects(updated);
-      }
-      input.removeEventListener('change', onChange as any);
-      input.value = '';
-    };
-    fileInputRef.current?.addEventListener('change', onChange as any, { once: true });
   };
 
-  const handleEditField = (index: number, key: keyof Project, value: string | number) => {
-    const updated = [...projects];
-    // @ts-expect-error narrowing at runtime
-    updated[index][key] = value;
-    setProjects(updated);
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (currentUploadIndex === null) return;
+    const input = e.target;
+    if (!input.files || input.files.length === 0) return;
+    const file = input.files[0];
+    const base64 = await new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const result = reader.result as string;
+        const parts = result.split(',');
+        resolve(parts[1] ?? '');
+      };
+      reader.onerror = () => reject(new Error('Failed to read file'));
+      reader.readAsDataURL(file);
+    });
+    const res = await fetch('/api/upload', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'SITE_PHOTO',
+        title: projects[currentUploadIndex].name,
+        description: 'Project image',
+        fileName: file.name,
+        fileBase64: `data:${file.type};base64,${base64}`,
+      })
+    });
+    const data = await res.json();
+    if (res.ok && data.url) {
+      const updated = [...projects];
+      updated[currentUploadIndex].images = [data.url, ...updated[currentUploadIndex].images];
+      setProjects(updated);
+    }
+    input.value = '';
+    setCurrentUploadIndex(null);
   };
+
+  // Inline edit handlers can be added here when needed.
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -383,10 +390,10 @@ export default function ProjectsPage() {
                   <button className="bg-blue-50 text-blue-600 px-3 py-2 rounded text-sm hover:bg-blue-100">
                     View Details
                   </button>
-                  <button className="bg-gray-50 text-gray-600 px-3 py-2 rounded text-sm hover:bg-gray-100" onClick={()=>handleUploadImage(project.id-1)}>
+                  <button className="bg-gray-50 text-gray-600 px-3 py-2 rounded text-sm hover:bg-gray-100" onClick={()=>handleUploadImage(projects.findIndex(p=>p.id===project.id))}>
                     Upload Image
                   </button>
-                  <input ref={fileInputRef} type="file" accept="image/*" className="hidden" />
+                  <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
                 </div>
               </div>
             </div>
