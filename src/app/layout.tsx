@@ -13,8 +13,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-dvh bg-gradient-to-br from-slate-50 via-white to-sky-50 text-gray-900 antialiased">
         <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
           <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 h-16">
-            <Link href="/" className="flex items-center gap-2 sm:gap-3">
-              <span className="text-lg sm:text-xl font-bold tracking-tight text-gray-900">Arivu Homes</span>
+            <Link href="/" className="flex items-center">
+              <img src="/logo-simple.svg" alt="Arivu Homes" className="h-7 w-7 sm:h-8 sm:w-8" />
             </Link>
             <nav className="hidden sm:flex items-center gap-4 sm:gap-6 text-sm">
               <Link href="/services" className="hover:text-blue-600">Services</Link>

@@ -55,7 +55,7 @@ export default function Home() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
         <h2 className="text-2xl font-bold text-center mb-8">Quick Access</h2>
         <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
-          <Link href="/projects" className="glass-card rounded-xl p-6 hover:shadow-lg transition-all duration-300 group">
+          <Link href="/projects" className="rounded-xl p-6 hover:shadow-lg transition-all duration-300 group border" style={{background:"linear-gradient(180deg,#ecfdf5, #ffffff)"}}>
             <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🏗️</div>
             <h3 className="text-xl font-bold mb-3">Current Projects</h3>
             <p className="text-gray-700 leading-relaxed">Track ongoing construction projects in Bangalore with completion status and budget monitoring.</p>
@@ -63,7 +63,7 @@ export default function Home() {
               View Projects →
             </div>
           </Link>
-          <Link href="/boq" className="glass-card rounded-xl p-6 hover:shadow-lg transition-all duration-300 group">
+          <Link href="/boq" className="rounded-xl p-6 hover:shadow-lg transition-all duration-300 group border" style={{background:"linear-gradient(180deg,#eef2ff, #ffffff)"}}>
             <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">📊</div>
             <h3 className="text-xl font-bold mb-3">BOQ Calculator</h3>
             <p className="text-gray-700 leading-relaxed">Calculate construction costs and quantities with detailed breakdown by category.</p>
@@ -71,7 +71,7 @@ export default function Home() {
               Calculate Costs →
             </div>
           </Link>
-          <Link href="/team" className="glass-card rounded-xl p-6 hover:shadow-lg transition-all duration-300 group">
+          <Link href="/team" className="rounded-xl p-6 hover:shadow-lg transition-all duration-300 group border" style={{background:"linear-gradient(180deg,#fdf2f8, #ffffff)"}}>
             <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">👥</div>
             <h3 className="text-xl font-bold mb-3">Meet Our Team</h3>
             <p className="text-gray-700 leading-relaxed">Learn about our experienced professionals and their expertise.</p>
@@ -105,7 +105,8 @@ export default function Home() {
             <Link 
               href={`/services/${s.slug}`} 
               key={s.slug} 
-              className={`glass-card border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all duration-300 group`}
+              className={`border rounded-xl p-6 hover:shadow-lg transition-all duration-300 group`}
+              style={{background: index % 3 === 0 ? "linear-gradient(180deg,#f0f9ff,#ffffff)" : index % 3 === 1 ? "linear-gradient(180deg,#f7fee7,#ffffff)" : "linear-gradient(180deg,#fae8ff,#ffffff)"}}
             >
               <h3 className={`font-bold text-lg text-gray-900 group-hover:scale-105 transition-transform duration-300`}>{s.name}</h3>
               <p className={`text-sm text-gray-700 mt-2 leading-relaxed`}>{s.desc}</p>
