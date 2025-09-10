@@ -53,7 +53,7 @@ export default function Home() {
 
       {/* Quick Access Section */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
-        <h2 className="text-2xl font-bold text-center mb-8">Quick Access</h2>
+        <h2 className="text-2xl font-bold text-center mb-8 text-gray-900">Quick Access</h2>
         <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
           <Link href="/projects" className="rounded-xl p-6 hover:shadow-lg transition-all duration-300 group border" style={{background:"linear-gradient(180deg,#ecfdf5, #ffffff)"}}>
             <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🏗️</div>

@@ -8,6 +8,7 @@ interface Project {
   id: number;
   name: string;
   location: string;
+  client?: string;
   type: string;
   startDate: string;
   expectedCompletion: string;
@@ -15,8 +16,8 @@ interface Project {
   status: "Planning" | "In Progress" | "Near Completion" | "Completed";
   description: string;
   images: string[];
-  budget: number;
-  actualCost: number;
+  budget?: number;
+  actualCost?: number;
 }
 
 export default function ProjectsPage() {
@@ -27,6 +28,7 @@ export default function ProjectsPage() {
   const [newProject, setNewProject] = useState<Partial<Project>>({
     name: "",
     location: "",
+    client: "",
     type: "",
     startDate: "",
     expectedCompletion: "",
@@ -350,8 +352,24 @@ export default function ProjectsPage() {
                   </span>
                 </div>
                 
-                <p className="text-gray-600 text-sm mb-2">{project.location}</p>
-                <p className="text-gray-500 text-sm mb-3">{project.type}</p>
+                <div className="space-y-2 mb-3 text-sm">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-gray-600">Client</span>
+                    <input className="border rounded px-2 py-1 w-40" value={project.client ?? ''} onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].client=e.target.value; setProjects(u); }} />
+                  </div>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-gray-600">Location</span>
+                    <input className="border rounded px-2 py-1 w-40" value={project.location} onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].location=e.target.value; setProjects(u); }} />
+                  </div>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-gray-600">Type</span>
+                    <input className="border rounded px-2 py-1 w-40" value={project.type} onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].type=e.target.value; setProjects(u); }} />
+                  </div>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-gray-600">Completion (Estd)</span>
+                    <input type="date" className="border rounded px-2 py-1" value={project.expectedCompletion} onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].expectedCompletion=e.target.value; setProjects(u); }} />
+                  </div>
+                </div>
                 
                 <div className="mb-4">
                   <div className="flex justify-between text-sm text-gray-600 mb-1">
@@ -368,54 +386,11 @@ export default function ProjectsPage() {
 
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-gray-600">Budget:</span>
-                    <input
-                      type="number"
-                      value={project.budget}
-                      onChange={(e)=>{
-                        const updated=[...projects];
-                        updated.find(p=>p.id===project.id)!.budget = Number(e.target.value);
-                        setProjects(updated);
-                      }}
-                      className="w-28 border rounded px-2 py-1 text-right"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-gray-600">Spent:</span>
-                    <input
-                      type="number"
-                      value={project.actualCost}
-                      onChange={(e)=>{
-                        const updated=[...projects];
-                        updated.find(p=>p.id===project.id)!.actualCost = Number(e.target.value);
-                        setProjects(updated);
-                      }}
-                      className="w-28 border rounded px-2 py-1 text-right"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between gap-2">
                     <span className="text-gray-600">Name:</span>
                     <input
                       type="text"
                       value={project.name}
-                      onChange={(e)=>{
-                        const updated=[...projects];
-                        updated.find(p=>p.id===project.id)!.name = e.target.value;
-                        setProjects(updated);
-                      }}
-                      className="w-48 border rounded px-2 py-1"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-gray-600">Location:</span>
-                    <input
-                      type="text"
-                      value={project.location}
-                      onChange={(e)=>{
-                        const updated=[...projects];
-                        updated.find(p=>p.id===project.id)!.location = e.target.value;
-                        setProjects(updated);
-                      }}
+                      onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].name=e.target.value; setProjects(u); }}
                       className="w-48 border rounded px-2 py-1"
                     />
                   </div>

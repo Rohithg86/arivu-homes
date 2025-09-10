@@ -55,6 +55,16 @@ export default function JourneyPage(){
         <Link href="/" className="text-gray-600 hover:text-gray-900 text-sm">← Back to Home</Link>
       </div>
 
+      <div className="mt-6 rounded-2xl overflow-hidden border">
+        <iframe
+          className="w-full aspect-video"
+          src="https://www.youtube.com/embed/0o3Zr7G4JmE?rel=0&modestbranding=1"
+          title="Arivu Homes Journey"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      </div>
+
       <section className="mt-8 grid gap-6 md:grid-cols-2">
         {steps.map((s, i)=> (
           <div key={i} className="rounded-2xl border bg-white/70 backdrop-blur p-6">
