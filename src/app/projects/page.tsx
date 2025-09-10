@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useRef } from "react";
 import Link from "next/link";
 
 interface Project {
@@ -22,6 +23,7 @@ interface Project {
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [showAddForm, setShowAddForm] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [newProject, setNewProject] = useState<Partial<Project>>({
     name: "",
     location: "",
@@ -116,6 +118,43 @@ export default function ProjectsPage() {
       });
       setShowAddForm(false);
     }
+  };
+
+  const handleUploadImage = (projectIndex: number) => {
+    fileInputRef.current?.click();
+    const onChange = async (e: Event) => {
+      const input = e.target as HTMLInputElement;
+      if (!input.files || input.files.length === 0) return;
+      const file = input.files[0];
+      const base64 = await file.arrayBuffer().then(b=> Buffer.from(b).toString('base64'));
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'SITE_PHOTO',
+          title: projects[projectIndex].name,
+          description: 'Project image',
+          fileName: file.name,
+          fileBase64: `data:${file.type};base64,${base64}`,
+        })
+      });
+      const data = await res.json();
+      if (res.ok && data.url) {
+        const updated = [...projects];
+        updated[projectIndex].images = [data.url, ...updated[projectIndex].images];
+        setProjects(updated);
+      }
+      input.removeEventListener('change', onChange as any);
+      input.value = '';
+    };
+    fileInputRef.current?.addEventListener('change', onChange as any, { once: true });
+  };
+
+  const handleEditField = (index: number, key: keyof Project, value: string | number) => {
+    const updated = [...projects];
+    // @ts-expect-error narrowing at runtime
+    updated[index][key] = value;
+    setProjects(updated);
   };
 
   const getStatusColor = (status: string) => {
@@ -286,7 +325,7 @@ export default function ProjectsPage() {
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
-            <div key={project.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div key={project.id} className="glass-card rounded-lg shadow-md overflow-hidden">
               {project.images.length > 0 && (
                 <div className="h-48 relative">
                   <Image
@@ -340,13 +379,14 @@ export default function ProjectsPage() {
                   <p className="text-gray-600 text-sm">{project.description}</p>
                 </div>
 
-                <div className="mt-4 flex gap-2">
-                  <button className="flex-1 bg-blue-50 text-blue-600 px-3 py-2 rounded text-sm hover:bg-blue-100">
+                <div className="mt-4 grid grid-cols-2 gap-2">
+                  <button className="bg-blue-50 text-blue-600 px-3 py-2 rounded text-sm hover:bg-blue-100">
                     View Details
                   </button>
-                  <button className="flex-1 bg-gray-50 text-gray-600 px-3 py-2 rounded text-sm hover:bg-gray-100">
-                    Update Progress
+                  <button className="bg-gray-50 text-gray-600 px-3 py-2 rounded text-sm hover:bg-gray-100" onClick={()=>handleUploadImage(project.id-1)}>
+                    Upload Image
                   </button>
+                  <input ref={fileInputRef} type="file" accept="image/*" className="hidden" />
                 </div>
               </div>
             </div>
