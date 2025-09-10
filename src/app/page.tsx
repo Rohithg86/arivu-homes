@@ -10,20 +10,20 @@ export default function Home() {
           alt="Construction site"
           width={1600}
           height={900}
-          className="h-[54vh] w-full object-cover object-center"
+          className="h-[46vh] sm:h-[54vh] w-full object-cover object-center"
           priority
         />
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 flex items-center">
-          <div className="max-w-6xl mx-auto px-6 text-white">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
-                <span className="text-2xl font-bold text-blue-600">A</span>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 text-white">
+            <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
+                <span className="text-xl sm:text-2xl font-bold text-blue-600">A</span>
               </div>
-              <h1 className="text-5xl md:text-7xl font-bold text-white">Arivu Homes</h1>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">Arivu Homes</h1>
             </div>
-            <p className="text-lg md:text-xl text-white/90 mb-2 font-medium">Building Dreams with Precision • Crafting Excellence Since Day One</p>
-            <p className="text-sm md:text-base text-white/80 max-w-2xl">End-to-end construction, architectural design, structural engineering, and project management services in Bangalore.</p>
+            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-2 font-medium max-w-3xl">Building Dreams with Precision • Crafting Excellence Since Day One</p>
+            <p className="text-xs sm:text-sm md:text-base text-white/80 max-w-2xl">End-to-end construction, architectural design, structural engineering, and project management services in Bangalore.</p>
             <div className="mt-4 space-y-2">
               <p className="text-white/80">
                 <strong className="text-blue-200">Managing Partner:</strong> 
@@ -38,7 +38,7 @@ export default function Home() {
                 <Link href="/team/shashank-d" className="ml-2 text-purple-100 hover:text-white underline decoration-purple-300 hover:decoration-white transition-all">Shashank D</Link>
               </p>
             </div>
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4">
               <Link href="/services" className="bg-white text-gray-900 px-6 py-3 rounded-lg shadow-lg hover:bg-gray-50 hover:shadow-xl transition-all duration-300 font-semibold">
                 Explore Services
               </Link>
@@ -57,9 +57,9 @@ export default function Home() {
       </section>
 
       {/* Quick Access Section */}
-      <section className="max-w-6xl mx-auto px-6 py-8">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
         <h2 className="text-2xl font-bold text-center mb-8">Quick Access</h2>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
           <Link href="/projects" className="bg-gradient-to-br from-emerald-500 via-green-600 to-teal-600 text-white rounded-xl p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
             <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🏗️</div>
             <h3 className="text-xl font-bold mb-3">Current Projects</h3>
@@ -87,7 +87,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 py-12 grid gap-6 md:grid-cols-3">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12 grid gap-4 sm:gap-6 md:grid-cols-3">
         {[
           { name:'Residential Construction', desc:'Villas, apartments, turnkey builds', slug:'residential-construction' },
           { name:'Commercial Construction', desc:'Offices, retail, industrial', slug:'commercial-construction' },
