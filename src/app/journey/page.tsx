@@ -1,4 +1,8 @@
+
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 const steps = [
   { title: "Plot Assessment & Feasibility", details: [
@@ -48,6 +52,16 @@ const paymentPlan = [
 ];
 
 export default function JourneyPage(){
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    // Attempt to play on mount. Most browsers require muted autoplay.
+    const v = videoRef.current;
+    if (!v) return;
+    const p = v.play();
+    if (p && typeof (p as Promise<void>).catch === "function") (p as Promise<void>).catch(() => {});
+  }, []);
+
   return (
     <main className="max-w-6xl mx-auto px-6 py-12">
       <div className="flex items-center justify-between">
@@ -57,8 +71,12 @@ export default function JourneyPage(){
 
       <div className="mt-6 rounded-2xl overflow-hidden border">
         <video
+          ref={videoRef}
           className="w-full aspect-video bg-black"
           controls
+          autoPlay
+          muted
+          playsInline
           preload="metadata"
         >
           <source src="/videos/client-journey.mp4" type="video/mp4" />

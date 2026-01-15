@@ -1,5 +1,6 @@
 ﻿import Image from "next/image";
 import Link from "next/link";
+import { ContactWidget } from "@/components/ContactWidget";
 
 export default function Home() {
   return (
@@ -133,6 +134,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Floating contact widget (home only) */}
+      <ContactWidget />
     </main>
   );
 }
