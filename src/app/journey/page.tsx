@@ -58,7 +58,7 @@ export default function JourneyPage(){
       <div className="mt-6 rounded-2xl overflow-hidden border">
         <iframe
           className="w-full aspect-video"
-          src="https://www.youtube.com/embed/0o3Zr7G4JmE?rel=0&modestbranding=1"
+          src="/videos/client-journey.mp4"
           title="Arivu Homes Journey"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
