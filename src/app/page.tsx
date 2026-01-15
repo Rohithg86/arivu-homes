@@ -91,16 +91,6 @@ export default function Home() {
           { name:'Structural Engineering', desc:'Analysis, detailing, peer review', slug:'structural-engineering' },
           { name:'Project Management', desc:'Cost control, timelines, quality', slug:'project-management' },
         ].map((s, index)=> {
-          const colors = [
-            { bg: 'bg-gradient-to-br from-blue-50 to-indigo-100', border: 'border-blue-200', text: 'text-blue-900', desc: 'text-blue-700', hover: 'hover:from-blue-100 hover:to-indigo-200' },
-            { bg: 'bg-gradient-to-br from-green-50 to-emerald-100', border: 'border-green-200', text: 'text-green-900', desc: 'text-green-700', hover: 'hover:from-green-100 hover:to-emerald-200' },
-            { bg: 'bg-gradient-to-br from-purple-50 to-violet-100', border: 'border-purple-200', text: 'text-purple-900', desc: 'text-purple-700', hover: 'hover:from-purple-100 hover:to-violet-200' },
-            { bg: 'bg-gradient-to-br from-orange-50 to-amber-100', border: 'border-orange-200', text: 'text-orange-900', desc: 'text-orange-700', hover: 'hover:from-orange-100 hover:to-amber-200' },
-            { bg: 'bg-gradient-to-br from-teal-50 to-cyan-100', border: 'border-teal-200', text: 'text-teal-900', desc: 'text-teal-700', hover: 'hover:from-teal-100 hover:to-cyan-200' },
-            { bg: 'bg-gradient-to-br from-rose-50 to-pink-100', border: 'border-rose-200', text: 'text-rose-900', desc: 'text-rose-700', hover: 'hover:from-rose-100 hover:to-pink-200' }
-          ];
-          const colorScheme = colors[index % colors.length];
-          
           return (
             <Link 
               href={`/services/${s.slug}`} 

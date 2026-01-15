@@ -148,14 +148,6 @@ export default function ProjectsPage() {
     }
   };
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      maximumFractionDigits: 0,
-    }).format(amount);
-  };
-
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}

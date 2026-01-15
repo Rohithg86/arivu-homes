@@ -40,7 +40,6 @@ export async function GET() {
             ],
           },
         ],
-        skipDuplicates: true,
       });
     }
 

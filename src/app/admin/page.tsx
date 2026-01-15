@@ -7,6 +7,32 @@ type AssetType = 'SITE_PHOTO' | 'DESIGN' | 'ARCHITECTURE' | 'INNOVATION'
 
 type TeamForm = { name: string; role: string; bio?: string; photoUrl?: string }
 type UploadForm = { type: AssetType; title?: string; description?: string; file?: FileList }
+type ProjectRecord = {
+  id: number
+  name: string
+  location: string
+  client?: string | null
+  type?: string | null
+  startDate?: string | null
+  expectedCompletion?: string | null
+  completionPercentage?: number | null
+  status?: string | null
+  description?: string | null
+  images?: string[] | null
+}
+
+type ProjectForm = {
+  name: string
+  location: string
+  client?: string
+  type?: string
+  startDate?: string
+  expectedCompletion?: string
+  completionPercentage?: number
+  status?: string
+  description?: string
+  imagesText?: string
+}
 
 function toBase64(file: File) {
   return new Promise<string>((resolve, reject) => {
@@ -21,18 +47,7 @@ export default function AdminPage() {
   const [tab, setTab] = useState<'team'|'assets'|'projects'>('team')
   const teamForm = useForm<TeamForm>({ defaultValues: { name: '', role: '' } })
   const assetForm = useForm<UploadForm>()
-  const projectForm = useForm<{
-    name: string
-    location: string
-    client?: string
-    type?: string
-    startDate?: string
-    expectedCompletion?: string
-    completionPercentage?: number
-    status?: string
-    description?: string
-    images?: string[]
-  }>({
+  const projectForm = useForm<ProjectForm>({
     defaultValues: {
       name: "",
       location: "",
@@ -43,15 +58,15 @@ export default function AdminPage() {
       completionPercentage: 0,
       status: "Planning",
       description: "",
-      images: [],
+      imagesText: "",
     },
   })
-  const [projects, setProjects] = useState<any[]>([])
+  const [projects, setProjects] = useState<ProjectRecord[]>([])
   const [editingId, setEditingId] = useState<number | null>(null)
 
   async function refreshProjects() {
     const res = await fetch("/api/projects")
-    if (res.ok) setProjects(await res.json())
+    if (res.ok) setProjects((await res.json()) as ProjectRecord[])
   }
 
   const submitTeam = teamForm.handleSubmit(async (data) => {
@@ -71,19 +86,18 @@ export default function AdminPage() {
   })
 
   const submitProject = projectForm.handleSubmit(async (data) => {
+    const images = String(data.imagesText ?? "")
+      .split("\n")
+      .map((s) => s.trim())
+      .filter(Boolean)
+
     const res = await fetch("/api/projects", {
       method: editingId ? "PUT" : "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...(editingId ? { id: editingId } : {}),
         ...data,
-        images:
-          typeof (data as any).images === "string"
-            ? String((data as any).images)
-                .split("\n")
-                .map((s) => s.trim())
-                .filter(Boolean)
-            : data.images ?? [],
+        images,
       }),
     })
     alert(res.ok ? (editingId ? "Project updated" : "Project added") : "Failed")
@@ -169,7 +183,7 @@ export default function AdminPage() {
               className="border p-2 font-mono text-xs"
               placeholder={"Images (one URL per line)\nExample:\n/uploads/projects/jigani/elevation.jpg"}
               rows={5}
-              {...projectForm.register("images" as any)}
+              {...projectForm.register("imagesText")}
             />
             <button className="bg-black text-white px-4 py-2 rounded" type="submit">
               {editingId ? "Save" : "Create"}
@@ -200,8 +214,8 @@ export default function AdminPage() {
                           completionPercentage: p.completionPercentage ?? 0,
                           status: p.status ?? "Planning",
                           description: p.description ?? "",
-                          images: Array.isArray(p.images) ? p.images.join("\n") : "",
-                        } as any)
+                          imagesText: Array.isArray(p.images) ? p.images.join("\n") : "",
+                        })
                         window.scrollTo({ top: 0, behavior: "smooth" })
                       }}
                     >
