@@ -110,7 +110,7 @@ export default function AdminPage() {
 
   async function logout() {
     await fetch("/api/admin/logout", { method: "POST" })
-    window.location.href = "/admin/login"
+    window.location.href = "/admin-login"
   }
 
   // initial load

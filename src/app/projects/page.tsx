@@ -13,7 +13,7 @@ interface Project {
   startDate: string;
   expectedCompletion: string;
   completionPercentage: number;
-  status: "Planning" | "In Progress" | "Near Completion" | "Completed";
+  status: "Planning" | "In Progress" | "Near Completion" | "Ongoing" | "Completed";
   description: string;
   images: string[];
   budget?: number;
@@ -140,6 +140,7 @@ export default function ProjectsPage() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
+      case "Ongoing": return "bg-blue-100 text-blue-800";
       case "Planning": return "bg-yellow-100 text-yellow-800";
       case "In Progress": return "bg-blue-100 text-blue-800";
       case "Near Completion": return "bg-orange-100 text-orange-800";
@@ -147,6 +148,9 @@ export default function ProjectsPage() {
       default: return "bg-gray-100 text-gray-800";
     }
   };
+
+  const ongoingProjects = projects.filter((p) => p.status !== "Completed");
+  const completedProjects = projects.filter((p) => p.status === "Completed");
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -298,8 +302,9 @@ export default function ProjectsPage() {
 
       {/* Projects Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Ongoing Projects</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {projects.map((project) => (
+          {ongoingProjects.map((project) => (
             <div key={project.id} className="glass-card rounded-lg shadow-md overflow-hidden">
               {project.images.length > 0 && (
                 <div className="h-48 relative">
@@ -402,6 +407,39 @@ export default function ProjectsPage() {
             </div>
           ))}
         </div>
+
+        <h2 className="text-xl font-semibold text-gray-900 mt-10 mb-4">Completed Projects</h2>
+        {completedProjects.length === 0 ? (
+          <div className="rounded-xl border bg-white p-6 text-gray-600">
+            Completed projects will be listed here.
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {completedProjects.map((project) => (
+              <div key={project.id} className="glass-card rounded-lg shadow-md overflow-hidden">
+                {project.images.length > 0 && (
+                  <div className="h-48 relative">
+                    <Image
+                      src={project.images[0]}
+                      alt={project.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+                <div className="p-6">
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="text-lg font-semibold text-gray-900">{project.name}</h3>
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
+                      {project.status}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600">{project.location}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
 
         {projects.length === 0 && (
           <div className="text-center py-12">

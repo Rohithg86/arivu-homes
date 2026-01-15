@@ -47,7 +47,42 @@ export async function GET() {
     return NextResponse.json(projects);
   } catch (error) {
     console.error('Error fetching projects:', error);
-    return NextResponse.json({ error: 'Failed to fetch projects' }, { status: 500 });
+    // Fallback for environments where DB isn't available (e.g. serverless + sqlite)
+    const fallback = [
+      {
+        id: 1,
+        name: "Commercial Rental Building in Jigani, Classic Elmwood Layout (G+2)",
+        location: "Jigani, Classic Elmwood Layout, Bangalore",
+        type: "Commercial",
+        startDate: "",
+        expectedCompletion: "",
+        completionPercentage: 0,
+        status: "Ongoing",
+        description: "Commercial rental building (G+2) – ongoing project.",
+        images: [
+          "/uploads/projects/jigani/elevation.jpg",
+          "/uploads/projects/jigani/1.jpg",
+          "/uploads/projects/jigani/2.jpg",
+        ],
+      },
+      {
+        id: 2,
+        name: "G+2 Individual Building near Sita Circle, Magadi Road",
+        location: "Near Sita Circle, Magadi Road, Bangalore",
+        type: "Residential",
+        startDate: "",
+        expectedCompletion: "",
+        completionPercentage: 0,
+        status: "Ongoing",
+        description: "G+2 individual building – ongoing project.",
+        images: [
+          "/uploads/projects/magadi/elevation.jpg",
+          "/uploads/projects/magadi/1.jpg",
+          "/uploads/projects/magadi/2.jpg",
+        ],
+      },
+    ];
+    return NextResponse.json(fallback);
   }
 }
 
