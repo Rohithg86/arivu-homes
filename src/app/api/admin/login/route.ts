@@ -2,12 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { getAdminCookieName, signAdminSession } from "@/lib/adminAuth";
 
 export async function POST(req: NextRequest) {
-  const { password } = (await req.json().catch(() => ({}))) as { password?: string };
-  const expected = process.env.ADMIN_PASSWORD;
-  if (!expected) {
-    return NextResponse.json({ error: "Server not configured" }, { status: 500 });
-  }
-  if (!password || password !== expected) {
+  const { username, password } = (await req.json().catch(() => ({}))) as {
+    username?: string;
+    password?: string;
+  };
+
+  const expectedUsername = process.env.ADMIN_USERNAME ?? "arivu_admin";
+  const expectedPassword = process.env.ADMIN_PASSWORD ?? "arivu@123";
+
+  if (!username || !password || username !== expectedUsername || password !== expectedPassword) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
   }
 
