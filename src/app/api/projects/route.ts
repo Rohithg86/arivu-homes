@@ -1,53 +1,50 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
+import { getAdminCookieName, verifyAdminSession } from '@/lib/adminAuth';
 
 export async function GET() {
   try {
-    // For now, return sample data since we don't have a Project model in Prisma yet
-    const projects = [
-      {
-        id: 1,
-        name: "Luxury Villa - Whitefield",
-        location: "Whitefield, Bangalore",
-        type: "Residential",
-        startDate: "2024-01-15",
-        expectedCompletion: "2024-12-30",
-        completionPercentage: 75,
-        status: "In Progress",
-        description: "Modern luxury villa with smart home features and sustainable design.",
-        images: ["https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400"],
-        budget: 25000000,
-        actualCost: 18750000,
-      },
-      {
-        id: 2,
-        name: "Commercial Complex - Koramangala",
-        location: "Koramangala, Bangalore",
-        type: "Commercial",
-        startDate: "2024-03-01",
-        expectedCompletion: "2025-06-15",
-        completionPercentage: 45,
-        status: "In Progress",
-        description: "Multi-story commercial complex with retail and office spaces.",
-        images: ["https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400"],
-        budget: 50000000,
-        actualCost: 22500000,
-      },
-      {
-        id: 3,
-        name: "Apartment Renovation - Indiranagar",
-        location: "Indiranagar, Bangalore",
-        type: "Renovation",
-        startDate: "2024-02-10",
-        expectedCompletion: "2024-08-20",
-        completionPercentage: 90,
-        status: "Near Completion",
-        description: "Complete renovation of 3BHK apartment with modern interiors.",
-        images: ["https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400"],
-        budget: 1500000,
-        actualCost: 1350000,
-      },
-    ];
+    // Seed on first run (so production comes up with the required two projects automatically)
+    const count = await prisma.project.count();
+    if (count === 0) {
+      await prisma.project.createMany({
+        data: [
+          {
+            name: "Commercial Rental Building in Jigani, Classic Elmwood Layout (G+2)",
+            location: "Jigani, Classic Elmwood Layout, Bangalore",
+            type: "Commercial",
+            startDate: "",
+            expectedCompletion: "",
+            completionPercentage: 0,
+            status: "In Progress",
+            description: "Commercial rental building (G+2) – current project.",
+            images: [
+              "/uploads/projects/jigani/elevation.jpg",
+              "/uploads/projects/jigani/1.jpg",
+              "/uploads/projects/jigani/2.jpg",
+            ],
+          },
+          {
+            name: "G+2 Individual Building near Sita Circle, Magadi Road",
+            location: "Near Sita Circle, Magadi Road, Bangalore",
+            type: "Residential",
+            startDate: "",
+            expectedCompletion: "",
+            completionPercentage: 0,
+            status: "In Progress",
+            description: "G+2 individual building – current project.",
+            images: [
+              "/uploads/projects/magadi/elevation.jpg",
+              "/uploads/projects/magadi/1.jpg",
+              "/uploads/projects/magadi/2.jpg",
+            ],
+          },
+        ],
+        skipDuplicates: true,
+      });
+    }
 
+    const projects = await prisma.project.findMany({ orderBy: { updatedAt: "desc" } });
     return NextResponse.json(projects);
   } catch (error) {
     console.error('Error fetching projects:', error);
@@ -57,6 +54,10 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
+    const token = request.cookies.get(getAdminCookieName())?.value;
+    const v = verifyAdminSession(token);
+    if (!v.ok) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
     const body = await request.json();
     
     // Validate required fields
@@ -64,15 +65,22 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Name and location are required' }, { status: 400 });
     }
 
-    // For now, return the project data with a generated ID
-    // In a real implementation, you would save this to the database
-    const newProject = {
-      id: Date.now(), // Simple ID generation
-      ...body,
-      createdAt: new Date().toISOString(),
-    };
+    const created = await prisma.project.create({
+      data: {
+        name: body.name,
+        location: body.location,
+        client: body.client ?? null,
+        type: body.type ?? "",
+        startDate: body.startDate ?? "",
+        expectedCompletion: body.expectedCompletion ?? "",
+        completionPercentage: Number(body.completionPercentage ?? 0),
+        status: body.status ?? "Planning",
+        description: body.description ?? "",
+        images: Array.isArray(body.images) ? body.images : [],
+      },
+    });
 
-    return NextResponse.json(newProject, { status: 201 });
+    return NextResponse.json(created, { status: 201 });
   } catch (error) {
     console.error('Error creating project:', error);
     return NextResponse.json({ error: 'Failed to create project' }, { status: 500 });
@@ -81,6 +89,10 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
+    const token = request.cookies.get(getAdminCookieName())?.value;
+    const v = verifyAdminSession(token);
+    if (!v.ok) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
     const body = await request.json();
     const { id, ...updateData } = body;
 
@@ -88,15 +100,25 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: 'Project ID is required' }, { status: 400 });
     }
 
-    // For now, return the updated project data
-    // In a real implementation, you would update the database
-    const updatedProject = {
-      id,
-      ...updateData,
-      updatedAt: new Date().toISOString(),
-    };
+    const updated = await prisma.project.update({
+      where: { id: Number(id) },
+      data: {
+        ...(updateData.name !== undefined ? { name: updateData.name } : {}),
+        ...(updateData.location !== undefined ? { location: updateData.location } : {}),
+        ...(updateData.client !== undefined ? { client: updateData.client } : {}),
+        ...(updateData.type !== undefined ? { type: updateData.type } : {}),
+        ...(updateData.startDate !== undefined ? { startDate: updateData.startDate } : {}),
+        ...(updateData.expectedCompletion !== undefined ? { expectedCompletion: updateData.expectedCompletion } : {}),
+        ...(updateData.completionPercentage !== undefined
+          ? { completionPercentage: Number(updateData.completionPercentage) }
+          : {}),
+        ...(updateData.status !== undefined ? { status: updateData.status } : {}),
+        ...(updateData.description !== undefined ? { description: updateData.description } : {}),
+        ...(updateData.images !== undefined ? { images: updateData.images } : {}),
+      },
+    });
 
-    return NextResponse.json(updatedProject);
+    return NextResponse.json(updated);
   } catch (error) {
     console.error('Error updating project:', error);
     return NextResponse.json({ error: 'Failed to update project' }, { status: 500 });
@@ -105,6 +127,10 @@ export async function PUT(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
+    const token = request.cookies.get(getAdminCookieName())?.value;
+    const v = verifyAdminSession(token);
+    if (!v.ok) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
 
@@ -112,8 +138,7 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: 'Project ID is required' }, { status: 400 });
     }
 
-    // For now, return success
-    // In a real implementation, you would delete from the database
+    await prisma.project.delete({ where: { id: Number(id) } });
     return NextResponse.json({ message: 'Project deleted successfully' });
   } catch (error) {
     console.error('Error deleting project:', error);

@@ -23,6 +23,7 @@ interface Project {
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [currentUploadIndex, setCurrentUploadIndex] = useState<number | null>(null);
   const [newProject, setNewProject] = useState<Partial<Project>>({
@@ -40,55 +41,25 @@ export default function ProjectsPage() {
     actualCost: 0,
   });
 
-  // Sample data for demonstration
   useEffect(() => {
-    setProjects([
-      {
-        id: 1,
-        name: "Luxury Villa - Whitefield",
-        location: "Whitefield, Bangalore",
-        type: "Residential",
-        startDate: "2024-01-15",
-        expectedCompletion: "2024-12-30",
-        completionPercentage: 75,
-        status: "In Progress",
-        description: "Modern luxury villa with smart home features and sustainable design.",
-        images: ["https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400"],
-        budget: 25000000,
-        actualCost: 18750000,
-      },
-      {
-        id: 2,
-        name: "Commercial Complex - Koramangala",
-        location: "Koramangala, Bangalore",
-        type: "Commercial",
-        startDate: "2024-03-01",
-        expectedCompletion: "2025-06-15",
-        completionPercentage: 45,
-        status: "In Progress",
-        description: "Multi-story commercial complex with retail and office spaces.",
-        images: ["https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400"],
-        budget: 50000000,
-        actualCost: 22500000,
-      },
-      {
-        id: 3,
-        name: "Apartment Renovation - Indiranagar",
-        location: "Indiranagar, Bangalore",
-        type: "Renovation",
-        startDate: "2024-02-10",
-        expectedCompletion: "2024-08-20",
-        completionPercentage: 90,
-        status: "Near Completion",
-        description: "Complete renovation of 3BHK apartment with modern interiors.",
-        images: ["https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400"],
-        budget: 1500000,
-        actualCost: 1350000,
-      },
-    ]);
+    (async () => {
+      const [projectsRes, meRes] = await Promise.all([
+        fetch("/api/projects"),
+        fetch("/api/admin/me"),
+      ]);
+      if (projectsRes.ok) {
+        const data = (await projectsRes.json()) as Project[];
+        setProjects(data);
+      }
+      if (meRes.ok) {
+        const me = (await meRes.json()) as { isAdmin: boolean };
+        setIsAdmin(!!me.isAdmin);
+      }
+    })();
   }, []);
 
   const handleAddProject = () => {
+    if (!isAdmin) return;
     if (newProject.name && newProject.location) {
       const project: Project = {
         id: projects.length + 1,
@@ -123,11 +94,13 @@ export default function ProjectsPage() {
   };
 
   const handleUploadImage = (projectIndex: number) => {
+    if (!isAdmin) return;
     setCurrentUploadIndex(projectIndex);
     fileInputRef.current?.click();
   };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!isAdmin) return;
     if (currentUploadIndex === null) return;
     const input = e.target;
     if (!input.files || input.files.length === 0) return;
@@ -197,12 +170,14 @@ export default function ProjectsPage() {
               <Link href="/" className="text-gray-600 hover:text-gray-900">
                 ← Back to Home
               </Link>
-              <button
-                onClick={() => setShowAddForm(true)}
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-              >
-                Add New Project
-              </button>
+              {isAdmin && (
+                <button
+                  onClick={() => setShowAddForm(true)}
+                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+                >
+                  Add New Project
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -355,19 +330,35 @@ export default function ProjectsPage() {
                 <div className="space-y-2 mb-3 text-sm">
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-gray-600">Client</span>
-                    <input className="border rounded px-2 py-1 w-40" value={project.client ?? ''} onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].client=e.target.value; setProjects(u); }} />
+                    {isAdmin ? (
+                      <input className="border rounded px-2 py-1 w-40" value={project.client ?? ''} onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].client=e.target.value; setProjects(u); }} />
+                    ) : (
+                      <span className="text-gray-800">{project.client ?? "-"}</span>
+                    )}
                   </div>
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-gray-600">Location</span>
-                    <input className="border rounded px-2 py-1 w-40" value={project.location} onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].location=e.target.value; setProjects(u); }} />
+                    {isAdmin ? (
+                      <input className="border rounded px-2 py-1 w-40" value={project.location} onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].location=e.target.value; setProjects(u); }} />
+                    ) : (
+                      <span className="text-gray-800">{project.location}</span>
+                    )}
                   </div>
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-gray-600">Type</span>
-                    <input className="border rounded px-2 py-1 w-40" value={project.type} onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].type=e.target.value; setProjects(u); }} />
+                    {isAdmin ? (
+                      <input className="border rounded px-2 py-1 w-40" value={project.type} onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].type=e.target.value; setProjects(u); }} />
+                    ) : (
+                      <span className="text-gray-800">{project.type}</span>
+                    )}
                   </div>
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-gray-600">Completion (Estd)</span>
-                    <input type="date" className="border rounded px-2 py-1" value={project.expectedCompletion} onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].expectedCompletion=e.target.value; setProjects(u); }} />
+                    {isAdmin ? (
+                      <input type="date" className="border rounded px-2 py-1" value={project.expectedCompletion} onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].expectedCompletion=e.target.value; setProjects(u); }} />
+                    ) : (
+                      <span className="text-gray-800">{project.expectedCompletion || "-"}</span>
+                    )}
                   </div>
                 </div>
                 
@@ -387,12 +378,16 @@ export default function ProjectsPage() {
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-gray-600">Name:</span>
-                    <input
-                      type="text"
-                      value={project.name}
-                      onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].name=e.target.value; setProjects(u); }}
-                      className="w-48 border rounded px-2 py-1"
-                    />
+                    {isAdmin ? (
+                      <input
+                        type="text"
+                        value={project.name}
+                        onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].name=e.target.value; setProjects(u); }}
+                        className="w-48 border rounded px-2 py-1"
+                      />
+                    ) : (
+                      <span className="text-gray-800 font-medium">{project.name}</span>
+                    )}
                   </div>
                 </div>
 
@@ -404,9 +399,11 @@ export default function ProjectsPage() {
                   <button className="bg-blue-50 text-blue-600 px-3 py-2 rounded text-sm hover:bg-blue-100">
                     View Details
                   </button>
-                  <button className="bg-gray-50 text-gray-600 px-3 py-2 rounded text-sm hover:bg-gray-100" onClick={()=>handleUploadImage(projects.findIndex(p=>p.id===project.id))}>
-                    Upload Image
-                  </button>
+                  {isAdmin && (
+                    <button className="bg-gray-50 text-gray-600 px-3 py-2 rounded text-sm hover:bg-gray-100" onClick={()=>handleUploadImage(projects.findIndex(p=>p.id===project.id))}>
+                      Upload Image
+                    </button>
+                  )}
                   <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
                 </div>
               </div>
@@ -419,12 +416,14 @@ export default function ProjectsPage() {
             <div className="text-gray-400 text-6xl mb-4">🏗️</div>
             <h3 className="text-lg font-medium text-gray-900 mb-2">No projects yet</h3>
             <p className="text-gray-600 mb-4">Start by adding your first construction project</p>
-            <button
-              onClick={() => setShowAddForm(true)}
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-            >
-              Add Project
-            </button>
+            {isAdmin && (
+              <button
+                onClick={() => setShowAddForm(true)}
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+              >
+                Add Project
+              </button>
+            )}
           </div>
         )}
       </div>

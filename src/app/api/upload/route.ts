@@ -1,8 +1,9 @@
-﻿import { NextResponse } from 'next/server'
+﻿import { NextRequest, NextResponse } from 'next/server'
 import path from 'node:path'
 import { writeFile } from 'node:fs/promises'
 import { prisma } from '@/lib/prisma'
 import { AssetType } from '@prisma/client'
+import { getAdminCookieName, verifyAdminSession } from '@/lib/adminAuth'
 
 type UploadBody = {
   type: AssetType
@@ -12,8 +13,12 @@ type UploadBody = {
   fileBase64: string
 }
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
+    const token = req.cookies.get(getAdminCookieName())?.value
+    const v = verifyAdminSession(token)
+    if (!v.ok) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
     const body = (await req.json()) as UploadBody
     const { type, title, description, fileName, fileBase64 } = body
     if (!type || !fileName || !fileBase64) {
