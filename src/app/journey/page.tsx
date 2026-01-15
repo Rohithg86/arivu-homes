@@ -56,13 +56,14 @@ export default function JourneyPage(){
       </div>
 
       <div className="mt-6 rounded-2xl overflow-hidden border">
-        <iframe
-          className="w-full aspect-video"
-          src="/videos/client-journey.mp4"
-          title="Arivu Homes Journey"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        />
+        <video
+          className="w-full aspect-video bg-black"
+          controls
+          preload="metadata"
+        >
+          <source src="/videos/client-journey.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
 
       <section className="mt-8 grid gap-6 md:grid-cols-2">
