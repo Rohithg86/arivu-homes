@@ -7,18 +7,18 @@ export default function TeamPage() {
       name: "Rohith Gopal",
       role: "Managing Partner",
       bio: "Visionary leader with over 15 years of experience in construction management, business development, and strategic planning in the Bangalore construction industry.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      image: "/profile/rohith.jpg",
       slug: "rohith-gopal",
       color: "blue",
       experience: "15+ Years",
       specialties: ["Strategic Planning", "Business Development", "Project Management", "Client Relations"]
     },
     {
-      name: "Chethan Shrinivas",
+      name: "Chethan Kumar S",
       role: "Chief Engineer",
       bio: "Highly skilled civil engineer with 18+ years of experience in structural design, construction management, and technical leadership across diverse construction projects.",
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
-      slug: "chethan-shrinivas",
+      slug: "chethan-kumar-s",
       color: "green",
       experience: "18+ Years",
       specialties: ["Structural Design", "Construction Management", "Technical Leadership", "Quality Control"]
@@ -26,7 +26,7 @@ export default function TeamPage() {
     {
       name: "Shashank D",
       role: "Senior Architect & Structural Engineer",
-      bio: "Creative architect and structural engineer with 16+ years of experience in innovative design solutions, sustainable architecture, and integrated structural systems.",
+      bio: "Creative architect and structural engineer with 8+ years of experience in innovative design solutions, sustainable architecture, and integrated structural systems.",
       image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face",
       slug: "shashank-d",
       color: "purple",

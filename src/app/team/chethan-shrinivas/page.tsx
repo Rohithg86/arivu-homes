@@ -9,7 +9,7 @@ export default function ChethanShrinivasBio() {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Chethan Shrinivas</h1>
+              <h1 className="text-3xl font-bold text-gray-900">Chethan Kumar S</h1>
               <p className="text-gray-600 mt-1">Chief Engineer - Arivu Homes Private Limited</p>
             </div>
             <Link href="/" className="text-gray-600 hover:text-gray-900">
@@ -27,13 +27,13 @@ export default function ChethanShrinivasBio() {
               <div className="w-48 h-48 relative rounded-full overflow-hidden border-4 border-white shadow-lg">
                 <Image
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face"
-                  alt="Chethan Shrinivas"
+                  alt="Chethan Kumar S"
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="flex-1">
-                <h2 className="text-4xl font-bold mb-2">Chethan Shrinivas</h2>
+                <h2 className="text-4xl font-bold mb-2">Chethan Kumar S</h2>
                 <p className="text-xl text-green-100 mb-4">Chief Engineer</p>
                 <p className="text-green-100 text-lg leading-relaxed">
                   Highly skilled civil engineer with 18+ years of experience in structural design, 
@@ -49,7 +49,7 @@ export default function ChethanShrinivasBio() {
             <section className="mb-8">
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Professional Summary</h3>
               <p className="text-gray-700 leading-relaxed mb-4">
-                Chethan Shrinivas is a distinguished civil engineer known for his technical expertise 
+                Chethan Kumar S is a distinguished civil engineer known for his technical expertise 
                 and innovative approach to construction challenges. As Chief Engineer at Arivu Constructions, 
                 he oversees all technical aspects of projects, ensuring structural integrity, safety, 
                 and compliance with industry standards.
