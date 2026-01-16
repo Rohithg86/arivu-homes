@@ -26,7 +26,7 @@ export default function RohithGopalBio() {
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="w-48 h-48 relative rounded-full overflow-hidden border-4 border-white shadow-lg">
                 <Image
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
+                  src="/profile/rohith.jpg"
                   alt="Rohith Gopal"
                   fill
                   className="object-cover"
@@ -36,8 +36,8 @@ export default function RohithGopalBio() {
                 <h2 className="text-4xl font-bold mb-2">Rohith Gopal</h2>
                 <p className="text-xl text-blue-100 mb-4">Managing Partner</p>
                 <p className="text-blue-100 text-lg leading-relaxed">
-                  Visionary leader with over 15 years of experience in construction management, 
-                  business development, and strategic planning in the Bangalore construction industry.
+                  Visionary leader with over 15 years of experience in project management, 
+                  business development, and strategic planning in the IT & construction industry.
                 </p>
               </div>
             </div>
@@ -68,7 +68,7 @@ export default function RohithGopalBio() {
               <div className="space-y-6">
                 <div className="border-l-4 border-blue-500 pl-6">
                   <h4 className="text-lg font-semibold text-gray-900">Managing Partner</h4>
-                  <p className="text-blue-600 font-medium">Arivu Homes Private Limited (2020 - Present)</p>
+                  <p className="text-blue-600 font-medium">Arivu Homes Private Limited (2025 - Present)</p>
                   <ul className="text-gray-700 mt-2 space-y-1">
                     <li>• Strategic planning and business development</li>
                     <li>• Client relationship management and project acquisition</li>
@@ -108,18 +108,13 @@ export default function RohithGopalBio() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <h4 className="font-semibold text-gray-900">Bachelor of Engineering</h4>
-                  <p className="text-gray-600">Civil Engineering</p>
+                  <p className="text-gray-600">Computer Science Engineering</p>
                   <p className="text-sm text-gray-500">Visvesvaraya Technological University (2008)</p>
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <h4 className="font-semibold text-gray-900">Project Management Professional (PMP)</h4>
                   <p className="text-gray-600">Project Management Institute</p>
                   <p className="text-sm text-gray-500">Certified 2018</p>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900">Construction Management</h4>
-                  <p className="text-gray-600">Indian Institute of Management</p>
-                  <p className="text-sm text-gray-500">Executive Program 2016</p>
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <h4 className="font-semibold text-gray-900">Safety Management</h4>
@@ -136,7 +131,7 @@ export default function RohithGopalBio() {
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-                    <p className="text-gray-700">Led successful completion of 50+ residential and commercial projects</p>
+                    <p className="text-gray-700">Led successful completion of 3+ residential and commercial projects</p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
@@ -158,7 +153,7 @@ export default function RohithGopalBio() {
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-                    <p className="text-gray-700">Mentored and developed 20+ construction professionals</p>
+                    <p className="text-gray-700">Mentored and developed 5+ construction professionals</p>
                   </div>
                 </div>
               </div>
@@ -169,8 +164,8 @@ export default function RohithGopalBio() {
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Contact Information</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <p className="text-gray-700"><strong>Email:</strong> rohith@arivuhomes.com</p>
-                  <p className="text-gray-700"><strong>Phone:</strong> +91-98765-43210</p>
+                  <p className="text-gray-700"><strong>Email:</strong> contact.arivuhomes@gmail.com</p>
+                  <p className="text-gray-700"><strong>Phone:</strong> +91-63618-67464</p>
                 </div>
                 <div>
                   <p className="text-gray-700"><strong>LinkedIn:</strong> linkedin.com/in/rohithgopal</p>
