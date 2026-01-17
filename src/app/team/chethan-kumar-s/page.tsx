@@ -36,8 +36,8 @@ export default function ChethanShrinivasBio() {
                 <h2 className="text-4xl font-bold mb-2">Chethan Kumar S</h2>
                 <p className="text-xl text-green-100 mb-4">Chief Engineer</p>
                 <p className="text-green-100 text-lg leading-relaxed">
-                  Highly skilled civil engineer with 18+ years of experience in structural design, 
-                  construction management, and technical leadership across diverse construction projects.
+                  Highly skilled civil engineer with 20+ years of experience in construction management 
+                  and technical leadership across diverse construction projects.
                 </p>
               </div>
             </div>
@@ -55,7 +55,7 @@ export default function ChethanShrinivasBio() {
                 and compliance with industry standards.
               </p>
               <p className="text-gray-700 leading-relaxed">
-                His extensive experience in structural analysis, design optimization, and construction 
+                His extensive experience in design optimization and construction 
                 methodologies has been instrumental in delivering complex projects on time and within budget. 
                 He is recognized for his ability to solve intricate engineering problems and implement 
                 cutting-edge construction technologies.
@@ -68,7 +68,7 @@ export default function ChethanShrinivasBio() {
               <div className="space-y-6">
                 <div className="border-l-4 border-green-500 pl-6">
                   <h4 className="text-lg font-semibold text-gray-900">Chief Engineer</h4>
-                  <p className="text-green-600 font-medium">Arivu Homes Private Limited (2020 - Present)</p>
+                  <p className="text-green-600 font-medium">Arivu Homes Private Limited (2026 - Present)</p>
                   <ul className="text-gray-700 mt-2 space-y-1">
                     <li>• Technical oversight of all construction projects</li>
                     <li>• Structural design review and optimization</li>
@@ -80,10 +80,10 @@ export default function ChethanShrinivasBio() {
                 </div>
                 
                 <div className="border-l-4 border-gray-300 pl-6">
-                  <h4 className="text-lg font-semibold text-gray-900">Senior Structural Engineer</h4>
-                  <p className="text-gray-600 font-medium">Metro Construction Ltd. (2015 - 2020)</p>
+                  <h4 className="text-lg font-semibold text-gray-900">Project Manager</h4>
+                  <p className="text-gray-600 font-medium">Aiikya Village Sarjapur. (2015-2020 & 2023-2025)</p>
                   <ul className="text-gray-700 mt-2 space-y-1">
-                    <li>• Designed and analyzed complex structural systems</li>
+                    <li>• Analyzed complex structural systems</li>
                     <li>• Supervised construction of high-rise buildings</li>
                     <li>• Conducted structural inspections and assessments</li>
                     <li>• Collaborated with architects and contractors</li>
@@ -93,21 +93,21 @@ export default function ChethanShrinivasBio() {
 
                 <div className="border-l-4 border-gray-300 pl-6">
                   <h4 className="text-lg font-semibold text-gray-900">Project Engineer</h4>
-                  <p className="text-gray-600 font-medium">Infrastructure Solutions Pvt. Ltd. (2010 - 2015)</p>
+                  <p className="text-gray-600 font-medium"> Rocking Star Yash - House Renovation & Interior Works (2020 - 2022)</p>
                   <ul className="text-gray-700 mt-2 space-y-1">
-                    <li>• Managed construction of residential complexes</li>
+                    <li>• Managed renovation & interior works of residential apartment Prestige Abshot</li>
                     <li>• Performed structural calculations and designs</li>
                     <li>• Coordinated with design teams and contractors</li>
                     <li>• Ensured compliance with building codes</li>
-                    <li>• Conducted site investigations and soil testing</li>
+                    <li>• Managed the project from start to finish</li>
                   </ul>
                 </div>
 
                 <div className="border-l-4 border-gray-300 pl-6">
                   <h4 className="text-lg font-semibold text-gray-900">Site Engineer</h4>
-                  <p className="text-gray-600 font-medium">BuildTech Engineers (2006 - 2010)</p>
+                  <p className="text-gray-600 font-medium">Gopalan Enterprises (2005 - 2015)</p>
                   <ul className="text-gray-700 mt-2 space-y-1">
-                    <li>• Supervised construction activities on-site</li>
+                    <li>• Supervised construction activities of 3 commercial malls, 15 multiplex and 3 miniplex screens</li>
                     <li>• Ensured quality control and safety standards</li>
                     <li>• Managed construction schedules and resources</li>
                     <li>• Coordinated with suppliers and subcontractors</li>
@@ -122,91 +122,9 @@ export default function ChethanShrinivasBio() {
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Education & Certifications</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900">Master of Technology</h4>
-                  <p className="text-gray-600">Structural Engineering</p>
-                  <p className="text-sm text-gray-500">Indian Institute of Technology, Delhi (2006)</p>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900">Bachelor of Engineering</h4>
+                  <h4 className="font-semibold text-gray-900">Diploma in Civil Engineering</h4>
                   <p className="text-gray-600">Civil Engineering</p>
-                  <p className="text-sm text-gray-500">Bangalore University (2004)</p>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900">Professional Engineer (PE)</h4>
-                  <p className="text-gray-600">Civil Engineering</p>
-                  <p className="text-sm text-gray-500">Licensed 2012</p>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900">Advanced Structural Analysis</h4>
-                  <p className="text-gray-600">ETABS & SAP2000</p>
-                  <p className="text-sm text-gray-500">Certified 2018</p>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900">Seismic Design</h4>
-                  <p className="text-gray-600">IS 1893 & IS 13920</p>
-                  <p className="text-sm text-gray-500">Certified 2019</p>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900">Green Building Design</h4>
-                  <p className="text-gray-600">IGBC Accredited Professional</p>
-                  <p className="text-sm text-gray-500">Certified 2020</p>
-                </div>
-              </div>
-            </section>
-
-            {/* Technical Expertise */}
-            <section className="mb-8">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Technical Expertise</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3">Software Proficiency</h4>
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <span className="text-gray-700">ETABS</span>
-                      <span className="text-green-600 font-medium">Expert</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-700">SAP2000</span>
-                      <span className="text-green-600 font-medium">Expert</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-700">STAAD.Pro</span>
-                      <span className="text-green-600 font-medium">Advanced</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-700">AutoCAD</span>
-                      <span className="text-green-600 font-medium">Expert</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-700">Revit Structure</span>
-                      <span className="text-green-600 font-medium">Advanced</span>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3">Specializations</h4>
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-gray-700">High-rise Building Design</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-gray-700">Seismic Analysis & Design</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-gray-700">Foundation Engineering</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-gray-700">Pre-stressed Concrete</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-gray-700">Steel Structure Design</span>
-                    </div>
-                  </div>
+                  <p className="text-sm text-gray-500">Sri Jayachamarajendra Govt Polytechnic, Karnataka (2005)</p>
                 </div>
               </div>
             </section>
@@ -218,7 +136,7 @@ export default function ChethanShrinivasBio() {
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                    <p className="text-gray-700">Designed and supervised construction of 30+ high-rise buildings</p>
+                    <p className="text-gray-700">Supervised construction of 6+ high-rise buildings</p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
@@ -234,14 +152,6 @@ export default function ChethanShrinivasBio() {
                     <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
                     <p className="text-gray-700">Led technical team of 15+ engineers and technicians</p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                    <p className="text-gray-700">Published 5 technical papers in construction journals</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                    <p className="text-gray-700">Received Excellence in Engineering Award 2022</p>
-                  </div>
                 </div>
               </div>
             </section>
@@ -251,11 +161,11 @@ export default function ChethanShrinivasBio() {
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Contact Information</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <p className="text-gray-700"><strong>Email:</strong> chethan@arivuhomes.com</p>
-                  <p className="text-gray-700"><strong>Phone:</strong> +91-98765-43211</p>
+                  <p className="text-gray-700"><strong>Email:</strong> contact.arivuhomes@gmail.com</p>
+                  <p className="text-gray-700"><strong>Phone:</strong> +91-81478-53990</p>
                 </div>
                 <div>
-                  <p className="text-gray-700"><strong>LinkedIn:</strong> linkedin.com/in/chethanshrinivas</p>
+                  <p className="text-gray-700"><strong>LinkedIn:</strong> linkedin.com/in/chethankumars</p>
                   <p className="text-gray-700"><strong>Location:</strong> Bangalore, Karnataka</p>
                 </div>
               </div>
