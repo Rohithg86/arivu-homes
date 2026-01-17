@@ -27,7 +27,7 @@ export default function Home() {
               </p>
               <p>
                 <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur">Chief Engineer:</span>
-                <Link href="/team/chethan-shrinivas" className="ml-2 underline">Chethan Shrinivas</Link>
+                <Link href="/team/chethan-kumar-s" className="ml-2 underline">Chethan Kumar S</Link>
               </p>
               <p>
                 <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur">Senior Architect &amp; Structural Engineer:</span>
