@@ -26,7 +26,7 @@ export default function ChethanShrinivasBio() {
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="w-48 h-48 relative rounded-full overflow-hidden border-4 border-white shadow-lg">
                 <Image
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face"
+                  src="/profile/chethan.jpg"
                   alt="Chethan Kumar S"
                   fill
                   className="object-cover"

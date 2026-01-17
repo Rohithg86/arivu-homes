@@ -17,7 +17,7 @@ export default function TeamPage() {
       name: "Chethan Kumar S",
       role: "Chief Engineer",
       bio: "Highly skilled civil engineer with 18+ years of experience in structural design, construction management, and technical leadership across diverse construction projects.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+      image: "/profile/chethan.jpg",
       slug: "chethan-kumar-s",
       color: "green",
       experience: "18+ Years",
