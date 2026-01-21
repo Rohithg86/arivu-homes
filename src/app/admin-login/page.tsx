@@ -25,7 +25,7 @@ export default function AdminLoginPage() {
       setLoading(false);
       return;
     }
-    router.replace("/admin");
+    router.replace("/projects");
   }
 
   return (
