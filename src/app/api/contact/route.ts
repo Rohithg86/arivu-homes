@@ -2,11 +2,24 @@ import { NextRequest, NextResponse } from "next/server";
 import { google } from "googleapis";
 import { z } from "zod";
 
+function normalizePhone(phone: string) {
+  const digits = phone.replace(/\D/g, "");
+  if (digits.length === 12 && digits.startsWith("91")) return digits.slice(2);
+  if (digits.length === 11 && digits.startsWith("0")) return digits.slice(1);
+  return digits;
+}
+
+const PhoneSchema = z
+  .string()
+  .trim()
+  .min(1, "Phone number is required")
+  .refine((v) => normalizePhone(v).length === 10, "Invalid phone number");
+
 const ContactSchema = z.object({
-  name: z.string().min(1),
-  phone: z.string().min(5),
-  email: z.string().email(),
-  requirement: z.string().min(1),
+  name: z.string().trim().min(1, "Name is required"),
+  phone: PhoneSchema,
+  email: z.string().trim().min(1, "Email is required").email("Invalid email address"),
+  requirement: z.string().trim().min(1, "Requirement is required"),
 });
 
 function requireEnv(name: string) {
@@ -29,7 +42,10 @@ export async function POST(req: NextRequest) {
   try {
     const parsed = ContactSchema.safeParse(await req.json().catch(() => ({})));
     if (!parsed.success) {
-      return NextResponse.json({ error: "Invalid form data" }, { status: 400 });
+      return NextResponse.json(
+        { error: parsed.error.issues[0]?.message ?? "Invalid form data" },
+        { status: 400 }
+      );
     }
 
     const sheetId = requireEnv("GOOGLE_SHEET_ID");

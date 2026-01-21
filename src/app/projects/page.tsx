@@ -13,11 +13,9 @@ interface Project {
   startDate: string;
   expectedCompletion: string;
   completionPercentage: number;
-  status: "Planning" | "In Progress" | "Near Completion" | "Ongoing" | "Completed";
+  status: string;
   description: string;
   images: string[];
-  budget?: number;
-  actualCost?: number;
 }
 
 export default function ProjectsPage() {
@@ -26,6 +24,10 @@ export default function ProjectsPage() {
   const [isAdmin, setIsAdmin] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [currentUploadIndex, setCurrentUploadIndex] = useState<number | null>(null);
+  const [dirtyById, setDirtyById] = useState<Record<number, boolean>>({});
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const [detailsProjectId, setDetailsProjectId] = useState<number | null>(null);
+  const [detailsImageIndex, setDetailsImageIndex] = useState(0);
   const [newProject, setNewProject] = useState<Partial<Project>>({
     name: "",
     location: "",
@@ -37,8 +39,6 @@ export default function ProjectsPage() {
     status: "Planning",
     description: "",
     images: [],
-    budget: 0,
-    actualCost: 0,
   });
 
   useEffect(() => {
@@ -48,8 +48,21 @@ export default function ProjectsPage() {
         fetch("/api/admin/me"),
       ]);
       if (projectsRes.ok) {
-        const data = (await projectsRes.json()) as Project[];
-        setProjects(data);
+        const data = (await projectsRes.json()) as unknown as Array<Partial<Project>>;
+        const normalized = data.map((p) => ({
+          id: Number(p.id),
+          name: String(p.name ?? ""),
+          location: String(p.location ?? ""),
+          client: (p.client ?? "") as string,
+          type: String(p.type ?? ""),
+          startDate: String(p.startDate ?? ""),
+          expectedCompletion: String(p.expectedCompletion ?? ""),
+          completionPercentage: Number(p.completionPercentage ?? 0),
+          status: String(p.status ?? "Planning"),
+          description: String(p.description ?? ""),
+          images: Array.isArray(p.images) ? (p.images as string[]) : [],
+        }));
+        setProjects(normalized as Project[]);
       }
       if (meRes.ok) {
         const me = (await meRes.json()) as { isAdmin: boolean };
@@ -58,38 +71,89 @@ export default function ProjectsPage() {
     })();
   }, []);
 
-  const handleAddProject = () => {
+  const isFeaturedProject = (project: Project) => {
+    const t = `${project.name} ${project.location}`.toLowerCase();
+    return t.includes("jigani") || t.includes("magadi");
+  };
+
+  const openDetails = (projectId: number, imageIndex = 0) => {
+    setDetailsProjectId(projectId);
+    setDetailsImageIndex(imageIndex);
+    setDetailsOpen(true);
+  };
+
+  const updateProjectLocal = (projectId: number, patch: Partial<Project>) => {
+    setProjects((prev) => prev.map((p) => (p.id === projectId ? { ...p, ...patch } : p)));
+    setDirtyById((prev) => ({ ...prev, [projectId]: true }));
+  };
+
+  const saveProject = async (projectId: number) => {
+    if (!isAdmin) return;
+    const project = projects.find((p) => p.id === projectId);
+    if (!project) return;
+
+    const res = await fetch("/api/projects", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: project.id,
+        name: project.name,
+        location: project.location,
+        client: project.client ?? "",
+        type: project.type ?? "",
+        startDate: project.startDate ?? "",
+        expectedCompletion: project.expectedCompletion ?? "",
+        completionPercentage: Number(project.completionPercentage ?? 0),
+        status: project.status ?? "Planning",
+        description: project.description ?? "",
+        images: Array.isArray(project.images) ? project.images : [],
+      }),
+    });
+
+    if (res.ok) {
+      setDirtyById((prev) => ({ ...prev, [projectId]: false }));
+    }
+  };
+
+  const handleAddProject = async () => {
     if (!isAdmin) return;
     if (newProject.name && newProject.location) {
-      const project: Project = {
-        id: projects.length + 1,
-        name: newProject.name!,
-        location: newProject.location!,
-        type: newProject.type!,
-        startDate: newProject.startDate!,
-        expectedCompletion: newProject.expectedCompletion!,
-        completionPercentage: newProject.completionPercentage!,
-        status: newProject.status!,
-        description: newProject.description!,
-        images: newProject.images!,
-        budget: newProject.budget!,
-        actualCost: newProject.actualCost!,
-      };
-      setProjects([...projects, project]);
-      setNewProject({
-        name: "",
-        location: "",
-        type: "",
-        startDate: "",
-        expectedCompletion: "",
-        completionPercentage: 0,
-        status: "Planning",
-        description: "",
-        images: [],
-        budget: 0,
-        actualCost: 0,
+      const res = await fetch("/api/projects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: newProject.name,
+          location: newProject.location,
+          client: newProject.client ?? "",
+          type: newProject.type ?? "",
+          startDate: newProject.startDate ?? "",
+          expectedCompletion: newProject.expectedCompletion ?? "",
+          completionPercentage: Number(newProject.completionPercentage ?? 0),
+          status: newProject.status ?? "Planning",
+          description: newProject.description ?? "",
+          images: Array.isArray(newProject.images) ? newProject.images : [],
+        }),
       });
-      setShowAddForm(false);
+
+      if (res.ok) {
+        const created = (await res.json().catch(() => null)) as Project | null;
+        if (created) {
+          setProjects((prev) => [created, ...prev]);
+        }
+        setNewProject({
+          name: "",
+          location: "",
+          client: "",
+          type: "",
+          startDate: "",
+          expectedCompletion: "",
+          completionPercentage: 0,
+          status: "Planning",
+          description: "",
+          images: [],
+        });
+        setShowAddForm(false);
+      }
     }
   };
 
@@ -128,9 +192,10 @@ export default function ProjectsPage() {
     });
     const data = await res.json();
     if (res.ok && data.url) {
-      const updated = [...projects];
-      updated[currentUploadIndex].images = [data.url, ...updated[currentUploadIndex].images];
-      setProjects(updated);
+      const project = projects[currentUploadIndex];
+      const nextImages = [data.url, ...(project?.images ?? [])];
+      updateProjectLocal(project.id, { images: nextImages });
+      await saveProject(project.id);
     }
     input.value = '';
     setCurrentUploadIndex(null);
@@ -151,6 +216,7 @@ export default function ProjectsPage() {
 
   const ongoingProjects = projects.filter((p) => p.status !== "Completed");
   const completedProjects = projects.filter((p) => p.status === "Completed");
+  const detailsProject = detailsProjectId ? projects.find((p) => p.id === detailsProjectId) ?? null : null;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -223,10 +289,11 @@ export default function ProjectsPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
                 <select
                   value={newProject.status}
-                  onChange={(e) => setNewProject({...newProject, status: e.target.value as "Planning" | "In Progress" | "Near Completion" | "Completed"})}
+                  onChange={(e) => setNewProject({...newProject, status: e.target.value})}
                   className="w-full border border-gray-300 rounded-lg px-3 py-2"
                 >
                   <option value="Planning">Planning</option>
+                  <option value="Ongoing">Ongoing</option>
                   <option value="In Progress">In Progress</option>
                   <option value="Near Completion">Near Completion</option>
                   <option value="Completed">Completed</option>
@@ -259,16 +326,6 @@ export default function ProjectsPage() {
                   value={newProject.completionPercentage}
                   onChange={(e) => setNewProject({...newProject, completionPercentage: parseInt(e.target.value)})}
                   className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Budget (₹)</label>
-                <input
-                  type="number"
-                  value={newProject.budget}
-                  onChange={(e) => setNewProject({...newProject, budget: parseInt(e.target.value)})}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  placeholder="Enter budget"
                 />
               </div>
               <div className="md:col-span-2">
@@ -316,6 +373,24 @@ export default function ProjectsPage() {
                   />
                 </div>
               )}
+              {isFeaturedProject(project) && project.images.length > 1 && (
+                <div className="px-6 pt-3">
+                  <div className="flex gap-2 overflow-x-auto pb-1">
+                    {project.images.map((src, idx) => (
+                      <button
+                        key={`${project.id}-${idx}`}
+                        type="button"
+                        className="relative h-12 w-16 flex-none overflow-hidden rounded border hover:opacity-90"
+                        onClick={() => openDetails(project.id, idx)}
+                        title="View image"
+                      >
+                        <Image src={src} alt={`${project.name} ${idx + 1}`} fill className="object-cover" />
+                      </button>
+                    ))}
+                  </div>
+                  <div className="text-xs text-gray-500 mt-1">All site photos shown for Jigani/Magadi</div>
+                </div>
+              )}
               <div className="p-6">
                 <div className="flex items-start justify-between mb-3">
                   <h3 className="text-lg font-semibold text-gray-900">{project.name}</h3>
@@ -328,7 +403,11 @@ export default function ProjectsPage() {
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-gray-600">Client</span>
                     {isAdmin ? (
-                      <input className="border rounded px-2 py-1 w-40" value={project.client ?? ''} onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].client=e.target.value; setProjects(u); }} />
+                      <input
+                        className="border rounded px-2 py-1 w-40"
+                        value={project.client ?? ""}
+                        onChange={(e) => updateProjectLocal(project.id, { client: e.target.value })}
+                      />
                     ) : (
                       <span className="text-gray-800">{project.client ?? "-"}</span>
                     )}
@@ -336,7 +415,11 @@ export default function ProjectsPage() {
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-gray-600">Location</span>
                     {isAdmin ? (
-                      <input className="border rounded px-2 py-1 w-40" value={project.location} onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].location=e.target.value; setProjects(u); }} />
+                      <input
+                        className="border rounded px-2 py-1 w-40"
+                        value={project.location}
+                        onChange={(e) => updateProjectLocal(project.id, { location: e.target.value })}
+                      />
                     ) : (
                       <span className="text-gray-800">{project.location}</span>
                     )}
@@ -344,7 +427,11 @@ export default function ProjectsPage() {
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-gray-600">Type</span>
                     {isAdmin ? (
-                      <input className="border rounded px-2 py-1 w-40" value={project.type} onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].type=e.target.value; setProjects(u); }} />
+                      <input
+                        className="border rounded px-2 py-1 w-40"
+                        value={project.type}
+                        onChange={(e) => updateProjectLocal(project.id, { type: e.target.value })}
+                      />
                     ) : (
                       <span className="text-gray-800">{project.type}</span>
                     )}
@@ -352,11 +439,45 @@ export default function ProjectsPage() {
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-gray-600">Completion (Estd)</span>
                     {isAdmin ? (
-                      <input type="date" className="border rounded px-2 py-1" value={project.expectedCompletion} onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].expectedCompletion=e.target.value; setProjects(u); }} />
+                      <input
+                        type="date"
+                        className="border rounded px-2 py-1"
+                        value={project.expectedCompletion}
+                        onChange={(e) => updateProjectLocal(project.id, { expectedCompletion: e.target.value })}
+                      />
                     ) : (
                       <span className="text-gray-800">{project.expectedCompletion || "-"}</span>
                     )}
                   </div>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-gray-600">Start Date</span>
+                    {isAdmin ? (
+                      <input
+                        type="date"
+                        className="border rounded px-2 py-1"
+                        value={project.startDate}
+                        onChange={(e) => updateProjectLocal(project.id, { startDate: e.target.value })}
+                      />
+                    ) : (
+                      <span className="text-gray-800">{project.startDate || "-"}</span>
+                    )}
+                  </div>
+                  {isAdmin && (
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-gray-600">Status</span>
+                      <select
+                        className="border rounded px-2 py-1"
+                        value={project.status}
+                        onChange={(e) => updateProjectLocal(project.id, { status: e.target.value })}
+                      >
+                        <option value="Planning">Planning</option>
+                        <option value="Ongoing">Ongoing</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Near Completion">Near Completion</option>
+                        <option value="Completed">Completed</option>
+                      </select>
+                    </div>
+                  )}
                 </div>
                 
                 <div className="mb-4">
@@ -370,6 +491,19 @@ export default function ProjectsPage() {
                       style={{ width: `${project.completionPercentage}%` }}
                     ></div>
                   </div>
+                  {isAdmin && (
+                    <div className="mt-2 flex items-center justify-between gap-2 text-sm">
+                      <span className="text-gray-600">Update %</span>
+                      <input
+                        type="number"
+                        min={0}
+                        max={100}
+                        className="border rounded px-2 py-1 w-24"
+                        value={project.completionPercentage}
+                        onChange={(e) => updateProjectLocal(project.id, { completionPercentage: Number(e.target.value) })}
+                      />
+                    </div>
+                  )}
                 </div>
 
                 <div className="space-y-2 text-sm">
@@ -379,7 +513,7 @@ export default function ProjectsPage() {
                       <input
                         type="text"
                         value={project.name}
-                        onChange={(e)=>{ const u=[...projects]; const i=u.findIndex(p=>p.id===project.id); u[i].name=e.target.value; setProjects(u); }}
+                        onChange={(e) => updateProjectLocal(project.id, { name: e.target.value })}
                         className="w-48 border rounded px-2 py-1"
                       />
                     ) : (
@@ -389,17 +523,44 @@ export default function ProjectsPage() {
                 </div>
 
                 <div className="mt-4 pt-4 border-t">
-                  <p className="text-gray-600 text-sm">{project.description}</p>
+                  {isAdmin ? (
+                    <textarea
+                      className="w-full border rounded px-2 py-1 text-sm"
+                      rows={3}
+                      value={project.description}
+                      onChange={(e) => updateProjectLocal(project.id, { description: e.target.value })}
+                    />
+                  ) : (
+                    <p className="text-gray-600 text-sm">{project.description}</p>
+                  )}
                 </div>
 
                 <div className="mt-4 grid grid-cols-2 gap-2">
-                  <button className="bg-blue-50 text-blue-600 px-3 py-2 rounded text-sm hover:bg-blue-100">
+                  <button
+                    type="button"
+                    onClick={() => openDetails(project.id, 0)}
+                    className="bg-blue-50 text-blue-600 px-3 py-2 rounded text-sm hover:bg-blue-100"
+                  >
                     View Details
-                  </button>
+                  </button> 
                   {isAdmin && (
-                    <button className="bg-gray-50 text-gray-600 px-3 py-2 rounded text-sm hover:bg-gray-100" onClick={()=>handleUploadImage(projects.findIndex(p=>p.id===project.id))}>
-                      Upload Image
-                    </button>
+                    <>
+                      <button
+                        type="button"
+                        className="bg-gray-50 text-gray-600 px-3 py-2 rounded text-sm hover:bg-gray-100"
+                        onClick={() => handleUploadImage(projects.findIndex((p) => p.id === project.id))}
+                      >
+                        Upload Image
+                      </button>
+                      <button
+                        type="button"
+                        disabled={!dirtyById[project.id]}
+                        className="col-span-2 bg-black text-white px-3 py-2 rounded text-sm disabled:opacity-60"
+                        onClick={() => saveProject(project.id)}
+                      >
+                        Save Changes
+                      </button>
+                    </>
                   )}
                   <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
                 </div>
@@ -435,6 +596,27 @@ export default function ProjectsPage() {
                     </span>
                   </div>
                   <p className="text-sm text-gray-600">{project.location}</p>
+                  <div className="mt-4 grid grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => openDetails(project.id, 0)}
+                      className="bg-blue-50 text-blue-600 px-3 py-2 rounded text-sm hover:bg-blue-100"
+                    >
+                      View Details
+                    </button>
+                    {isAdmin ? (
+                      <button
+                        type="button"
+                        disabled={!dirtyById[project.id]}
+                        className="bg-black text-white px-3 py-2 rounded text-sm disabled:opacity-60"
+                        onClick={() => saveProject(project.id)}
+                      >
+                        Save
+                      </button>
+                    ) : (
+                      <div />
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
@@ -457,6 +639,81 @@ export default function ProjectsPage() {
           </div>
         )}
       </div>
+
+      {/* Details modal with full image gallery */}
+      {detailsOpen && detailsProject && (
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
+          <div className="absolute inset-0 bg-black/60" onClick={() => setDetailsOpen(false)} />
+          <div className="relative w-full sm:max-w-4xl bg-white rounded-t-2xl sm:rounded-2xl shadow-xl border overflow-hidden">
+            <div className="flex items-start justify-between gap-4 p-4 sm:p-5 border-b">
+              <div>
+                <div className="text-lg font-semibold">{detailsProject.name}</div>
+                <div className="text-sm text-gray-600">{detailsProject.location}</div>
+              </div>
+              <button
+                type="button"
+                className="text-sm text-gray-500 hover:text-gray-900"
+                onClick={() => setDetailsOpen(false)}
+              >
+                Close
+              </button>
+            </div>
+
+            <div className="p-4 sm:p-5">
+              {detailsProject.images.length === 0 ? (
+                <div className="text-sm text-gray-600">No images yet.</div>
+              ) : (
+                <div className="grid gap-4">
+                  <div className="relative w-full aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden">
+                    <Image
+                      src={detailsProject.images[Math.min(detailsImageIndex, detailsProject.images.length - 1)]}
+                      alt={`${detailsProject.name} image`}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="flex items-center justify-between text-sm text-gray-600">
+                    <button
+                      type="button"
+                      className="px-3 py-1 rounded border hover:bg-gray-50 disabled:opacity-50"
+                      disabled={detailsImageIndex <= 0}
+                      onClick={() => setDetailsImageIndex((i) => Math.max(0, i - 1))}
+                    >
+                      Prev
+                    </button>
+                    <div>
+                      {detailsImageIndex + 1} / {detailsProject.images.length}
+                    </div>
+                    <button
+                      type="button"
+                      className="px-3 py-1 rounded border hover:bg-gray-50 disabled:opacity-50"
+                      disabled={detailsImageIndex >= detailsProject.images.length - 1}
+                      onClick={() => setDetailsImageIndex((i) => Math.min(detailsProject.images.length - 1, i + 1))}
+                    >
+                      Next
+                    </button>
+                  </div>
+                  <div className="flex gap-2 overflow-x-auto pb-1">
+                    {detailsProject.images.map((src, idx) => (
+                      <button
+                        key={`${detailsProject.id}-thumb-${idx}`}
+                        type="button"
+                        className={`relative h-14 w-20 flex-none overflow-hidden rounded border ${
+                          idx === detailsImageIndex ? "ring-2 ring-blue-600" : ""
+                        }`}
+                        onClick={() => setDetailsImageIndex(idx)}
+                        title={`Image ${idx + 1}`}
+                      >
+                        <Image src={src} alt={`${detailsProject.name} thumb ${idx + 1}`} fill className="object-cover" />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

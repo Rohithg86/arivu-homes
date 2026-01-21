@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -178,6 +178,25 @@ export default function AdminPage() {
             <input className="border p-2" placeholder="Location" {...projectForm.register("location", { required: true })} />
             <input className="border p-2" placeholder="Client (optional)" {...projectForm.register("client")} />
             <input className="border p-2" placeholder="Type" {...projectForm.register("type")} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <input className="border p-2" type="date" placeholder="Start Date" {...projectForm.register("startDate")} />
+              <input className="border p-2" type="date" placeholder="Expected Completion" {...projectForm.register("expectedCompletion")} />
+              <input
+                className="border p-2"
+                type="number"
+                min={0}
+                max={100}
+                placeholder="Completion %"
+                {...projectForm.register("completionPercentage", { valueAsNumber: true })}
+              />
+              <select className="border p-2" {...projectForm.register("status")}>
+                <option value="Planning">Planning</option>
+                <option value="Ongoing">Ongoing</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Near Completion">Near Completion</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
             <textarea className="border p-2" placeholder="Description" rows={3} {...projectForm.register("description")} />
             <textarea
               className="border p-2 font-mono text-xs"
@@ -197,7 +216,9 @@ export default function AdminPage() {
                 <div key={p.id} className="border rounded-lg p-4">
                   <div className="font-medium">{p.name}</div>
                   <div className="text-sm text-gray-600">{p.location}</div>
-                  <div className="text-xs text-gray-500 mt-2">Images: {(p.images?.length ?? 0)}</div>
+                  <div className="text-xs text-gray-500 mt-1">
+                    Status: {p.status ?? "-"} • Progress: {p.completionPercentage ?? 0}% • Images: {(p.images?.length ?? 0)}
+                  </div>
                   <div className="mt-3 flex gap-3">
                     <button
                       className="text-sm underline"
