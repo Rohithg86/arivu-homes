@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,29 +25,30 @@ export default function ProjectsPage() {
   const [uploadProjectId, setUploadProjectId] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
+  const [saveSuccess, setSaveSuccess] = useState<string | null>(null);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [detailsProjectId, setDetailsProjectId] = useState<number | null>(null);
   const [detailsImageIndex, setDetailsImageIndex] = useState(0);
 
   const [showProjectForm, setShowProjectForm] = useState(false);
   const [editingProjectId, setEditingProjectId] = useState<number | null>(null);
-  const [selectedProjectId, setSelectedProjectId] = useState<number | "">("");
-  const [projectForm, setProjectForm] = useState<Partial<Project> & { imagesText?: string }>({
+  const [projectForm, setProjectForm] = useState<
+    Partial<Project> & { completionPercentageText?: string }
+  >({
     name: "",
     location: "",
     client: "",
     type: "",
     startDate: "",
     expectedCompletion: "",
-    completionPercentage: 0,
+    completionPercentageText: "",
     status: "Planning",
     description: "",
     images: [],
-    imagesText: "",
   });
 
   async function refreshProjects() {
-    const res = await fetch("/api/projects");
+    const res = await fetch("/api/projects", { cache: "no-store" });
     if (!res.ok) return;
     const data = (await res.json()) as unknown as Array<Partial<Project>>;
     const normalized = data.map((p) => ({
@@ -69,7 +70,7 @@ export default function ProjectsPage() {
   useEffect(() => {
     (async () => {
       const [projectsRes, meRes] = await Promise.all([
-        fetch("/api/projects"),
+        fetch("/api/projects", { cache: "no-store" }),
         fetch("/api/admin/me"),
       ]);
       if (projectsRes.ok) {
@@ -150,6 +151,7 @@ export default function ProjectsPage() {
 
   const openAddProject = () => {
     setSaveError(null);
+    setSaveSuccess(null);
     setEditingProjectId(null);
     setProjectForm({
       name: "",
@@ -158,11 +160,10 @@ export default function ProjectsPage() {
       type: "",
       startDate: "",
       expectedCompletion: "",
-      completionPercentage: 0,
+      completionPercentageText: "",
       status: "Planning",
       description: "",
       images: [],
-      imagesText: "",
     });
     setShowProjectForm(true);
   };
@@ -171,10 +172,11 @@ export default function ProjectsPage() {
     const p = projects.find((x) => x.id === projectId);
     if (!p) return;
     setSaveError(null);
+    setSaveSuccess(null);
     setEditingProjectId(projectId);
     setProjectForm({
       ...p,
-      imagesText: Array.isArray(p.images) ? p.images.join("\n") : "",
+      completionPercentageText: String(p.completionPercentage ?? 0),
     });
     setShowProjectForm(true);
   };
@@ -183,11 +185,11 @@ export default function ProjectsPage() {
     if (!isAdmin) return;
     setSaving(true);
     setSaveError(null);
+    setSaveSuccess(null);
 
-    const images = String(projectForm.imagesText ?? "")
-      .split("\n")
-      .map((s) => s.trim())
-      .filter(Boolean);
+    const rawPct = String(projectForm.completionPercentageText ?? "").trim();
+    const digits = rawPct.replace(/\D/g, "").replace(/^0+(?=\d)/, "");
+    const pct = Math.max(0, Math.min(100, digits ? Number(digits) : 0));
 
     const payload = {
       ...(editingProjectId ? { id: editingProjectId } : {}),
@@ -197,10 +199,11 @@ export default function ProjectsPage() {
       type: projectForm.type ?? "",
       startDate: projectForm.startDate ?? "",
       expectedCompletion: projectForm.expectedCompletion ?? "",
-      completionPercentage: Number(projectForm.completionPercentage ?? 0),
+      completionPercentage: pct,
       status: projectForm.status ?? "Planning",
       description: projectForm.description ?? "",
-      images,
+      // Keep existing images; manage additions via Upload Image(s)
+      images: Array.isArray(projectForm.images) ? projectForm.images : [],
     };
 
     const res = await fetch("/api/projects", {
@@ -218,14 +221,15 @@ export default function ProjectsPage() {
 
     setShowProjectForm(false);
     setEditingProjectId(null);
-    setSelectedProjectId("");
     await refreshProjects();
+    setSaveSuccess(editingProjectId ? "Project updated." : "Project created.");
     setSaving(false);
   };
 
   const handleUploadImage = (projectId: number) => {
     if (!isAdmin) return;
     setSaveError(null);
+    setSaveSuccess(null);
     setUploadProjectId(projectId);
     fileInputRef.current?.click();
   };
@@ -238,6 +242,7 @@ export default function ProjectsPage() {
 
     setSaving(true);
     setSaveError(null);
+    setSaveSuccess(null);
     const project = projects.find((p) => p.id === uploadProjectId);
     if (!project) {
       setSaving(false);
@@ -296,6 +301,7 @@ export default function ProjectsPage() {
 
     await refreshProjects();
     openDetails(project.id, 0);
+    setSaveSuccess(`${uploadedUrls.length} image(s) added to gallery.`);
     input.value = '';
     setUploadProjectId(null);
     setSaving(false);
@@ -318,10 +324,6 @@ export default function ProjectsPage() {
   const completedProjects = projects.filter((p) => p.status === "Completed");
   const detailsProject = detailsProjectId ? projects.find((p) => p.id === detailsProjectId) ?? null : null;
 
-  const projectOptions = useMemo(() => {
-    return [...projects].sort((a, b) => a.name.localeCompare(b.name));
-  }, [projects]);
-
   async function signOut() {
     await fetch("/api/admin/logout", { method: "POST" });
     setIsAdmin(false);
@@ -338,32 +340,12 @@ export default function ProjectsPage() {
               <h1 className="text-3xl font-bold text-gray-900">Current Projects</h1>
               <p className="text-gray-600 mt-1">Our ongoing projects in Bangalore</p>
             </div>
-            <div className="flex gap-3 items-center">
+            <div className="flex gap-3 items-center flex-wrap justify-end">
               <Link href="/" className="text-gray-600 hover:text-gray-900">
                 ← Back to Home
               </Link>
               {isAdmin && (
                 <>
-                  <select
-                    className="border rounded-lg px-3 py-2 text-sm"
-                    value={selectedProjectId}
-                    onChange={(e) => setSelectedProjectId(e.target.value ? Number(e.target.value) : "")}
-                  >
-                    <option value="">Select project to edit…</option>
-                    {projectOptions.map((p) => (
-                      <option key={p.id} value={p.id}>
-                        {p.name}
-                      </option>
-                    ))}
-                  </select>
-                  <button
-                    type="button"
-                    disabled={selectedProjectId === ""}
-                    onClick={() => typeof selectedProjectId === "number" && openEditProject(selectedProjectId)}
-                    className="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 disabled:opacity-60"
-                  >
-                    Edit
-                  </button>
                   <button
                     type="button"
                     onClick={openAddProject}
@@ -478,12 +460,17 @@ export default function ProjectsPage() {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Completion %</label>
                 <input
-                  type="number"
-                  min="0"
-                  max="100"
-                  value={projectForm.completionPercentage ?? 0}
-                  onChange={(e) => setProjectForm({ ...projectForm, completionPercentage: Number(e.target.value) })}
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  value={projectForm.completionPercentageText ?? ""}
+                  onChange={(e) => {
+                    const digits = e.target.value.replace(/\D/g, "").replace(/^0+(?=\d)/, "");
+                    const clamped = digits ? String(Math.min(100, Number(digits))) : "";
+                    setProjectForm({ ...projectForm, completionPercentageText: clamped });
+                  }}
                   className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                  placeholder="0 to 100"
                 />
               </div>
               <div className="md:col-span-2">
@@ -495,19 +482,6 @@ export default function ProjectsPage() {
                   rows={3}
                   placeholder="Enter project description"
                 />
-              </div>
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Images (one URL per line)</label>
-                <textarea
-                  value={projectForm.imagesText ?? ""}
-                  onChange={(e) => setProjectForm({ ...projectForm, imagesText: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 font-mono text-xs"
-                  rows={5}
-                  placeholder={"/uploads/projects/jigani/elevation.jpg\n/uploads/projects/jigani/1.jpg"}
-                />
-                <div className="text-xs text-gray-500 mt-1">
-                  Tip: Use “Upload Image” on a project card to add files into the gallery.
-                </div>
               </div>
             </div>
             <div className="flex gap-3 mt-6">
@@ -532,6 +506,13 @@ export default function ProjectsPage() {
             </div>
             {saveError && <div className="mt-3 text-sm text-red-600">{saveError}</div>}
           </div>
+        </div>
+      )}
+
+      {(saveSuccess || saveError) && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
+          {saveSuccess && <div className="rounded-xl border bg-green-50 text-green-800 px-4 py-3 text-sm">{saveSuccess}</div>}
+          {saveError && <div className="rounded-xl border bg-red-50 text-red-700 px-4 py-3 text-sm mt-2">{saveError}</div>}
         </div>
       )}
 
@@ -614,7 +595,6 @@ export default function ProjectsPage() {
                     >
                       {saving && uploadProjectId === project.id ? "Uploading..." : "Upload Image(s)"}
                     </button>
-                    <input ref={fileInputRef} type="file" accept="image/*" multiple className="hidden" onChange={handleFileChange} />
                   </div>
                 )}
               </div>
@@ -657,7 +637,6 @@ export default function ProjectsPage() {
                       >
                         {saving && uploadProjectId === project.id ? "Uploading..." : "Upload Image(s)"}
                       </button>
-                      <input ref={fileInputRef} type="file" accept="image/*" multiple className="hidden" onChange={handleFileChange} />
                     </div>
                   )}
                 </div>
@@ -682,6 +661,18 @@ export default function ProjectsPage() {
           </div>
         )}
       </div>
+
+      {/* Single hidden file input for uploads (admin only) */}
+      {isAdmin && (
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          multiple
+          className="hidden"
+          onChange={handleFileChange}
+        />
+      )}
 
       {/* Details modal with full image gallery */}
       {detailsOpen && detailsProject && (

@@ -5,8 +5,8 @@ import { useState } from "react";
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [username, setUsername] = useState("arivu_admin");
-  const [password, setPassword] = useState("arivu@123");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -25,12 +25,15 @@ export default function AdminLoginPage() {
       setLoading(false);
       return;
     }
+    // Clear creds after successful login
+    setUsername("");
+    setPassword("");
     router.replace("/projects");
   }
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6">
-      <form onSubmit={onSubmit} className="w-full max-w-sm bg-white border rounded-2xl p-6 shadow-sm">
+      <form onSubmit={onSubmit} autoComplete="off" className="w-full max-w-sm bg-white border rounded-2xl p-6 shadow-sm">
         <h1 className="text-2xl font-semibold">Admin Login</h1>
         <p className="text-sm text-gray-600 mt-1">Enter admin credentials to continue.</p>
 
@@ -43,6 +46,7 @@ export default function AdminLoginPage() {
           autoCapitalize="none"
           autoCorrect="off"
           spellCheck={false}
+          autoComplete="off"
           required
         />
 
@@ -52,6 +56,7 @@ export default function AdminLoginPage() {
           className="mt-1 w-full border rounded-lg p-2"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          autoComplete="new-password"
           required
         />
 

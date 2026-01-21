@@ -14,8 +14,8 @@ export function HomeLogo({ className }: Props) {
     <Image
       src={src}
       alt="Arivu Homes"
-      width={32}
-      height={32}
+      width={160}
+      height={52}
       className={className}
       priority
       onError={() => setSrc("/logo-simple.svg")}

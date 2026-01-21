@@ -14,8 +14,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-dvh bg-gradient-to-br from-slate-50 via-white to-sky-50 text-gray-900 antialiased">
         <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
           <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 h-16">
-            <Link href="/" className="flex items-center">
-              <HomeLogo className="h-7 w-7 sm:h-8 sm:w-8" />
+            <Link href="/" className="flex items-center px-2 py-1 rounded-lg hover:bg-black/5">
+              <HomeLogo className="h-10 sm:h-12 w-auto" />
             </Link>
             <nav className="hidden sm:flex items-center gap-4 sm:gap-6 text-sm">
               <Link href="/services" className="hover:text-blue-600">Services</Link>

@@ -85,10 +85,10 @@ export default function JourneyPage(){
 
       {/* Video: full-bleed on mobile for best viewing */}
       <div className="mt-5 sm:mt-6 -mx-4 sm:mx-0 sm:rounded-2xl overflow-hidden sm:border">
-        <div className="relative w-full aspect-video bg-black">
+        <div className="relative w-full bg-black">
           <video
             ref={videoRef}
-            className="absolute inset-0 h-full w-full object-cover sm:object-contain"
+            className="block w-full h-auto"
             controls
             autoPlay
             playsInline
