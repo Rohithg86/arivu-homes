@@ -6,7 +6,7 @@ export default function TeamPage() {
     {
       name: "Rohith Gopal",
       role: "Managing Partner",
-      bio: "Visionary leader with over 15 years of experience in construction management, business development, and strategic planning in the Bangalore construction industry.",
+      bio: "Visionary leader with over 16+ years of experience in Project Management, Business Development, and strategic planning in the Bangalore construction industry.",
       image: "/profile/rohith.jpg",
       slug: "rohith-gopal",
       color: "blue",
@@ -16,21 +16,21 @@ export default function TeamPage() {
     {
       name: "Chethan Kumar S",
       role: "Chief Engineer",
-      bio: "Highly skilled civil engineer with 18+ years of experience in structural design, construction management, and technical leadership across diverse construction projects.",
+      bio: "Highly skilled civil engineer with 20+ years of experience in construction management and technical leadership across diverse construction projects.",
       image: "/profile/chethan.jpg",
       slug: "chethan-kumar-s",
       color: "green",
-      experience: "18+ Years",
-      specialties: ["Structural Design", "Construction Management", "Technical Leadership", "Quality Control"]
+      experience: "20+ Years",
+      specialties: ["Construction Management", "Technical Leadership", "Quality Control", "Structural Analysis"]
     },
     {
       name: "Shashank D",
       role: "Senior Architect & Structural Engineer",
       bio: "Creative architect and structural engineer with 8+ years of experience in innovative design solutions, sustainable architecture, and integrated structural systems.",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face",
+      image: "/profile/shashank.jpg",
       slug: "shashank-d",
       color: "purple",
-      experience: "16+ Years",
+      experience: "8+ Years",
       specialties: ["Architectural Design", "Structural Engineering", "Sustainable Design", "Innovation"]
     }
   ];
@@ -161,15 +161,15 @@ export default function TeamPage() {
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">49+</div>
+              <div className="text-4xl font-bold text-blue-600 mb-2">45+</div>
               <div className="text-gray-600">Years Combined Experience</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-green-600 mb-2">100+</div>
+              <div className="text-4xl font-bold text-green-600 mb-2">30+</div>
               <div className="text-gray-600">Projects Completed</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-purple-600 mb-2">15+</div>
+              <div className="text-4xl font-bold text-purple-600 mb-2">4+</div>
               <div className="text-gray-600">Professional Certifications</div>
             </div>
             <div className="text-center">

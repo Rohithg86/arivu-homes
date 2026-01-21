@@ -36,7 +36,7 @@ export default function RohithGopalBio() {
                 <h2 className="text-4xl font-bold mb-2">Rohith Gopal</h2>
                 <p className="text-xl text-blue-100 mb-4">Managing Partner</p>
                 <p className="text-blue-100 text-lg leading-relaxed">
-                  Visionary leader with over 15 years of experience in project management, 
+                  Visionary leader with over 16+ years of experience in project management, 
                   business development, and strategic planning in the IT & construction industry.
                 </p>
               </div>
@@ -80,23 +80,12 @@ export default function RohithGopalBio() {
                 
                 <div className="border-l-4 border-gray-300 pl-6">
                   <h4 className="text-lg font-semibold text-gray-900">Senior Project Manager</h4>
-                  <p className="text-gray-600 font-medium">ABC Construction Ltd. (2015 - 2020)</p>
+                  <p className="text-gray-600 font-medium"> Consulting Companies (2015 - 2020)</p>
                   <ul className="text-gray-700 mt-2 space-y-1">
                     <li>• Managed multiple residential and commercial projects</li>
                     <li>• Coordinated with architects, engineers, and contractors</li>
                     <li>• Implemented quality control and safety protocols</li>
                     <li>• Budget management and cost optimization</li>
-                  </ul>
-                </div>
-
-                <div className="border-l-4 border-gray-300 pl-6">
-                  <h4 className="text-lg font-semibold text-gray-900">Construction Engineer</h4>
-                  <p className="text-gray-600 font-medium">XYZ Builders (2010 - 2015)</p>
-                  <ul className="text-gray-700 mt-2 space-y-1">
-                    <li>• Site supervision and construction management</li>
-                    <li>• Technical planning and execution</li>
-                    <li>• Vendor management and procurement</li>
-                    <li>• Quality assurance and compliance</li>
                   </ul>
                 </div>
               </div>
@@ -114,12 +103,7 @@ export default function RohithGopalBio() {
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <h4 className="font-semibold text-gray-900">Project Management Professional (PMP)</h4>
                   <p className="text-gray-600">Project Management Institute</p>
-                  <p className="text-sm text-gray-500">Certified 2018</p>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900">Safety Management</h4>
-                  <p className="text-gray-600">National Safety Council</p>
-                  <p className="text-sm text-gray-500">Certified 2019</p>
+                  <p className="text-sm text-gray-500">Certified 2023</p>
                 </div>
               </div>
             </section>

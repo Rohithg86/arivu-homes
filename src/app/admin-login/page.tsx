@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function AdminLoginPage() {
   const router = useRouter();
   const [username, setUsername] = useState("arivu_admin");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("arivu@123");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 

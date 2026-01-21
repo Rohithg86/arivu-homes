@@ -160,7 +160,7 @@ export default function ProjectsPage() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Current Projects</h1>
-              <p className="text-gray-600 mt-1">Track ongoing construction projects in Bangalore</p>
+              <p className="text-gray-600 mt-1">Our ongoing projects in Bangalore</p>
             </div>
             <div className="flex gap-3">
               <Link href="/" className="text-gray-600 hover:text-gray-900">

@@ -36,7 +36,7 @@ export default function ShashankDBio() {
                 <h2 className="text-4xl font-bold mb-2">Shashank D</h2>
                 <p className="text-xl text-purple-100 mb-4">Senior Architect & Structural Engineer</p>
                 <p className="text-purple-100 text-lg leading-relaxed">
-                  Creative architect and structural engineer with 16+ years of experience in innovative 
+                  Creative architect and structural engineer with 8+ years of experience in innovative 
                   design solutions, sustainable architecture, and integrated structural systems.
                 </p>
               </div>

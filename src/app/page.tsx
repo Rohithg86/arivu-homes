@@ -59,7 +59,7 @@ export default function Home() {
           <Link href="/projects" className="rounded-xl p-6 hover:shadow-lg transition-all duration-300 group border" style={{background:"linear-gradient(180deg,#ecfdf5, #ffffff)"}}>
             <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🏗️</div>
             <h3 className="text-xl font-bold mb-3">Current Projects</h3>
-            <p className="text-gray-700 leading-relaxed">Track ongoing construction projects in Bangalore with completion status and budget monitoring.</p>
+            <p className="text-gray-700 leading-relaxed">Track ongoing projects in Bangalore.</p>
             <div className="mt-4 text-gray-600 text-sm font-medium group-hover:text-gray-900 transition-colors">
               View Projects →
             </div>
@@ -123,12 +123,12 @@ export default function Home() {
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="text-2xl mb-3">📞</div>
                 <h3 className="font-semibold text-gray-900 mb-2">Phone</h3>
-                <p className="text-gray-600">+91-9986767464</p>
+                <p className="text-gray-600">+91-6361867464</p>
               </div>
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="text-2xl mb-3">✉️</div>
                 <h3 className="font-semibold text-gray-900 mb-2">Email</h3>
-                <p className="text-gray-600">arivuhomes@gmail.com</p>
+                <p className="text-gray-600">contact.arivuhomes@gmail.com</p>
               </div>
             </div>
           </div>
