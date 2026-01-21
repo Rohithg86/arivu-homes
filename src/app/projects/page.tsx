@@ -76,6 +76,47 @@ export default function ProjectsPage() {
     return t.includes("jigani") || t.includes("magadi");
   };
 
+  const renderProjectImages = (project: Project) => {
+    if (!project.images || project.images.length === 0) return null;
+    return (
+      <div className="space-y-2">
+        <button
+          type="button"
+          className="h-48 relative w-full block"
+          onClick={() => openDetails(project.id, 0)}
+          title="Open gallery"
+        >
+          <Image src={project.images[0]} alt={project.name} fill className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+          <div className="absolute bottom-2 left-3 text-xs font-medium text-white">
+            {project.images.length} photo{project.images.length === 1 ? "" : "s"} — click to open
+          </div>
+        </button>
+
+        {project.images.length > 1 && (
+          <div className="px-6">
+            <div className="flex gap-2 overflow-x-auto pb-1">
+              {project.images.map((src, idx) => (
+                <button
+                  key={`${project.id}-thumb-${idx}`}
+                  type="button"
+                  className="relative h-12 w-16 flex-none overflow-hidden rounded border hover:opacity-90"
+                  onClick={() => openDetails(project.id, idx)}
+                  title={`Open image ${idx + 1}`}
+                >
+                  <Image src={src} alt={`${project.name} ${idx + 1}`} fill className="object-cover" />
+                </button>
+              ))}
+            </div>
+            {isFeaturedProject(project) && (
+              <div className="text-xs text-gray-500 mt-1">All site photos shown for Jigani/Magadi</div>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  };
+
   const openDetails = (projectId: number, imageIndex = 0) => {
     setDetailsProjectId(projectId);
     setDetailsImageIndex(imageIndex);
@@ -363,34 +404,7 @@ export default function ProjectsPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {ongoingProjects.map((project) => (
             <div key={project.id} className="glass-card rounded-lg shadow-md overflow-hidden">
-              {project.images.length > 0 && (
-                <div className="h-48 relative">
-                  <Image
-                    src={project.images[0]}
-                    alt={project.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              )}
-              {isFeaturedProject(project) && project.images.length > 1 && (
-                <div className="px-6 pt-3">
-                  <div className="flex gap-2 overflow-x-auto pb-1">
-                    {project.images.map((src, idx) => (
-                      <button
-                        key={`${project.id}-${idx}`}
-                        type="button"
-                        className="relative h-12 w-16 flex-none overflow-hidden rounded border hover:opacity-90"
-                        onClick={() => openDetails(project.id, idx)}
-                        title="View image"
-                      >
-                        <Image src={src} alt={`${project.name} ${idx + 1}`} fill className="object-cover" />
-                      </button>
-                    ))}
-                  </div>
-                  <div className="text-xs text-gray-500 mt-1">All site photos shown for Jigani/Magadi</div>
-                </div>
-              )}
+              {renderProjectImages(project)}
               <div className="p-6">
                 <div className="flex items-start justify-between mb-3">
                   <h3 className="text-lg font-semibold text-gray-900">{project.name}</h3>
@@ -535,35 +549,26 @@ export default function ProjectsPage() {
                   )}
                 </div>
 
-                <div className="mt-4 grid grid-cols-2 gap-2">
-                  <button
-                    type="button"
-                    onClick={() => openDetails(project.id, 0)}
-                    className="bg-blue-50 text-blue-600 px-3 py-2 rounded text-sm hover:bg-blue-100"
-                  >
-                    View Details
-                  </button> 
-                  {isAdmin && (
-                    <>
-                      <button
-                        type="button"
-                        className="bg-gray-50 text-gray-600 px-3 py-2 rounded text-sm hover:bg-gray-100"
-                        onClick={() => handleUploadImage(projects.findIndex((p) => p.id === project.id))}
-                      >
-                        Upload Image
-                      </button>
-                      <button
-                        type="button"
-                        disabled={!dirtyById[project.id]}
-                        className="col-span-2 bg-black text-white px-3 py-2 rounded text-sm disabled:opacity-60"
-                        onClick={() => saveProject(project.id)}
-                      >
-                        Save Changes
-                      </button>
-                    </>
-                  )}
-                  <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
-                </div>
+                {isAdmin && (
+                  <div className="mt-4 grid grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      className="bg-gray-50 text-gray-600 px-3 py-2 rounded text-sm hover:bg-gray-100"
+                      onClick={() => handleUploadImage(projects.findIndex((p) => p.id === project.id))}
+                    >
+                      Upload Image
+                    </button>
+                    <button
+                      type="button"
+                      disabled={!dirtyById[project.id]}
+                      className="bg-black text-white px-3 py-2 rounded text-sm disabled:opacity-60"
+                      onClick={() => saveProject(project.id)}
+                    >
+                      Save Changes
+                    </button>
+                    <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -578,16 +583,7 @@ export default function ProjectsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {completedProjects.map((project) => (
               <div key={project.id} className="glass-card rounded-lg shadow-md overflow-hidden">
-                {project.images.length > 0 && (
-                  <div className="h-48 relative">
-                    <Image
-                      src={project.images[0]}
-                      alt={project.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                )}
+                {renderProjectImages(project)}
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-3">
                     <h3 className="text-lg font-semibold text-gray-900">{project.name}</h3>
@@ -596,27 +592,18 @@ export default function ProjectsPage() {
                     </span>
                   </div>
                   <p className="text-sm text-gray-600">{project.location}</p>
-                  <div className="mt-4 grid grid-cols-2 gap-2">
-                    <button
-                      type="button"
-                      onClick={() => openDetails(project.id, 0)}
-                      className="bg-blue-50 text-blue-600 px-3 py-2 rounded text-sm hover:bg-blue-100"
-                    >
-                      View Details
-                    </button>
-                    {isAdmin ? (
+                  {isAdmin && (
+                    <div className="mt-4">
                       <button
                         type="button"
                         disabled={!dirtyById[project.id]}
-                        className="bg-black text-white px-3 py-2 rounded text-sm disabled:opacity-60"
+                        className="w-full bg-black text-white px-3 py-2 rounded text-sm disabled:opacity-60"
                         onClick={() => saveProject(project.id)}
                       >
-                        Save
+                        Save Changes
                       </button>
-                    ) : (
-                      <div />
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

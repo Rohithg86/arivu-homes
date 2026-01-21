@@ -7,9 +7,9 @@ export function getAdminCookieName() {
 }
 
 function getSecret() {
-  const secret = process.env.ADMIN_AUTH_SECRET;
-  if (!secret) throw new Error("Missing ADMIN_AUTH_SECRET env var");
-  return secret;
+  // Allow local/dev usage without requiring .env setup.
+  // In production you should set ADMIN_AUTH_SECRET to a strong random string.
+  return process.env.ADMIN_AUTH_SECRET ?? "arivu_admin_auth_secret_change_me";
 }
 
 type SessionPayload = {
