@@ -18,7 +18,7 @@ export default function Home() {
         <div className="absolute inset-0 flex items-center">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 text-white">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-2">Arivu Homes</h1>
-            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-2 font-medium max-w-3xl">Building Dreams with Precision • Crafting Excellence Since Day One</p>
+            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-2 font-medium max-w-3xl">• Building Dreams with Precision • Crafting Excellence Since Day One</p>
             <p className="text-xs sm:text-sm md:text-base text-white/80 max-w-2xl">End-to-end construction, architectural design, structural engineering, and project management services in Bangalore.</p>
             <div className="mt-3 space-y-1.5">
               <p>
@@ -30,7 +30,7 @@ export default function Home() {
                 <Link href="/team/chethan-kumar-s" className="ml-2 underline">Chethan Kumar S</Link>
               </p>
               <p>
-                <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur">Senior Architect &amp; Structural Engineer:</span>
+                <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur">Senior Architect:</span>
                 <Link href="/team/shashank-d" className="ml-2 underline">Shashank D</Link>
               </p>
             </div>
