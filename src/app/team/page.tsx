@@ -21,7 +21,7 @@ export default function TeamPage() {
       slug: "chethan-kumar-s",
       color: "green",
       experience: "20+ Years",
-      specialties: ["Construction Management", "Technical Leadership", "Quality Control", "Structural Analysis"]
+      specialties: ["Construction Management", "Quality Control", "Technical Leadership", "Structural Analysis"]
     },
     {
       name: "Shashank D",

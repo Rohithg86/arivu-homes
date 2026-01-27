@@ -26,7 +26,7 @@ export default function ShashankDBio() {
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="w-48 h-48 relative rounded-full overflow-hidden border-4 border-white shadow-lg">
                 <Image
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face"
+                  src="/profile/shashank.jpg"
                   alt="Shashank D"
                   fill
                   className="object-cover"
