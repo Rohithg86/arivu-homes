@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 const steps = [
   { title: "Plot Assessment & Feasibility", details: [
-    "Soil/contour checks, road access, setbacks, FAR/FSI study",
+    "Soil/contour checks, road access, setbacks",
     "Authority norms review and risk identification",
   ]},
   { title: "Requirement Gathering & Budgeting", details: [
@@ -47,8 +47,8 @@ const paymentPlan = [
   { stage: "Ground Floor Slab", percent: 15, note: "Structure milestone" },
   { stage: "First Floor Slab", percent: 15, note: "Structure milestone" },
   { stage: "Second Floor / Roof", percent: 10, note: "Superstructure complete" },
-  { stage: "Finishes – Mid", percent: 10, note: "Flooring, doors, MEP second fix" },
-  { stage: "Handover", percent: 10, note: "Snag close-out and documentation" },
+  { stage: "Finishes – Mid", percent: 10, note: "Flooring, doors, paint work" },
+  { stage: "Handover", percent: 10, note: "Snag close-out" },
 ];
 
 export default function JourneyPage(){
