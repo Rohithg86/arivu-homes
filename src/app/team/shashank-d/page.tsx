@@ -10,7 +10,7 @@ export default function ShashankDBio() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Shashank D</h1>
-              <p className="text-gray-600 mt-1">Senior Architect & Structural Engineer - Arivu Homes Private Limited</p>
+              <p className="text-gray-600 mt-1">Senior Architect & Civil Engineer - Arivu Homes Private Limited</p>
             </div>
             <Link href="/" className="text-gray-600 hover:text-gray-900">
               ← Back to Home
@@ -34,9 +34,9 @@ export default function ShashankDBio() {
               </div>
               <div className="flex-1">
                 <h2 className="text-4xl font-bold mb-2">Shashank D</h2>
-                <p className="text-xl text-purple-100 mb-4">Senior Architect & Structural Engineer</p>
+                <p className="text-xl text-purple-100 mb-4">Architecture & Engineering</p>
                 <p className="text-purple-100 text-lg leading-relaxed">
-                  Creative architect and structural engineer with 8+ years of experience in innovative 
+                  Creative architect and civil engineer with 7+ years of experience in innovative 
                   design solutions, sustainable architecture, and integrated structural systems.
                 </p>
               </div>
@@ -49,10 +49,10 @@ export default function ShashankDBio() {
             <section className="mb-8">
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Professional Summary</h3>
               <p className="text-gray-700 leading-relaxed mb-4">
-                Shashank D is a visionary architect and structural engineer who seamlessly blends 
-                creative design with technical excellence. His unique dual expertise in architecture 
-                and structural engineering allows him to create innovative, sustainable, and 
-                structurally sound buildings that exceed client expectations.
+                Shashank D is a visionary architect and experienced civil engineer with 7 plus years of hands-on-experience 
+                in construction execution, planning and interior works. Proven track record of delivering 7 residential  
+                projects and 1 semi-commercial project, along with extensive exposure to 300+ planning layouts and 25+ interior 
+                design projects.
               </p>
               <p className="text-gray-700 leading-relaxed">
                 Known for his forward-thinking approach to design and his ability to integrate 
@@ -67,8 +67,8 @@ export default function ShashankDBio() {
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Professional Experience</h3>
               <div className="space-y-6">
                 <div className="border-l-4 border-purple-500 pl-6">
-                  <h4 className="text-lg font-semibold text-gray-900">Senior Architect & Structural Engineer</h4>
-                  <p className="text-purple-600 font-medium">Arivu Homes Private Limited (2020 - Present)</p>
+                  <h4 className="text-lg font-semibold text-gray-900">Archtecture & Engineering</h4>
+                  <p className="text-purple-600 font-medium">Arivu Homes Private Limited (2025 - Present)</p>
                   <ul className="text-gray-700 mt-2 space-y-1">
                     <li>• Lead architectural design and structural engineering for all projects</li>
                     <li>• Develop innovative design solutions and sustainable building practices</li>
@@ -81,37 +81,14 @@ export default function ShashankDBio() {
                 
                 <div className="border-l-4 border-gray-300 pl-6">
                   <h4 className="text-lg font-semibold text-gray-900">Principal Architect</h4>
-                  <p className="text-gray-600 font-medium">Design Studio Architects (2016 - 2020)</p>
+                  <p className="text-gray-600 font-medium">SD Constructions (2018 - 2025)</p>
                   <ul className="text-gray-700 mt-2 space-y-1">
-                    <li>• Designed luxury residential and commercial projects</li>
-                    <li>• Led design teams and managed project portfolios</li>
+                    <li>• Designed 7 residential, commercial and villa projects</li>
+                    <li>• 300+ Planning and Layout Designs</li>
+                    <li>• 25+ Interior Design and Execution</li>
                     <li>• Developed sustainable design strategies</li>
                     <li>• Client relationship management and presentations</li>
                     <li>• Collaborated with structural engineers and contractors</li>
-                  </ul>
-                </div>
-
-                <div className="border-l-4 border-gray-300 pl-6">
-                  <h4 className="text-lg font-semibold text-gray-900">Senior Structural Engineer</h4>
-                  <p className="text-gray-600 font-medium">TechStruct Engineering (2012 - 2016)</p>
-                  <ul className="text-gray-700 mt-2 space-y-1">
-                    <li>• Designed complex structural systems for commercial buildings</li>
-                    <li>• Performed structural analysis and optimization</li>
-                    <li>• Collaborated with architects on integrated design solutions</li>
-                    <li>• Conducted structural inspections and assessments</li>
-                    <li>• Implemented advanced structural technologies</li>
-                  </ul>
-                </div>
-
-                <div className="border-l-4 border-gray-300 pl-6">
-                  <h4 className="text-lg font-semibold text-gray-900">Architectural Designer</h4>
-                  <p className="text-gray-600 font-medium">Urban Design Associates (2008 - 2012)</p>
-                  <ul className="text-gray-700 mt-2 space-y-1">
-                    <li>• Designed residential and institutional buildings</li>
-                    <li>• Created detailed architectural drawings and specifications</li>
-                    <li>• Participated in design competitions and won multiple awards</li>
-                    <li>• Developed 3D models and renderings</li>
-                    <li>• Coordinated with consultants and contractors</li>
                   </ul>
                 </div>
               </div>
@@ -122,34 +99,9 @@ export default function ShashankDBio() {
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Education & Certifications</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900">Master of Architecture</h4>
-                  <p className="text-gray-600">Sustainable Design</p>
-                  <p className="text-sm text-gray-500">School of Planning & Architecture, Delhi (2008)</p>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900">Bachelor of Architecture</h4>
-                  <p className="text-gray-600">Architecture</p>
-                  <p className="text-sm text-gray-500">Anna University, Chennai (2006)</p>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900">Professional Engineer (PE)</h4>
-                  <p className="text-gray-600">Structural Engineering</p>
-                  <p className="text-sm text-gray-500">Licensed 2014</p>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900">LEED Accredited Professional</h4>
-                  <p className="text-gray-600">Green Building Design</p>
-                  <p className="text-sm text-gray-500">USGBC Certified 2019</p>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900">IGBC Accredited Professional</h4>
-                  <p className="text-gray-600">Green Building Certification</p>
-                  <p className="text-sm text-gray-500">IGBC Certified 2020</p>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900">BIM Professional</h4>
-                  <p className="text-gray-600">Revit Architecture & Structure</p>
-                  <p className="text-sm text-gray-500">Autodesk Certified 2021</p>
+                  <h4 className="font-semibold text-gray-900">Bachelor of Engineering</h4>
+                  <p className="text-gray-600">Civil Engineering</p>
+                  <p className="text-sm text-gray-500">Ambedkar Institute of Technology, Bengaluru (2019)</p>
                 </div>
               </div>
             </section>
@@ -213,7 +165,7 @@ export default function ShashankDBio() {
                       <span className="text-purple-600 font-medium">Advanced</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-700">Photoshop</span>
+                      <span className="text-gray-700">V-Ray</span>
                       <span className="text-purple-600 font-medium">Advanced</span>
                     </div>
                   </div>
@@ -226,20 +178,12 @@ export default function ShashankDBio() {
                       <span className="text-purple-600 font-medium">Expert</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-700">SAP2000</span>
-                      <span className="text-purple-600 font-medium">Expert</span>
-                    </div>
-                    <div className="flex justify-between">
                       <span className="text-gray-700">STAAD.Pro</span>
                       <span className="text-purple-600 font-medium">Advanced</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-700">Revit Structure</span>
                       <span className="text-purple-600 font-medium">Expert</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-700">Tekla Structures</span>
-                      <span className="text-purple-600 font-medium">Intermediate</span>
                     </div>
                   </div>
                 </div>
@@ -253,70 +197,18 @@ export default function ShashankDBio() {
                 <div className="space-y-4">
                   <div className="border-l-4 border-purple-500 pl-4">
                     <h4 className="font-semibold text-gray-900">Eco-Luxury Villa Complex</h4>
-                    <p className="text-gray-600 text-sm">Whitefield, Bangalore</p>
+                    <p className="text-gray-600 text-sm">Whitefield, Bengaluru</p>
                     <p className="text-gray-700 text-sm">Sustainable luxury villas with integrated solar systems and rainwater harvesting</p>
                   </div>
                   <div className="border-l-4 border-purple-500 pl-4">
                     <h4 className="font-semibold text-gray-900">Smart Office Complex</h4>
-                    <p className="text-gray-600 text-sm">Koramangala, Bangalore</p>
+                    <p className="text-gray-600 text-sm">Koramangala, Bengaluru</p>
                     <p className="text-gray-700 text-sm">LEED Platinum certified office building with smart building technologies</p>
                   </div>
                   <div className="border-l-4 border-purple-500 pl-4">
                     <h4 className="font-semibold text-gray-900">Heritage Restoration Project</h4>
-                    <p className="text-gray-600 text-sm">Malleshwaram, Bangalore</p>
+                    <p className="text-gray-600 text-sm">Malleshwaram, Bengaluru</p>
                     <p className="text-gray-700 text-sm">Restoration and adaptive reuse of heritage building</p>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div className="border-l-4 border-purple-500 pl-4">
-                    <h4 className="font-semibold text-gray-900">Modular Housing Development</h4>
-                    <p className="text-gray-600 text-sm">Electronic City, Bangalore</p>
-                    <p className="text-gray-700 text-sm">Innovative modular construction for affordable housing</p>
-                  </div>
-                  <div className="border-l-4 border-purple-500 pl-4">
-                    <h4 className="font-semibold text-gray-900">Mixed-Use Development</h4>
-                    <p className="text-gray-600 text-sm">Indiranagar, Bangalore</p>
-                    <p className="text-gray-700 text-sm">Integrated residential and commercial complex with green spaces</p>
-                  </div>
-                  <div className="border-l-4 border-purple-500 pl-4">
-                    <h4 className="font-semibold text-gray-900">Educational Campus</h4>
-                    <p className="text-gray-600 text-sm">Hebbal, Bangalore</p>
-                    <p className="text-gray-700 text-sm">Modern educational facility with sustainable design features</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Awards & Recognition */}
-            <section className="mb-8">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Awards & Recognition</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
-                    <p className="text-gray-700">Best Sustainable Design Award - Karnataka State Architecture Awards 2023</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
-                    <p className="text-gray-700">Innovation in Construction Award - BuildTech India 2022</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
-                    <p className="text-gray-700">Excellence in Green Building Design - IGBC Awards 2021</p>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
-                    <p className="text-gray-700">Young Architect of the Year - Indian Institute of Architects 2020</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
-                    <p className="text-gray-700">Best Residential Project - Bangalore Real Estate Awards 2019</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
-                    <p className="text-gray-700">Published 8 research papers in architectural journals</p>
                   </div>
                 </div>
               </div>
@@ -327,8 +219,8 @@ export default function ShashankDBio() {
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Contact Information</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <p className="text-gray-700"><strong>Email:</strong> shashank@arivuhomes.com</p>
-                  <p className="text-gray-700"><strong>Phone:</strong> +91-98765-43212</p>
+                  <p className="text-gray-700"><strong>Email:</strong> contact.arivuhomes@gmail.com</p>
+                  <p className="text-gray-700"><strong>Phone:</strong> +91-6361-867464</p>
                 </div>
                 <div>
                   <p className="text-gray-700"><strong>LinkedIn:</strong> linkedin.com/in/shashankd</p>
