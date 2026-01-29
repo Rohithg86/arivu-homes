@@ -25,7 +25,7 @@ export default function TeamPage() {
     },
     {
       name: "Shashank D",
-      role: "Senior Architect & Structural Engineer",
+      role: "Senior Architect & Civil Engineer",
       bio: "Creative architect and civil engineer with 7+ years of experience in innovative design solutions, sustainable architecture, and integrated structural systems.",
       image: "/profile/shashank.jpg",
       slug: "shashank-d",
