@@ -26,11 +26,11 @@ export default function TeamPage() {
     {
       name: "Shashank D",
       role: "Senior Architect & Structural Engineer",
-      bio: "Creative architect and structural engineer with 8+ years of experience in innovative design solutions, sustainable architecture, and integrated structural systems.",
+      bio: "Creative architect and civil engineer with 7+ years of experience in innovative design solutions, sustainable architecture, and integrated structural systems.",
       image: "/profile/shashank.jpg",
       slug: "shashank-d",
       color: "purple",
-      experience: "8+ Years",
+      experience: "7+ Years",
       specialties: ["Architectural Design", "Structural Engineering", "Sustainable Design", "Innovation"]
     }
   ];

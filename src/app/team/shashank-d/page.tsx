@@ -196,19 +196,24 @@ export default function ShashankDBio() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div className="border-l-4 border-purple-500 pl-4">
-                    <h4 className="font-semibold text-gray-900">Eco-Luxury Villa Complex</h4>
-                    <p className="text-gray-600 text-sm">Whitefield, Bengaluru</p>
-                    <p className="text-gray-700 text-sm">Sustainable luxury villas with integrated solar systems and rainwater harvesting</p>
+                    <h4 className="font-semibold text-gray-900">Residential Villa</h4>
+                    <p className="text-gray-600 text-sm">Basaveshwar Nagara, Bengaluru</p>
+                    <p className="text-gray-700 text-sm">20*30 residential building with lift</p>
                   </div>
                   <div className="border-l-4 border-purple-500 pl-4">
-                    <h4 className="font-semibold text-gray-900">Smart Office Complex</h4>
-                    <p className="text-gray-600 text-sm">Koramangala, Bengaluru</p>
-                    <p className="text-gray-700 text-sm">LEED Platinum certified office building with smart building technologies</p>
+                    <h4 className="font-semibold text-gray-900">Residential Villa</h4>
+                    <p className="text-gray-600 text-sm">Vijay Lakshmi Enclave, Mysore Road, Bengaluru</p>
+                    <p className="text-gray-700 text-sm">30*50 triplex residential building</p>
                   </div>
                   <div className="border-l-4 border-purple-500 pl-4">
-                    <h4 className="font-semibold text-gray-900">Heritage Restoration Project</h4>
-                    <p className="text-gray-600 text-sm">Malleshwaram, Bengaluru</p>
-                    <p className="text-gray-700 text-sm">Restoration and adaptive reuse of heritage building</p>
+                    <h4 className="font-semibold text-gray-900">Semi-Commercial Building</h4>
+                    <p className="text-gray-600 text-sm">Madhanayakanahalli, Bengaluru</p>
+                    <p className="text-gray-700 text-sm">3 cornered project, Shops plus duplex residential building </p>
+                  </div>
+                    <div className="border-l-4 border-purple-500 pl-4">
+                    <h4 className="font-semibold text-gray-900">Industrial Warehouse</h4>
+                    <p className="text-gray-600 text-sm">Madhanayakanahalli, Bengaluru</p>
+                    <p className="text-gray-700 text-sm">PEB Structure : 6000 Sqft Warehouse </p>
                   </div>
                 </div>
               </div>
