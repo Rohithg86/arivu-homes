@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 type ContactPayload = {
   name: string;
@@ -51,28 +51,50 @@ export function ContactWidget() {
     if (!form.name.trim()) return false;
     if (!form.phone.trim() || !isValidPhone(form.phone)) return false;
     if (!form.email.trim() || !isValidEmail(form.email)) return false;
-    if (!form.requirement.trim()) return false;
     return true;
   }, [form]);
+
+  // ESC key handler
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && open) {
+        setOpen(false);
+        setError(null);
+        setSuccess(null);
+        setForm({ name: "", phone: "", email: "", requirement: "" });
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [open]);
 
   async function submit() {
     setLoading(true);
     setError(null);
     setSuccess(null);
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-    const data = (await res.json().catch(() => null)) as { error?: string; ok?: boolean } | null;
-    if (!res.ok) {
-      setError(data?.error ?? "Failed to submit");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = (await res.json().catch(() => null)) as { error?: string; ok?: boolean } | null;
+      if (!res.ok) {
+        setError(data?.error ?? "Failed to submit. Please try again.");
+        setLoading(false);
+        return;
+      }
+      setSuccess("Thanks! We'll contact you shortly.");
+      setForm({ name: "", phone: "", email: "", requirement: "" });
+      setTimeout(() => {
+        setOpen(false);
+        setSuccess(null);
+      }, 2000);
+    } catch {
+      setError("Network error. Please check your connection and try again.");
+    } finally {
       setLoading(false);
-      return;
     }
-    setSuccess("Thanks! We’ll contact you shortly.");
-    setForm({ name: "", phone: "", email: "", requirement: "" });
-    setLoading(false);
   }
 
   return (
@@ -93,18 +115,18 @@ export function ContactWidget() {
       {/* Modal */}
       {open && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
-          <div className="absolute inset-0 bg-black/50" onClick={() => setOpen(false)} />
+          <div className="absolute inset-0 bg-black/50" onClick={() => { setOpen(false); setError(null); setSuccess(null); setForm({ name: "", phone: "", email: "", requirement: "" }); }} />
           <div className="relative w-full sm:max-w-md bg-white rounded-t-2xl sm:rounded-2xl shadow-xl border p-5 sm:p-6">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <h3 className="text-lg font-semibold">Contact Us</h3>
-                <p className="text-sm text-gray-600 mt-1">Share your requirement and we’ll get back quickly.</p>
+                <p className="text-sm text-gray-600 mt-1">Share your requirement and we&apos;ll get back quickly.</p>
                 <p className="text-xs text-gray-500 mt-1">Phone number and email ID are mandatory.</p>
               </div>
               <button
                 type="button"
                 className="text-sm text-gray-500 hover:text-gray-900"
-                onClick={() => setOpen(false)}
+                onClick={() => { setOpen(false); setError(null); setSuccess(null); setForm({ name: "", phone: "", email: "", requirement: "" }); }}
               >
                 Close
               </button>
@@ -141,11 +163,10 @@ export function ContactWidget() {
               {emailInvalid && <div className="text-xs text-red-600">Enter a valid email address.</div>}
               <textarea
                 className="border rounded-lg p-2"
-                placeholder="Short requirement description *"
+                placeholder="Short requirement description (optional)"
                 rows={4}
                 value={form.requirement}
                 onChange={(e) => setForm((p) => ({ ...p, requirement: e.target.value }))}
-                required
               />
 
               {error && <div className="text-sm text-red-600">{error}</div>}
@@ -166,4 +187,3 @@ export function ContactWidget() {
     </>
   );
 }
-

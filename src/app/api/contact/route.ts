@@ -19,7 +19,7 @@ const ContactSchema = z.object({
   name: z.string().trim().min(1, "Name is required"),
   phone: PhoneSchema,
   email: z.string().trim().min(1, "Email is required").email("Invalid email address"),
-  requirement: z.string().trim().min(1, "Requirement is required"),
+  requirement: z.string().trim().optional().default(""),
 });
 
 function requireEnv(name: string) {

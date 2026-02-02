@@ -155,7 +155,8 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json(updated);
   } catch (error) {
     console.error('Error updating project:', error);
-    return NextResponse.json({ error: 'Failed to update project' }, { status: 500 });
+    const message = error instanceof Error ? error.message : 'Failed to update project';
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
 

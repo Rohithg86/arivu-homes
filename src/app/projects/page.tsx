@@ -23,6 +23,8 @@ export default function ProjectsPage() {
   const [isAdmin, setIsAdmin] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [uploadProjectId, setUploadProjectId] = useState<number | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [uploadCancel, setUploadCancel] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saveSuccess, setSaveSuccess] = useState<string | null>(null);
@@ -96,6 +98,23 @@ export default function ProjectsPage() {
       }
     })();
   }, []);
+
+  // ESC key handler for modals
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (showProjectForm) {
+          setShowProjectForm(false);
+          setEditingProjectId(null);
+        }
+        if (detailsOpen) {
+          setDetailsOpen(false);
+        }
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [showProjectForm, detailsOpen]);
 
   const isFeaturedProject = (project: Project) => {
     const t = `${project.name} ${project.location}`.toLowerCase();
@@ -187,43 +206,49 @@ export default function ProjectsPage() {
     setSaveError(null);
     setSaveSuccess(null);
 
-    const rawPct = String(projectForm.completionPercentageText ?? "").trim();
-    const digits = rawPct.replace(/\D/g, "").replace(/^0+(?=\d)/, "");
-    const pct = Math.max(0, Math.min(100, digits ? Number(digits) : 0));
+    try {
+      const rawPct = String(projectForm.completionPercentageText ?? "").trim();
+      const digits = rawPct.replace(/\D/g, "").replace(/^0+(?=\d)/, "");
+      const pct = Math.max(0, Math.min(100, digits ? Number(digits) : 0));
 
-    const payload = {
-      ...(editingProjectId ? { id: editingProjectId } : {}),
-      name: projectForm.name ?? "",
-      location: projectForm.location ?? "",
-      client: projectForm.client ?? "",
-      type: projectForm.type ?? "",
-      startDate: projectForm.startDate ?? "",
-      expectedCompletion: projectForm.expectedCompletion ?? "",
-      completionPercentage: pct,
-      status: projectForm.status ?? "Planning",
-      description: projectForm.description ?? "",
-      // Keep existing images; manage additions via Upload Image(s)
-      images: Array.isArray(projectForm.images) ? projectForm.images : [],
-    };
+      const payload = {
+        ...(editingProjectId ? { id: editingProjectId } : {}),
+        name: String(projectForm.name ?? "").trim(),
+        location: String(projectForm.location ?? "").trim(),
+        client: String(projectForm.client ?? "").trim() || null,
+        type: String(projectForm.type ?? "").trim(),
+        startDate: String(projectForm.startDate ?? "").trim(),
+        expectedCompletion: String(projectForm.expectedCompletion ?? "").trim(),
+        completionPercentage: pct,
+        status: String(projectForm.status ?? "Planning"),
+        description: String(projectForm.description ?? "").trim(),
+        // Keep existing images; manage additions via Upload Image(s)
+        images: Array.isArray(projectForm.images) ? projectForm.images : [],
+      };
 
-    const res = await fetch("/api/projects", {
-      method: editingProjectId ? "PUT" : "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+      const res = await fetch("/api/projects", {
+        method: editingProjectId ? "PUT" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
-    if (!res.ok) {
       const data = (await res.json().catch(() => null)) as { error?: string } | null;
-      setSaveError(data?.error ?? "Failed to save project");
-      setSaving(false);
-      return;
-    }
 
-    setShowProjectForm(false);
-    setEditingProjectId(null);
-    await refreshProjects();
-    setSaveSuccess(editingProjectId ? "Project updated." : "Project created.");
-    setSaving(false);
+      if (!res.ok) {
+        setSaveError(data?.error ?? `Failed to ${editingProjectId ? "update" : "create"} project. Please try again.`);
+        setSaving(false);
+        return;
+      }
+
+      setShowProjectForm(false);
+      setEditingProjectId(null);
+      await refreshProjects();
+      setSaveSuccess(editingProjectId ? "Project updated successfully." : "Project created successfully.");
+    } catch {
+      setSaveError("Network error. Please check your connection and try again.");
+    } finally {
+      setSaving(false);
+    }
   };
 
   const handleUploadImage = (projectId: number) => {
@@ -240,71 +265,99 @@ export default function ProjectsPage() {
     const input = e.target;
     if (!input.files || input.files.length === 0) return;
 
-    setSaving(true);
+    setUploading(true);
+    setUploadCancel(false);
     setSaveError(null);
     setSaveSuccess(null);
     const project = projects.find((p) => p.id === uploadProjectId);
     if (!project) {
-      setSaving(false);
+      setUploading(false);
       return;
     }
 
     const files = Array.from(input.files);
     const uploadedUrls: string[] = [];
 
-    for (const file of files) {
-      const fileBase64 = await new Promise<string>((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result as string);
-        reader.onerror = () => reject(new Error("Failed to read file"));
-        reader.readAsDataURL(file);
-      });
+    try {
+      for (let i = 0; i < files.length; i++) {
+        if (uploadCancel) {
+          setSaveError("Upload cancelled.");
+          input.value = "";
+          setUploadProjectId(null);
+          setUploading(false);
+          setUploadCancel(false);
+          return;
+        }
 
-      const res = await fetch("/api/upload", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          type: "SITE_PHOTO",
-          title: project.name,
-          description: "Project image",
-          fileName: file.name,
-          fileBase64,
-        }),
-      });
+        const file = files[i];
+        const fileBase64 = await new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result as string);
+          reader.onerror = () => reject(new Error("Failed to read file"));
+          reader.readAsDataURL(file);
+        });
 
-      const data = (await res.json().catch(() => null)) as { url?: string; error?: string } | null;
-      if (!res.ok || !data?.url) {
-        setSaveError(data?.error ?? "Upload failed");
-        setSaving(false);
+        const res = await fetch("/api/upload", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "SITE_PHOTO",
+            title: project.name,
+            description: "Project image",
+            fileName: file.name,
+            fileBase64,
+          }),
+        });
+
+        const data = (await res.json().catch(() => null)) as { url?: string; error?: string } | null;
+        if (!res.ok || !data?.url) {
+          setSaveError(data?.error ?? `Upload failed for ${file.name}. Please try again.`);
+          input.value = "";
+          setUploadProjectId(null);
+          setUploading(false);
+          setUploadCancel(false);
+          return;
+        }
+        uploadedUrls.push(data.url);
+      }
+
+      if (uploadCancel) {
+        setSaveError("Upload cancelled.");
         input.value = "";
         setUploadProjectId(null);
+        setUploading(false);
+        setUploadCancel(false);
         return;
       }
-      uploadedUrls.push(data.url);
-    }
 
-    const nextImages = [...uploadedUrls, ...(project.images ?? [])];
-    const updateRes = await fetch("/api/projects", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: project.id, images: nextImages }),
-    });
+      const nextImages = [...uploadedUrls, ...(project.images ?? [])];
+      const updateRes = await fetch("/api/projects", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: project.id, images: nextImages }),
+      });
 
-    if (!updateRes.ok) {
-      const data = (await updateRes.json().catch(() => null)) as { error?: string } | null;
-      setSaveError(data?.error ?? "Failed to save project images");
-      setSaving(false);
-      input.value = "";
+      const updateData = (await updateRes.json().catch(() => null)) as { error?: string } | null;
+      if (!updateRes.ok) {
+        setSaveError(updateData?.error ?? "Failed to save project images. Please try again.");
+        input.value = "";
+        setUploadProjectId(null);
+        setUploading(false);
+        setUploadCancel(false);
+        return;
+      }
+
+      await refreshProjects();
+      openDetails(project.id, 0);
+      setSaveSuccess(`${uploadedUrls.length} image(s) added to gallery.`);
+    } catch {
+      setSaveError("Network error during upload. Please check your connection and try again.");
+    } finally {
+      input.value = '';
       setUploadProjectId(null);
-      return;
+      setUploading(false);
+      setUploadCancel(false);
     }
-
-    await refreshProjects();
-    openDetails(project.id, 0);
-    setSaveSuccess(`${uploadedUrls.length} image(s) added to gallery.`);
-    input.value = '';
-    setUploadProjectId(null);
-    setSaving(false);
   };
 
   // Inline edit handlers can be added here when needed.
@@ -374,7 +427,7 @@ export default function ProjectsPage() {
 
       {/* Add/Edit Project Form Modal */}
       {showProjectForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={(e) => e.target === e.currentTarget && (setShowProjectForm(false), setEditingProjectId(null))}>
           <div className="bg-white rounded-lg p-6 w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
             <h2 className="text-xl font-semibold mb-1">{editingProjectId ? "Edit Project" : "Add New Project"}</h2>
             <p className="text-sm text-gray-600 mb-4">Fields marked * are required.</p>
@@ -589,12 +642,21 @@ export default function ProjectsPage() {
                     </button>
                     <button
                       type="button"
-                      disabled={saving}
+                      disabled={uploading}
                       className="bg-gray-50 text-gray-700 px-3 py-2 rounded text-sm hover:bg-gray-100 disabled:opacity-60"
                       onClick={() => handleUploadImage(project.id)}
                     >
-                      {saving && uploadProjectId === project.id ? "Uploading..." : "Upload Image(s)"}
+                      {uploading && uploadProjectId === project.id ? "Uploading..." : "Upload Image(s)"}
                     </button>
+                    {uploading && uploadProjectId === project.id && (
+                      <button
+                        type="button"
+                        className="col-span-2 bg-red-50 text-red-700 px-3 py-2 rounded text-sm hover:bg-red-100"
+                        onClick={() => setUploadCancel(true)}
+                      >
+                        Cancel Upload
+                      </button>
+                    )}
                   </div>
                 )}
               </div>
@@ -631,12 +693,21 @@ export default function ProjectsPage() {
                       </button>
                       <button
                         type="button"
-                        disabled={saving}
+                        disabled={uploading}
                         className="bg-gray-50 text-gray-700 px-3 py-2 rounded text-sm hover:bg-gray-100 disabled:opacity-60"
                         onClick={() => handleUploadImage(project.id)}
                       >
-                        {saving && uploadProjectId === project.id ? "Uploading..." : "Upload Image(s)"}
+                        {uploading && uploadProjectId === project.id ? "Uploading..." : "Upload Image(s)"}
                       </button>
+                      {uploading && uploadProjectId === project.id && (
+                        <button
+                          type="button"
+                          className="col-span-2 bg-red-50 text-red-700 px-3 py-2 rounded text-sm hover:bg-red-100"
+                          onClick={() => setUploadCancel(true)}
+                        >
+                          Cancel Upload
+                        </button>
+                      )}
                     </div>
                   )}
                 </div>
@@ -677,7 +748,7 @@ export default function ProjectsPage() {
       {/* Details modal with full image gallery */}
       {detailsOpen && detailsProject && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
-          <div className="absolute inset-0 bg-black/60" onClick={() => setDetailsOpen(false)} />
+          <div className="absolute inset-0 bg-black/60" onClick={() => setDetailsOpen(false)} onKeyDown={(e) => e.key === "Escape" && setDetailsOpen(false)} />
           <div className="relative w-full sm:max-w-4xl bg-white rounded-t-2xl sm:rounded-2xl shadow-xl border overflow-hidden">
             <div className="flex items-start justify-between gap-4 p-4 sm:p-5 border-b">
               <div>

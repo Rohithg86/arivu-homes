@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { HomeLogo } from "@/components/HomeLogo";
+import { MobileNav } from "@/components/MobileNav";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
           <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 h-16">
             <Link href="/" className="flex items-center px-2 py-1 rounded-lg hover:bg-black/5">
-              <HomeLogo className="h-10 sm:h-12 w-auto" />
+              <HomeLogo className="h-12 sm:h-14 w-auto" />
             </Link>
             <nav className="hidden sm:flex items-center gap-4 sm:gap-6 text-sm">
               <Link href="/services" className="hover:text-blue-600">Services</Link>
@@ -24,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/projects" className="hover:text-blue-600">Projects</Link>
               <Link href="/admin" className="px-3 py-1.5 rounded bg-gray-900 text-white hover:bg-gray-800">Admin</Link>
             </nav>
-            <Link href="/services" className="sm:hidden px-3 py-1.5 rounded bg-gray-900 text-white text-sm">Menu</Link>
+            <MobileNav />
           </div>
         </header>
         {children}

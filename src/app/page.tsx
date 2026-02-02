@@ -1,4 +1,4 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import { ContactWidget } from "@/components/ContactWidget";
 
@@ -81,6 +81,37 @@ export default function Home() {
             </div>
           </Link>
         </div>
+      </section>
+
+      {/* Media section (1 image + 2 videos) */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Our Work in Motion</h2>
+        <div className="grid gap-6 md:grid-cols-3">
+          <div className="rounded-2xl overflow-hidden border bg-black">
+            <Image
+              src="/home/home-extra.jpg"
+              alt="Arivu Homes work"
+              width={1200}
+              height={800}
+              className="w-full h-64 md:h-full object-cover"
+            />
+          </div>
+          <div className="rounded-2xl overflow-hidden border bg-black">
+            <video className="w-full h-64 md:h-full object-cover" controls playsInline preload="metadata">
+              <source src="/videos/home-1.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div className="rounded-2xl overflow-hidden border bg-black">
+            <video className="w-full h-64 md:h-full object-cover" controls playsInline preload="metadata">
+              <source src="/videos/home-2.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+        <p className="text-xs text-gray-500 mt-3 text-center">
+          Upload files to <code className="font-mono">public/home/home-extra.jpg</code>,{" "}
+          <code className="font-mono">public/videos/home-1.mp4</code>,{" "}
+          <code className="font-mono">public/videos/home-2.mp4</code>.
+        </p>
       </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12 grid gap-4 sm:gap-6 md:grid-cols-3">
