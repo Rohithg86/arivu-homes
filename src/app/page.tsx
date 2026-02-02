@@ -89,7 +89,7 @@ export default function Home() {
         <div className="grid gap-6 md:grid-cols-3">
           <div className="rounded-2xl overflow-hidden border bg-black">
             <Image
-              src="/home/home-extra.jpg"
+              src="/home-extra.jpg"
               alt="Arivu Homes work"
               width={1200}
               height={800}
@@ -107,11 +107,6 @@ export default function Home() {
             </video>
           </div>
         </div>
-        <p className="text-xs text-gray-500 mt-3 text-center">
-          Upload files to <code className="font-mono">public/home/home-extra.jpg</code>,{" "}
-          <code className="font-mono">public/videos/home-1.mp4</code>,{" "}
-          <code className="font-mono">public/videos/home-2.mp4</code>.
-        </p>
       </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12 grid gap-4 sm:gap-6 md:grid-cols-3">
