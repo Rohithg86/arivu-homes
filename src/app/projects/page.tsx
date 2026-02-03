@@ -70,38 +70,40 @@ export default function ProjectsPage() {
   }
 
   useEffect(() => {
-    try {
-      const [projectsRes, meRes] = await Promise.all([
-        fetch("/api/projects", { cache: "no-store" }),
-        fetch("/api/admin/me"),
-      ]);
-      if (projectsRes.ok) {
-        const data = (await projectsRes.json()) as unknown as Array<Partial<Project>>;
-        const normalized = data.map((p) => ({
-          id: Number(p.id || 0),
-          name: String(p.name ?? ""),
-          location: String(p.location ?? ""),
-          client: (p.client ?? "") as string,
-          type: String(p.type ?? ""),
-          startDate: String(p.startDate ?? ""),
-          expectedCompletion: String(p.expectedCompletion ?? ""),
-          completionPercentage: Number(p.completionPercentage ?? 0),
-          status: String(p.status ?? "Planning"),
-          description: String(p.description ?? ""),
-          images: Array.isArray(p.images) ? (p.images as string[]) : [],
-        }));
-        setProjects(normalized as Project[]);
-      }
-      if (meRes.ok) {
-        const me = (await meRes.json()) as { isAdmin: boolean };
-        setIsAdmin(!!me.isAdmin);
-      } else {
+    (async () => {
+      try {
+        const [projectsRes, meRes] = await Promise.all([
+          fetch("/api/projects", { cache: "no-store" }),
+          fetch("/api/admin/me"),
+        ]);
+        if (projectsRes.ok) {
+          const data = (await projectsRes.json()) as unknown as Array<Partial<Project>>;
+          const normalized = data.map((p) => ({
+            id: Number(p.id || 0),
+            name: String(p.name ?? ""),
+            location: String(p.location ?? ""),
+            client: (p.client ?? "") as string,
+            type: String(p.type ?? ""),
+            startDate: String(p.startDate ?? ""),
+            expectedCompletion: String(p.expectedCompletion ?? ""),
+            completionPercentage: Number(p.completionPercentage ?? 0),
+            status: String(p.status ?? "Planning"),
+            description: String(p.description ?? ""),
+            images: Array.isArray(p.images) ? (p.images as string[]) : [],
+          }));
+          setProjects(normalized as Project[]);
+        }
+        if (meRes.ok) {
+          const me = (await meRes.json()) as { isAdmin: boolean };
+          setIsAdmin(!!me.isAdmin);
+        } else {
+          setIsAdmin(false);
+        }
+      } catch (err) {
+        console.error("Auth check failed:", err);
         setIsAdmin(false);
       }
-    } catch (err) {
-      console.error("Auth check failed:", err);
-      setIsAdmin(false);
-    }
+    })();
   }, []);
 
   // ESC key handler for modals
