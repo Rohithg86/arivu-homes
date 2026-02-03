@@ -45,32 +45,35 @@ export default function Home() {
       </section>
 
       {/* Quick Access Section */}
-      <section className="relative z-30 max-w-6xl mx-auto px-4 sm:px-6 -mt-4 sm:-mt-10 mb-12 sm:mb-20">
-        <div className="bg-white rounded-[2rem] p-6 sm:p-10 shadow-2xl border border-gray-100 flex flex-col">
-          <h2 className="text-xl sm:text-2xl font-black text-center mb-10 text-gray-900 tracking-tighter uppercase">Quick Access</h2>
-          <div className="grid gap-6 sm:gap-8 md:grid-cols-3">
-            <Link href="/projects" className="group relative rounded-2xl p-7 bg-white md:bg-gradient-to-br md:from-emerald-50/50 md:to-white border border-emerald-100/50 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
-              <div className="text-4xl mb-5 group-hover:scale-110 transition-transform duration-500">🏗️</div>
-              <h3 className="text-xl font-black mb-2 text-gray-900 group-hover:text-emerald-700 transition-colors">Current Projects</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-6">Track ongoing developments and real-time updates across Bangalore.</p>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+        <div className="bg-white rounded-[2.5rem] p-8 sm:p-14 shadow-xl border border-gray-100 flex flex-col">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 tracking-tight uppercase">Quick Access</h2>
+            <div className="w-20 h-1.5 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+          </div>
+          <div className="grid gap-8 md:grid-cols-3">
+            <Link href="/projects" className="group flex flex-col h-full rounded-[2rem] p-8 bg-slate-50 border border-transparent hover:border-emerald-200 hover:bg-white hover:shadow-2xl transition-all duration-500">
+              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm group-hover:scale-110 transition-transform duration-500">🏗️</div>
+              <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-emerald-700 transition-colors">Current Projects</h3>
+              <p className="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">Track ongoing developments and real-time updates across Bangalore.</p>
               <div className="flex items-center text-emerald-600 font-bold text-xs uppercase tracking-widest group-hover:translate-x-2 transition-transform">
                 View Projects →
               </div>
             </Link>
 
-            <Link href="/journey" className="group relative rounded-2xl p-7 bg-white md:bg-gradient-to-br md:from-blue-50/50 md:to-white border border-blue-100/50 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
-              <div className="text-4xl mb-5 group-hover:scale-110 transition-transform duration-500">🗺️</div>
-              <h3 className="text-xl font-black mb-2 text-gray-900 group-hover:text-blue-700 transition-colors">Your Journey</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-6">Explore our meticulous step-by-step process of building your dream home.</p>
+            <Link href="/journey" className="group flex flex-col h-full rounded-[2rem] p-8 bg-slate-50 border border-transparent hover:border-blue-200 hover:bg-white hover:shadow-2xl transition-all duration-500">
+              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm group-hover:scale-110 transition-transform duration-500">🗺️</div>
+              <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-blue-700 transition-colors">Your Journey</h3>
+              <p className="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">Explore our meticulous step-by-step process of building your dream home.</p>
               <div className="flex items-center text-blue-600 font-bold text-xs uppercase tracking-widest group-hover:translate-x-2 transition-transform">
                 Explore Journey →
               </div>
             </Link>
 
-            <Link href="/team" className="group relative rounded-2xl p-7 bg-white md:bg-gradient-to-br md:from-indigo-50/50 md:to-white border border-indigo-100/50 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
-              <div className="text-4xl mb-5 group-hover:scale-110 transition-transform duration-500">👥</div>
-              <h3 className="text-xl font-black mb-2 text-gray-900 group-hover:text-indigo-700 transition-colors">Meet Our Team</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-6">Learn about the experienced professionals crafting your architectural vision.</p>
+            <Link href="/team" className="group flex flex-col h-full rounded-[2rem] p-8 bg-slate-50 border border-transparent hover:border-indigo-200 hover:bg-white hover:shadow-2xl transition-all duration-500">
+              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm group-hover:scale-110 transition-transform duration-500">👥</div>
+              <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-indigo-700 transition-colors">Meet Our Team</h3>
+              <p className="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">Learn about the experienced professionals crafting your architectural vision.</p>
               <div className="flex items-center text-indigo-600 font-bold text-xs uppercase tracking-widest group-hover:translate-x-2 transition-transform">
                 View Team →
               </div>

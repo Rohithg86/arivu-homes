@@ -16,27 +16,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-dvh bg-gradient-to-br from-slate-50 via-white to-sky-50 text-gray-900 antialiased">
         <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
           <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 h-16">
-            <div className="flex items-center gap-3">
-              <Link href="/" className="flex items-center gap-2 py-1.5 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-300 group -ml-2 px-2 shrink-0">
-                <div className="relative flex items-center bg-gradient-to-br from-blue-600 to-indigo-600 text-white p-2 rounded-lg shadow-sm group-hover:shadow-md transition-shadow">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <div className="flex items-center gap-4">
+              <Link href="/" className="flex items-center gap-2 group transition-all duration-300">
+                <div className="relative flex items-center bg-gray-900 text-white p-2 rounded-lg shadow-sm group-hover:bg-blue-600 transition-colors">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
                   </svg>
-                  <div className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-yellow-400 rounded-full animate-pulse border-2 border-white"></div>
                 </div>
-                <HomeLogo className="h-8 sm:h-12 w-auto" />
+                <HomeLogo className="h-8 sm:h-10 w-auto" />
               </Link>
-              <div className="flex flex-col border-l-2 border-blue-100 pl-3 ml-1 shrink-0 bg-blue-50/50 py-1 pr-2 rounded-r-lg">
-                <span className="text-[9px] uppercase tracking-tighter font-black text-blue-700 block leading-none">GSTIN</span>
-                <span className="text-[10px] sm:text-xs font-mono font-black text-gray-900 leading-none mt-0.5">PENDING...</span>
+              <div className="hidden lg:flex flex-col border-l border-gray-200 pl-4 py-1">
+                <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 leading-none">GSTIN</span>
+                <span className="text-[11px] font-mono font-bold text-gray-600 mt-1">PENDING...</span>
               </div>
             </div>
-            <nav className="hidden md:flex items-center gap-6 lg:gap-10 text-[13px] uppercase tracking-[0.15em] font-bold text-gray-500">
-              <Link href="/services" className="hover:text-blue-600 transition-all duration-300">Services</Link>
-              <Link href="/boq" className="bg-blue-600 text-white px-5 py-2.5 rounded-full hover:bg-blue-700 transition-all duration-300 shadow-md hover:shadow-lg active:scale-95">BOQ Calculator</Link>
-              <Link href="/team" className="hover:text-blue-600 transition-all duration-300">Team</Link>
-              <Link href="/projects" className="hover:text-blue-600 transition-all duration-300">Projects</Link>
-              <Link href="/admin" className="px-5 py-2.5 rounded-full border border-gray-200 text-gray-900 hover:border-gray-900 transition-all duration-300 text-[11px] font-black">Admin</Link>
+            <nav className="hidden md:flex items-center gap-8 text-[13px] font-bold text-gray-600 uppercase tracking-widest">
+              <Link href="/services" className="hover:text-blue-600 transition-colors">Services</Link>
+              <Link href="/boq" className="hover:text-blue-600 transition-colors">BOQ Calculator</Link>
+              <Link href="/team" className="hover:text-blue-600 transition-colors">Team</Link>
+              <Link href="/projects" className="hover:text-blue-600 transition-colors">Projects</Link>
+              <Link href="/admin" className="ml-4 px-6 py-2 rounded-full border border-gray-200 text-gray-900 hover:border-gray-900 hover:bg-gray-50 transition-all font-black text-[10px]">ADMIN</Link>
             </nav>
             <MobileNav />
           </div>
