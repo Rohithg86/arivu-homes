@@ -99,18 +99,29 @@ export function ContactWidget() {
 
   return (
     <>
-      {/* Floating button */}
-      <button
-        type="button"
-        onClick={() => {
-          setOpen(true);
-          setError(null);
-          setSuccess(null);
-        }}
-        className="fixed bottom-5 right-5 z-50 rounded-full bg-blue-600 text-white shadow-lg px-5 py-3 font-semibold hover:bg-blue-700"
-      >
-        Contact Us
-      </button>
+      {/* Floating buttons */}
+      <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-3 items-end">
+        <a
+          href="https://wa.me/916361867464"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 rounded-full bg-green-500 text-white shadow-lg px-4 py-2 font-semibold hover:bg-green-600 transition-all hover:scale-105"
+        >
+          <span className="text-xl">💬</span>
+          <span className="hidden sm:inline">WhatsApp Us</span>
+        </a>
+        <button
+          type="button"
+          onClick={() => {
+            setOpen(true);
+            setError(null);
+            setSuccess(null);
+          }}
+          className="rounded-full bg-blue-600 text-white shadow-lg px-5 py-3 font-semibold hover:bg-blue-700 transition-all hover:scale-105"
+        >
+          Contact Support
+        </button>
+      </div>
 
       {/* Modal */}
       {open && (

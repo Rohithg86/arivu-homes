@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { HomeLogo } from "@/components/HomeLogo";
 import { MobileNav } from "@/components/MobileNav";
+import { ContactWidget } from "@/components/ContactWidget";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </header>
         {children}
+        <ContactWidget />
         <footer className="border-t mt-16">
           <div className="max-w-6xl mx-auto px-6 py-10 text-sm text-gray-600">
             <div>Bangalore  +91-6361867464  contact.arivuhomes@gmail.com</div>

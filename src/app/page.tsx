@@ -1,6 +1,5 @@
 import { HeroSlideshow } from "@/components/HeroSlideshow";
 import Link from "next/link";
-import { ContactWidget } from "@/components/ContactWidget";
 import { TestimonialSlideshow } from "@/components/TestimonialSlideshow";
 
 export default function Home() {
@@ -10,21 +9,21 @@ export default function Home() {
         <HeroSlideshow />
         <div className="absolute inset-0 flex items-center z-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 text-white w-full">
-            <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-2">Arivu Homes</h1>
+            <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold text-white leading-tight mb-2">Arivu Homes</h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 mb-2 font-medium max-w-3xl">• Building Dreams with Precision • Crafting Excellence Since Day One</p>
             <p className="text-xs sm:text-sm md:text-base text-white/80 max-w-2xl">End-to-end construction, architectural design, structural engineering, and project management services in Bangalore.</p>
             <div className="mt-3 flex flex-col sm:flex-row flex-wrap gap-1.5 sm:gap-6 text-sm sm:text-base">
               <p className="flex items-center gap-2">
                 <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur text-xs sm:text-sm">Managing Partner:</span>
-                <Link href="/team/rohith-gopal" className="underline hover:text-white/80">Rohith Gopal</Link>
+                <Link href="/team/rohith-gopal" className="underline hover:text-white/80 font-bold">Rohith Gopal</Link>
               </p>
               <p className="flex items-center gap-2">
                 <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur text-xs sm:text-sm">Chief Engineer:</span>
-                <Link href="/team/chethan-kumar-s" className="underline hover:text-white/80">Chethan Kumar S</Link>
+                <Link href="/team/chethan-kumar-s" className="underline hover:text-white/80 font-bold">Chethan Kumar S</Link>
               </p>
               <p className="flex items-center gap-2">
                 <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur text-xs sm:text-sm">Senior Architect:</span>
-                <Link href="/team/shashank-d" className="underline hover:text-white/80">Shashank D</Link>
+                <Link href="/team/shashank-d" className="underline hover:text-white/80 font-bold">Shashank D</Link>
               </p>
             </div>
             <div className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4">
@@ -139,8 +138,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Floating contact widget (home only) */}
-      <ContactWidget />
+      {/* Floating contact widget moved to layout.tsx */}
     </main>
   );
 }
