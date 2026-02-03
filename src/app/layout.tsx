@@ -16,14 +16,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-dvh bg-gradient-to-br from-slate-50 via-white to-sky-50 text-gray-900 antialiased">
         <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
           <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 h-16">
-            <Link href="/" className="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-300 border border-transparent hover:border-blue-200 hover:shadow-md">
+            <Link href="/" className="flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-300 border border-transparent hover:border-blue-200 hover:shadow-md">
               <div className="relative">
                 <svg className="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
                 </svg>
                 <div className="absolute -top-1 -right-1 w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
               </div>
-              <HomeLogo className="h-12 sm:h-14 w-auto" />
+              <HomeLogo className="h-14 sm:h-16 w-auto" />
             </Link>
             <nav className="hidden sm:flex items-center gap-4 sm:gap-6 text-sm">
               <Link href="/services" className="hover:text-blue-600">Services</Link>
