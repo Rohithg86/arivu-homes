@@ -577,21 +577,17 @@ export default function ProjectsPage() {
             <div key={project.id} className="glass-card rounded-lg shadow-md overflow-hidden">
               {renderProjectImages(project)}
               <div className="p-6">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-lg font-semibold text-gray-900">{project.name}</h3>
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
-                    {project.status}
-                  </span>
-                </div>
-                
-                <div className="space-y-2 mb-3 text-sm">
+                <div className="space-y-2 mb-3 text-sm flex-grow">
+                  <div className="min-h-[3rem] mb-2">
+                    <h3 className="text-lg font-semibold text-gray-900 line-clamp-2">{project.name}</h3>
+                  </div>
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-gray-600">Client</span>
                     <span className="text-gray-800">{project.client ?? "-"}</span>
                   </div>
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-gray-600">Location</span>
-                    <span className="text-gray-800">{project.location}</span>
+                    <span className="text-gray-800 line-clamp-1 text-right">{project.location}</span>
                   </div>
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-gray-600">Type</span>
@@ -602,11 +598,11 @@ export default function ProjectsPage() {
                     <span className="text-gray-800">{project.startDate || "-"}</span>
                   </div>
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-gray-600">Completion (Estd)</span>
+                    <span className="text-gray-600">Completion</span>
                     <span className="text-gray-800">{project.expectedCompletion || "-"}</span>
                   </div>
                 </div>
-                
+
                 <div className="mb-4">
                   <div className="flex justify-between text-sm text-gray-600 mb-1">
                     <span>Progress</span>
@@ -803,9 +799,8 @@ export default function ProjectsPage() {
                       <button
                         key={`${detailsProject.id}-thumb-${idx}`}
                         type="button"
-                        className={`relative h-14 w-20 flex-none overflow-hidden rounded border ${
-                          idx === detailsImageIndex ? "ring-2 ring-blue-600" : ""
-                        }`}
+                        className={`relative h-14 w-20 flex-none overflow-hidden rounded border ${idx === detailsImageIndex ? "ring-2 ring-blue-600" : ""
+                          }`}
                         onClick={() => setDetailsImageIndex(idx)}
                         title={`Image ${idx + 1}`}
                       >

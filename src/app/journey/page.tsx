@@ -100,8 +100,8 @@ export default function JourneyPage() {
       </div>
 
       {/* Video: reduced frame as requested */}
-      <div className="mt-5 sm:mt-6 -mx-4 sm:mx-0 sm:rounded-2xl overflow-hidden sm:border max-w-4xl mx-auto shadow-2xl">
-        <div className="relative w-full bg-black">
+      <div className="mt-5 sm:mt-6 -mx-4 sm:mx-0 sm:rounded-2xl overflow-hidden sm:border max-w-6xl mx-auto shadow-2xl">
+        <div className="relative w-full bg-black aspect-video">
           <video
             ref={videoRef}
             className="block w-full h-auto"

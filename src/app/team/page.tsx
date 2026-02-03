@@ -72,8 +72,8 @@ export default function TeamPage() {
           <div className="text-center">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">Our Team</h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Meet the experienced professionals behind Arivu Homes Private Limited. Our team combines 
-              decades of expertise in construction, engineering, and architecture to deliver 
+              Meet the experienced professionals behind Arivu Homes Private Limited. Our team combines
+              decades of expertise in construction, engineering, and architecture to deliver
               exceptional results for every project.
             </p>
             <div className="mt-6">
@@ -91,8 +91,8 @@ export default function TeamPage() {
           {teamMembers.map((member) => {
             const colors = getColorClasses(member.color);
             return (
-              <Link 
-                href={`/team/${member.slug}`} 
+              <Link
+                href={`/team/${member.slug}`}
                 key={member.slug}
                 className="group"
               >
@@ -110,7 +110,7 @@ export default function TeamPage() {
                       </div>
                       <h3 className="text-2xl font-bold mb-1">{member.name}</h3>
                       <p className="text-lg opacity-90 mb-2">{member.role}</p>
-                      <div className="bg-white bg-opacity-20 rounded-full px-3 py-1 text-sm">
+                      <div className="text-sm font-medium opacity-90">
                         {member.experience} Experience
                       </div>
                     </div>
@@ -123,7 +123,7 @@ export default function TeamPage() {
                     </p>
 
                     {/* Specialties */}
-                    <div>
+                    <div className="min-h-[80px]">
                       <h4 className="font-semibold text-gray-900 mb-3">Key Specialties</h4>
                       <div className="flex flex-wrap gap-2">
                         {member.specialties.map((specialty, index) => (
@@ -158,7 +158,7 @@ export default function TeamPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Team by Numbers</h2>
             <p className="text-gray-600">Combined expertise and achievements</p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="text-4xl font-bold text-blue-600 mb-2">45+</div>
@@ -187,7 +187,7 @@ export default function TeamPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Core Values</h2>
             <p className="text-gray-600">The principles that guide our team and work</p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -219,18 +219,18 @@ export default function TeamPage() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Ready to Work with Our Team?</h2>
           <p className="text-blue-100 text-lg mb-8">
-            Let our experienced team bring your construction vision to life. 
+            Let our experienced team bring your construction vision to life.
             Contact us today to discuss your project requirements.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/projects" 
+            <Link
+              href="/projects"
               className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
               View Our Projects
             </Link>
-            <Link 
-              href="/boq" 
+            <Link
+              href="/boq"
               className="bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-400 transition-colors"
             >
               Get Cost Estimate

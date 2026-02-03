@@ -45,7 +45,7 @@ export function MobileNav() {
         aria-expanded={open}
         aria-label="Open menu"
       >
-        Menu
+        Explore
       </button>
 
       {open && (

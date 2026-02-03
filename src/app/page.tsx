@@ -1,7 +1,8 @@
 import { HeroSlideshow } from "@/components/HeroSlideshow";
 import Link from "next/link";
 import { ContactWidget } from "@/components/ContactWidget";
-import Image from "next/image"; // Image is used in other sections too
+import Image from "next/image";
+import { TestimonialSlideshow } from "@/components/TestimonialSlideshow";
 
 export default function Home() {
   return (
@@ -84,6 +85,7 @@ export default function Home() {
           { name: 'Architectural Design', desc: 'Concept to working drawings', slug: 'architectural-design' },
           { name: 'Structural Engineering', desc: 'Analysis, detailing, peer review', slug: 'structural-engineering' },
           { name: 'Project Management', desc: 'Cost control, timelines, quality', slug: 'project-management' },
+          { name: 'Farm House Construction', desc: 'Eco-friendly retreats, weekend homes', slug: 'farm-house-construction' },
         ].map((s, index) => {
           return (
             <Link
@@ -100,6 +102,17 @@ export default function Home() {
             </Link>
           );
         })}
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="bg-blue-50 py-16 mb-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-gray-900">What Our Clients Say</h2>
+            <p className="text-gray-600 mt-2">Stories of trust and satisfaction from our valued partners.</p>
+          </div>
+          <TestimonialSlideshow />
+        </div>
       </section>
 
       <section id="contact" className="max-w-6xl mx-auto px-6 pb-16">
@@ -133,4 +146,3 @@ export default function Home() {
     </main>
   );
 }
-
