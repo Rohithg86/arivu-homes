@@ -1,22 +1,12 @@
-import Image from "next/image";
-import Link from "next/link";
-import { ContactWidget } from "@/components/ContactWidget";
+import { HeroSlideshow } from "@/components/HeroSlideshow";
 
 export default function Home() {
   return (
     <main>
-      <section className="relative isolate">
-        <Image
-          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1600&auto=format&fit=crop"
-          alt="Construction site"
-          width={1600}
-          height={900}
-          className="h-[46vh] sm:h-[54vh] w-full object-cover object-center"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/55" />
-        <div className="absolute inset-0 flex items-center">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 text-white">
+      <section className="relative isolate h-[90vh] sm:h-[90vh] overflow-hidden">
+        <HeroSlideshow />
+        <div className="absolute inset-0 flex items-center z-20">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 text-white w-full">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-2">Arivu Homes</h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 mb-2 font-medium max-w-3xl">• Building Dreams with Precision • Crafting Excellence Since Day One</p>
             <p className="text-xs sm:text-sm md:text-base text-white/80 max-w-2xl">End-to-end construction, architectural design, structural engineering, and project management services in Bangalore.</p>
@@ -56,7 +46,7 @@ export default function Home() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
         <h2 className="text-2xl font-bold text-center mb-8 text-gray-900">Quick Access</h2>
         <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
-          <Link href="/projects" className="rounded-xl p-6 hover:shadow-lg transition-all duration-300 group border" style={{background:"linear-gradient(180deg,#ecfdf5, #ffffff)"}}>
+          <Link href="/projects" className="rounded-xl p-6 hover:shadow-lg transition-all duration-300 group border" style={{ background: "linear-gradient(180deg,#ecfdf5, #ffffff)" }}>
             <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🏗️</div>
             <h3 className="text-xl font-bold mb-3">Current Projects</h3>
             <p className="text-gray-700 leading-relaxed">Track ongoing projects in Bangalore.</p>
@@ -64,7 +54,7 @@ export default function Home() {
               View Projects →
             </div>
           </Link>
-          <Link href="/boq" className="rounded-xl p-6 hover:shadow-lg transition-all duration-300 group border" style={{background:"linear-gradient(180deg,#eef2ff, #ffffff)"}}>
+          <Link href="/boq" className="rounded-xl p-6 hover:shadow-lg transition-all duration-300 group border" style={{ background: "linear-gradient(180deg,#eef2ff, #ffffff)" }}>
             <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">📊</div>
             <h3 className="text-xl font-bold mb-3">BOQ Calculator</h3>
             <p className="text-gray-700 leading-relaxed">Calculate construction costs and quantities with detailed breakdown by category.</p>
@@ -72,7 +62,7 @@ export default function Home() {
               Calculate Costs →
             </div>
           </Link>
-          <Link href="/team" className="rounded-xl p-6 hover:shadow-lg transition-all duration-300 group border" style={{background:"linear-gradient(180deg,#fdf2f8, #ffffff)"}}>
+          <Link href="/team" className="rounded-xl p-6 hover:shadow-lg transition-all duration-300 group border" style={{ background: "linear-gradient(180deg,#fdf2f8, #ffffff)" }}>
             <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">👥</div>
             <h3 className="text-xl font-bold mb-3">Meet Our Team</h3>
             <p className="text-gray-700 leading-relaxed">Learn about our experienced professionals and their expertise.</p>
@@ -83,47 +73,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Media section (1 image + 2 videos) */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Our Work in Motion</h2>
-        <div className="grid gap-6 md:grid-cols-3">
-          <div className="rounded-2xl overflow-hidden border bg-black">
-            <Image
-              src="/home-extra.jpg"
-              alt="Arivu Homes work"
-              width={1200}
-              height={800}
-              className="w-full h-64 md:h-full object-cover"
-            />
-          </div>
-          <div className="rounded-2xl overflow-hidden border bg-black">
-            <video className="w-full h-64 md:h-full object-cover" controls playsInline preload="metadata">
-              <source src="/videos/home-1.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <div className="rounded-2xl overflow-hidden border bg-black">
-            <video className="w-full h-64 md:h-full object-cover" controls playsInline preload="metadata">
-              <source src="/videos/home-2.mp4" type="video/mp4" />
-            </video>
-          </div>
-        </div>
-      </section>
-
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12 grid gap-4 sm:gap-6 md:grid-cols-3">
         {[
-          { name:'Residential Construction', desc:'Villas, apartments, turnkey builds', slug:'residential-construction' },
-          { name:'Commercial Construction', desc:'Offices, retail, industrial', slug:'commercial-construction' },
-          { name:'Renovation & Remodeling', desc:'Structural retrofits, interiors', slug:'renovation-remodeling' },
-          { name:'Architectural Design', desc:'Concept to working drawings', slug:'architectural-design' },
-          { name:'Structural Engineering', desc:'Analysis, detailing, peer review', slug:'structural-engineering' },
-          { name:'Project Management', desc:'Cost control, timelines, quality', slug:'project-management' },
-        ].map((s, index)=> {
+          { name: 'Residential Construction', desc: 'Villas, apartments, turnkey builds', slug: 'residential-construction' },
+          { name: 'Commercial Construction', desc: 'Offices, retail, industrial', slug: 'commercial-construction' },
+          { name: 'Renovation & Remodeling', desc: 'Structural retrofits, interiors', slug: 'renovation-remodeling' },
+          { name: 'Architectural Design', desc: 'Concept to working drawings', slug: 'architectural-design' },
+          { name: 'Structural Engineering', desc: 'Analysis, detailing, peer review', slug: 'structural-engineering' },
+          { name: 'Project Management', desc: 'Cost control, timelines, quality', slug: 'project-management' },
+        ].map((s, index) => {
           return (
-            <Link 
-              href={`/services/${s.slug}`} 
-              key={s.slug} 
+            <Link
+              href={`/services/${s.slug}`}
+              key={s.slug}
               className={`border rounded-xl p-6 hover:shadow-lg transition-all duration-300 group`}
-              style={{background: index % 3 === 0 ? "linear-gradient(180deg,#f0f9ff,#ffffff)" : index % 3 === 1 ? "linear-gradient(180deg,#f7fee7,#ffffff)" : "linear-gradient(180deg,#fae8ff,#ffffff)"}}
+              style={{ background: index % 3 === 0 ? "linear-gradient(180deg,#f0f9ff,#ffffff)" : index % 3 === 1 ? "linear-gradient(180deg,#f7fee7,#ffffff)" : "linear-gradient(180deg,#fae8ff,#ffffff)" }}
             >
               <h3 className={`font-bold text-lg text-gray-900 group-hover:scale-105 transition-transform duration-300`}>{s.name}</h3>
               <p className={`text-sm text-gray-700 mt-2 leading-relaxed`}>{s.desc}</p>

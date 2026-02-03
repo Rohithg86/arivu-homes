@@ -7,8 +7,8 @@ export async function POST(req: NextRequest) {
     password?: string;
   };
 
-  const expectedUsername = process.env.ADMIN_USERNAME ?? "arivu_admin";
-  const expectedPassword = process.env.ADMIN_PASSWORD ?? "arivu@123";
+  const expectedUsername = process.env.ADMIN_USERNAME ?? "admin";
+  const expectedPassword = process.env.ADMIN_PASSWORD ?? "arivu@1234";
 
   if (!username || !password || username !== expectedUsername || password !== expectedPassword) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });

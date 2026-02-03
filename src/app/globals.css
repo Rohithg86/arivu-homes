@@ -45,3 +45,18 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Fix for mobile invisible text in inputs */
+input, textarea, select {
+  color: #171717; /* Always dark text */
+  background-color: #ffffff; /* Always white background */
+}
+
+/* If you have specific inputs that need dark mode, target them specifically, 
+   but for general "invisible text" fixes, this override ensures readability. */
+@media (prefers-color-scheme: dark) {
+  input, textarea, select {
+    color: #171717;
+    background-color: #ffffff;
+  }
+}
