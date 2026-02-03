@@ -80,20 +80,12 @@ export async function POST(req: NextRequest) {
       // Fall through to email notification
     }
 
-    // 2. Email Notification (Always send email as backup/primary notification)
+    // 2. Email Notification using Resend (simpler than Gmail SMTP)
     try {
-      const nodemailer = require('nodemailer');
+      const resendApiKey = process.env.RESEND_API_KEY;
 
-      // Create transporter using Gmail SMTP
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: 'contact.arivuhomes@gmail.com',
-          pass: process.env.GMAIL_APP_PASSWORD || '' // App password needed
-        }
-      });
-
-      const emailContent = `
+      if (resendApiKey) {
+        const emailContent = `
 New Contact Form Submission
 
 Timestamp: ${now}
@@ -104,17 +96,31 @@ Requirement: ${requirement || 'Not specified'}
 
 ---
 This is an automated message from Arivu Homes website contact form.
-      `.trim();
+        `.trim();
 
-      await transporter.sendMail({
-        from: 'contact.arivuhomes@gmail.com',
-        to: 'contact.arivuhomes@gmail.com',
-        subject: `New Contact: ${name}`,
-        text: emailContent,
-        replyTo: email
-      });
+        const response = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${resendApiKey}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            from: 'Arivu Homes <onboarding@resend.dev>',
+            to: 'contact.arivuhomes@gmail.com',
+            subject: `New Contact: ${name}`,
+            text: emailContent,
+            reply_to: email
+          })
+        });
 
-      console.log('Email sent successfully');
+        if (response.ok) {
+          console.log('Email sent successfully via Resend');
+        } else {
+          console.error('Resend API error:', await response.text());
+        }
+      } else {
+        console.warn('RESEND_API_KEY not configured, skipping email');
+      }
     } catch (emailError) {
       console.error('Email Error:', emailError);
       // Continue even if email fails
@@ -128,4 +134,3 @@ This is an automated message from Arivu Homes website contact form.
     return NextResponse.json({ ok: true });
   }
 }
-
