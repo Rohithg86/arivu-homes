@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
 
     // 1. Try Google Sheets (Best Effort)
     try {
-      const sheetId = process.env.GOOGLE_SHEET_ID;
+      const sheetId = process.env.GOOGLE_SHEET_ID || "1BMerktk9fl5fxbTb6QaJYkbX5jXtBhCbangyRIEkjbo";
       if (sheetId) {
         const sheetName = process.env.GOOGLE_SHEET_TAB ?? "Sheet1";
         const auth = getJwt();

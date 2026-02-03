@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Link>
             <nav className="hidden sm:flex items-center gap-4 sm:gap-6 text-sm">
               <Link href="/services" className="hover:text-blue-600">Services</Link>
-              <Link href="/journey" className="hover:text-blue-600">Client Journey</Link>
+              <Link href="/journey" className="hover:text-blue-600">Your Journey</Link>
               <Link href="/team" className="hover:text-blue-600">Team</Link>
               <Link href="/projects" className="hover:text-blue-600">Projects</Link>
               <Link href="/admin" className="px-3 py-1.5 rounded bg-gray-900 text-white hover:bg-gray-800">Admin</Link>

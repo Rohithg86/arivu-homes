@@ -6,25 +6,25 @@ import { TestimonialSlideshow } from "@/components/TestimonialSlideshow";
 export default function Home() {
   return (
     <main>
-      <section className="relative isolate h-[90vh] sm:h-[90vh] overflow-hidden">
+      <section className="relative isolate h-[65vh] sm:h-[90vh] overflow-hidden">
         <HeroSlideshow />
         <div className="absolute inset-0 flex items-center z-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 text-white w-full">
             <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-2">Arivu Homes</h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 mb-2 font-medium max-w-3xl">• Building Dreams with Precision • Crafting Excellence Since Day One</p>
             <p className="text-xs sm:text-sm md:text-base text-white/80 max-w-2xl">End-to-end construction, architectural design, structural engineering, and project management services in Bangalore.</p>
-            <div className="mt-3 space-y-1.5">
-              <p>
-                <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur">Managing Partner:</span>
-                <Link href="/team/rohith-gopal" className="ml-2 underline">Rohith Gopal</Link>
+            <div className="mt-3 flex flex-col sm:flex-row flex-wrap gap-1.5 sm:gap-6 text-sm sm:text-base">
+              <p className="flex items-center gap-2">
+                <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur text-xs sm:text-sm">Managing Partner:</span>
+                <Link href="/team/rohith-gopal" className="underline hover:text-white/80">Rohith Gopal</Link>
               </p>
-              <p>
-                <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur">Chief Engineer:</span>
-                <Link href="/team/chethan-kumar-s" className="ml-2 underline">Chethan Kumar S</Link>
+              <p className="flex items-center gap-2">
+                <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur text-xs sm:text-sm">Chief Engineer:</span>
+                <Link href="/team/chethan-kumar-s" className="underline hover:text-white/80">Chethan Kumar S</Link>
               </p>
-              <p>
-                <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur">Senior Architect:</span>
-                <Link href="/team/shashank-d" className="ml-2 underline">Shashank D</Link>
+              <p className="flex items-center gap-2">
+                <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur text-xs sm:text-sm">Senior Architect:</span>
+                <Link href="/team/shashank-d" className="underline hover:text-white/80">Shashank D</Link>
               </p>
             </div>
             <div className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4">
