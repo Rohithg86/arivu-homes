@@ -383,6 +383,33 @@ export default function ProjectsPage() {
     window.location.href = "/projects";
   }
 
+  const renderProjectImages = (project: Project) => {
+    if (!project.images || project.images.length === 0) {
+      return (
+        <div className="relative w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+          <span className="text-gray-400 text-sm">No images</span>
+        </div>
+      );
+    }
+
+    return (
+      <div className="relative w-full h-48 bg-gray-100 cursor-pointer" onClick={() => openDetails(project.id, 0)}>
+        <Image
+          src={project.images[0]}
+          alt={project.name}
+          fill
+          className="object-cover"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+        {project.images.length > 1 && (
+          <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+            +{project.images.length - 1} more
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
