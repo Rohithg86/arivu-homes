@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const SLIDES = [
   { type: "image", src: "/home-extra.jpg", duration: 5000 },
-  { type: "video", src: "/videos/home-2.mp4", duration: 15000 }, // Adjust duration based on video length if needed
+  { type: "video", src: "/videos/client-journey.mp4", duration: 15000 },
 ];
 
 export function HeroSlideshow() {

@@ -39,6 +39,29 @@ export async function GET() {
               "/uploads/projects/magadi/2.jpg",
             ],
           },
+          {
+            name: "Yash House Renovation",
+            location: "Bangalore",
+            type: "Renovation",
+            startDate: "2024",
+            expectedCompletion: "2025",
+            completionPercentage: 100,
+            status: "Completed",
+            description: "Complete house renovation project.",
+            client: "Yash",
+            images: [
+              "/uploads/completed/yash/1.jpg",
+              "/uploads/completed/yash/2.jpg",
+              "/uploads/completed/yash/3.jpg",
+              "/uploads/completed/yash/4.jpg",
+              "/uploads/completed/yash/5.jpg",
+              "/uploads/completed/yash/6.jpg",
+              "/uploads/completed/yash/7.jpg",
+              "/uploads/completed/yash/8.jpg",
+              "/uploads/completed/yash/9.jpg",
+              "/uploads/completed/yash/10.jpg",
+            ],
+          },
         ],
       });
     }
@@ -81,6 +104,30 @@ export async function GET() {
           "/uploads/projects/magadi/2.jpg",
         ],
       },
+      {
+        id: 3,
+        name: "Yash House Renovation",
+        location: "Bangalore",
+        type: "Renovation",
+        startDate: "2024",
+        expectedCompletion: "2025",
+        completionPercentage: 100,
+        status: "Completed",
+        description: "Complete house renovation project.",
+        client: "Yash",
+        images: [
+          "/uploads/completed/yash/1.jpg",
+          "/uploads/completed/yash/2.jpg",
+          "/uploads/completed/yash/3.jpg",
+          "/uploads/completed/yash/4.jpg",
+          "/uploads/completed/yash/5.jpg",
+          "/uploads/completed/yash/6.jpg",
+          "/uploads/completed/yash/7.jpg",
+          "/uploads/completed/yash/8.jpg",
+          "/uploads/completed/yash/9.jpg",
+          "/uploads/completed/yash/10.jpg",
+        ],
+      },
     ];
     return NextResponse.json(fallback);
   }
@@ -93,7 +140,7 @@ export async function POST(request: NextRequest) {
     if (!v.ok) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const body = await request.json();
-    
+
     // Validate required fields
     if (!body.name || !body.location) {
       return NextResponse.json({ error: 'Name and location are required' }, { status: 400 });
