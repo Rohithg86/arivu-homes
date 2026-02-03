@@ -391,6 +391,62 @@ export default function ProjectsPage() {
     }
   };
 
+  const handleDeleteImage = async (projectId: number, imageIndex: number) => {
+    if (!isAdmin) return;
+    const project = projects.find(p => p.id === projectId);
+    if (!project) return;
+
+    if (!confirm("Are you sure you want to delete this image?")) return;
+
+    const nextImages = [...project.images];
+    nextImages.splice(imageIndex, 1);
+
+    setSaving(true);
+    try {
+      const res = await fetch("/api/projects", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: projectId, images: nextImages }),
+      });
+      if (!res.ok) throw new Error("Update failed");
+
+      await refreshProjects();
+      setDetailsImageIndex(prev => Math.max(0, Math.min(nextImages.length - 1, prev)));
+      setSaveSuccess("Image removed from gallery.");
+    } catch {
+      setSaveError("Failed to delete image.");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleMoveImage = async (projectId: number, fromIdx: number, toIdx: number) => {
+    if (!isAdmin) return;
+    const project = projects.find(p => p.id === projectId);
+    if (!project || toIdx < 0 || toIdx >= project.images.length) return;
+
+    const nextImages = [...project.images];
+    const [moved] = nextImages.splice(fromIdx, 1);
+    nextImages.splice(toIdx, 0, moved);
+
+    setSaving(true);
+    try {
+      const res = await fetch("/api/projects", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: projectId, images: nextImages }),
+      });
+      if (!res.ok) throw new Error("Update failed");
+
+      await refreshProjects();
+      setDetailsImageIndex(toIdx);
+    } catch {
+      setSaveError("Failed to reorder images.");
+    } finally {
+      setSaving(false);
+    }
+  };
+
   async function signOut() {
     await fetch("/api/admin/logout", { method: "POST" });
     setIsAdmin(false);
@@ -787,14 +843,46 @@ export default function ProjectsPage() {
                 </div>
               ) : (
                 <div className="grid gap-6">
-                  <div className="relative w-full aspect-[16/9] bg-gray-900 rounded-xl overflow-hidden shadow-inner">
+                  <div className="relative w-full aspect-[16/9] bg-gray-900 rounded-xl overflow-hidden shadow-inner group">
                     <Image
                       src={detailsProject.images[Math.min(detailsImageIndex, detailsProject.images.length - 1)]}
                       alt={`${detailsProject.name} image`}
                       fill
                       className="object-contain"
                       sizes="(max-width: 1024px) 100vw, 1024px"
+                      unoptimized={detailsProject.images[Math.min(detailsImageIndex, detailsProject.images.length - 1)].includes("vercel-storage.com")}
                     />
+
+                    {isAdmin && (
+                      <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button
+                          title="Move Left"
+                          disabled={detailsImageIndex === 0 || saving}
+                          onClick={() => handleMoveImage(detailsProject.id, detailsImageIndex, detailsImageIndex - 1)}
+                          className="bg-black/60 text-white p-2 rounded-lg hover:bg-black/80 disabled:opacity-30"
+                        >
+                          ←
+                        </button>
+                        <button
+                          title="Move Right"
+                          disabled={detailsImageIndex === detailsProject.images.length - 1 || saving}
+                          onClick={() => handleMoveImage(detailsProject.id, detailsImageIndex, detailsImageIndex + 1)}
+                          className="bg-black/60 text-white p-2 rounded-lg hover:bg-black/80 disabled:opacity-30"
+                        >
+                          →
+                        </button>
+                        <button
+                          title="Delete Image"
+                          disabled={saving}
+                          onClick={() => handleDeleteImage(detailsProject.id, detailsImageIndex)}
+                          className="bg-red-600/80 text-white p-2 rounded-lg hover:bg-red-600 disabled:opacity-30"
+                        >
+                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-4v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        </button>
+                      </div>
+                    )}
                   </div>
 
                   <div className="flex items-center justify-between">
