@@ -10,7 +10,7 @@ export default function TeamPage() {
       image: "/profile/rohith.jpg",
       slug: "rohith-gopal",
       color: "blue",
-      experience: "15+ Years",
+      experience: "16+ Years",
       specialties: ["Strategic Planning", "Business Development", "Project Management", "Client Relations"]
     },
     {
