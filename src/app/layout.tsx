@@ -25,9 +25,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </div>
                 <HomeLogo className="h-8 sm:h-10 w-auto" />
               </Link>
-              <div className="hidden lg:flex flex-col border-l border-gray-200 pl-4 py-1">
-                <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 leading-none">GSTIN</span>
-                <span className="text-[11px] font-mono font-bold text-gray-600 mt-1">PENDING...</span>
+              <div className="flex flex-col border-l border-gray-200 pl-4 py-1">
+                <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 leading-none">GSTIN</span>
+                <span className="text-[10px] sm:text-[11px] font-mono font-bold text-gray-600 mt-1">PENDING...</span>
               </div>
             </div>
             <nav className="hidden md:flex items-center gap-10 text-[12px] font-black text-gray-900 uppercase tracking-[0.2em]">
@@ -44,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ContactWidget />
         <footer className="border-t mt-16">
           <div className="max-w-6xl mx-auto px-6 py-10 text-sm text-gray-600">
-            <div>Bangalore  +91-6361867464  contact.arivuhomes@gmail.com</div>
+            <div>Bangalore  <a href="tel:+916361867464" className="hover:text-blue-600 transition-colors">+91-6361867464</a>  <a href="mailto:contact.arivuhomes@gmail.com" className="hover:text-blue-600 transition-colors">contact.arivuhomes@gmail.com</a></div>
             <div className="mt-1">© {new Date().getFullYear()} Arivu Homes Private Limited</div>
           </div>
         </footer>

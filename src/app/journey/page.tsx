@@ -147,7 +147,7 @@ export default function JourneyPage() {
       <footer className="mt-16 text-center bg-gray-900 rounded-3xl p-8 sm:p-12 text-white">
         <h2 className="text-2xl sm:text-3xl font-bold mb-4">Ready to start your journey?</h2>
         <p className="text-gray-400 mb-8 max-w-lg mx-auto">Get in touch with us for a detailed discussion about your dream home project.</p>
-        <Link href="/services#contact" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold transition-all transform hover:scale-105 shadow-xl">
+        <Link href="/#contact" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold transition-all transform hover:scale-105 shadow-xl">
           Consult Today
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
