@@ -95,13 +95,15 @@ export default function JourneyPage() {
   return (
     <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <h1 className="text-2xl sm:text-3xl font-bold">Client Journey</h1>
-        <Link href="/" className="text-gray-600 hover:text-gray-900 text-sm">← Back to Home</Link>
+        <h1 className="text-2xl sm:text-3xl font-bold">Your Journey</h1>
+        <Link href="/" className="text-gray-600 hover:text-gray-900 text-2xl transition-colors" aria-label="Back to Home">
+          ←
+        </Link>
       </div>
 
       {/* Video: reduced frame as requested */}
       <div className="mt-5 sm:mt-6 -mx-4 sm:mx-0 sm:rounded-2xl overflow-hidden sm:border max-w-6xl mx-auto shadow-2xl">
-        <div className="relative w-full bg-black aspect-video">
+        <div className="relative w-full bg-black aspect-[21/9]">
           <video
             ref={videoRef}
             className="block w-full h-auto"

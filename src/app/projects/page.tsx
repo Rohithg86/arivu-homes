@@ -576,10 +576,10 @@ export default function ProjectsPage() {
           {ongoingProjects.map((project) => (
             <div key={project.id} className="glass-card rounded-lg shadow-md overflow-hidden">
               {renderProjectImages(project)}
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 <div className="space-y-2 mb-3 text-sm flex-grow">
                   <div className="min-h-[3rem] mb-2">
-                    <h3 className="text-lg font-semibold text-gray-900 line-clamp-2">{project.name}</h3>
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 line-clamp-2">{project.name}</h3>
                   </div>
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-gray-600">Client</span>

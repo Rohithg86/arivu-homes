@@ -41,7 +41,6 @@ export function HeroSlideshow() {
           </video>
         </motion.div>
       </AnimatePresence>
-      <div className="absolute inset-0 bg-black/20 z-10" />
     </div>
   );
 }

@@ -7,11 +7,10 @@ type NavItem = { href: string; label: string };
 
 const NAV: NavItem[] = [
   { href: "/services", label: "Services" },
-  { href: "/journey", label: "Client Journey" },
+  { href: "/journey", label: "Your Journey" },
   { href: "/team", label: "Team" },
   { href: "/projects", label: "Projects" },
   { href: "/boq", label: "BOQ Calculator" },
-  { href: "/admin-login", label: "Admin Login" },
 ];
 
 export function MobileNav() {

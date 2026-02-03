@@ -10,7 +10,7 @@ export default function Home() {
         <HeroSlideshow />
         <div className="absolute inset-0 flex items-center z-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 text-white w-full">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-2">Arivu Homes</h1>
+            <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-2">Arivu Homes</h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 mb-2 font-medium max-w-3xl">• Building Dreams with Precision • Crafting Excellence Since Day One</p>
             <p className="text-xs sm:text-sm md:text-base text-white/80 max-w-2xl">End-to-end construction, architectural design, structural engineering, and project management services in Bangalore.</p>
             <div className="mt-3 space-y-1.5">
@@ -46,8 +46,8 @@ export default function Home() {
       </section>
 
       {/* Quick Access Section */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
-        <h2 className="text-2xl font-bold text-center mb-8 text-gray-900">Quick Access</h2>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
+        <h2 className="text-xl sm:text-2xl font-bold text-center mb-8 text-gray-900">Quick Access</h2>
         <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
           <Link href="/projects" className="rounded-xl p-6 hover:shadow-lg transition-all duration-300 group border" style={{ background: "linear-gradient(180deg,#ecfdf5, #ffffff)" }}>
             <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🏗️</div>
@@ -76,26 +76,25 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12 grid gap-4 sm:gap-6 md:grid-cols-3">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10 grid gap-3 sm:gap-6 md:grid-cols-3">
         {[
           { name: 'Residential Construction', desc: 'Villas, apartments, turnkey builds', slug: 'residential-construction' },
           { name: 'Commercial Construction', desc: 'Offices, retail, industrial', slug: 'commercial-construction' },
-          { name: 'Renovation & Remodeling', desc: 'Structural retrofits, interiors', slug: 'renovation-remodeling' },
+          { name: 'Farm House Construction', desc: 'Eco-friendly retreats, weekend homes', slug: 'farm-house-construction' },
           { name: 'Architectural Design', desc: 'Concept to working drawings', slug: 'architectural-design' },
           { name: 'Structural Engineering', desc: 'Analysis, detailing, peer review', slug: 'structural-engineering' },
-          { name: 'Project Management', desc: 'Cost control, timelines, quality', slug: 'project-management' },
-          { name: 'Farm House Construction', desc: 'Eco-friendly retreats, weekend homes', slug: 'farm-house-construction' },
+          { name: 'Renovation, Remodeling & PM', desc: 'Upgrades, retrofits, and management', slug: 'renovation-remodeling' },
         ].map((s, index) => {
           return (
             <Link
               href={`/services/${s.slug}`}
               key={s.slug}
-              className={`border rounded-xl p-6 hover:shadow-lg transition-all duration-300 group`}
+              className={`border rounded-xl p-5 hover:shadow-lg transition-all duration-300 group`}
               style={{ background: index % 3 === 0 ? "linear-gradient(180deg,#f0f9ff,#ffffff)" : index % 3 === 1 ? "linear-gradient(180deg,#f7fee7,#ffffff)" : "linear-gradient(180deg,#fae8ff,#ffffff)" }}
             >
               <h3 className={`font-bold text-lg text-gray-900 group-hover:scale-105 transition-transform duration-300`}>{s.name}</h3>
-              <p className={`text-sm text-gray-700 mt-2 leading-relaxed`}>{s.desc}</p>
-              <div className={`mt-4 text-xs text-gray-600 font-medium group-hover:translate-x-1 transition-transform duration-300`}>
+              <p className={`text-sm text-gray-700 mt-1.5 leading-relaxed`}>{s.desc}</p>
+              <div className={`mt-3 text-xs text-gray-600 font-medium group-hover:translate-x-1 transition-transform duration-300`}>
                 Learn More →
               </div>
             </Link>
@@ -104,17 +103,17 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="bg-blue-50 py-16 mb-16">
+      <section className="bg-blue-50 py-10 sm:py-16 mb-8 sm:mb-16">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-gray-900">What Our Clients Say</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">What Our Clients Say</h2>
             <p className="text-gray-600 mt-2">Stories of trust and satisfaction from our valued partners.</p>
           </div>
           <TestimonialSlideshow />
         </div>
       </section>
 
-      <section id="contact" className="max-w-6xl mx-auto px-6 pb-16">
+      <section id="contact" className="max-w-6xl mx-auto px-6 pb-8 sm:pb-16">
         <div className="bg-gradient-to-br from-slate-50 to-gray-100 rounded-2xl border-2 border-slate-200 p-8 shadow-lg">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Get In Touch</h2>
