@@ -15,10 +15,10 @@ const steps = [
       "3D elevation design & material selection",
       "Detailed project estimation & timeline"
     ],
-    payment: "Booking - 5% of Project Value"
+    payment: "Design & Consultation - 10% of Project Value"
   },
   {
-    title: "2. Approvals & Mobilization",
+    title: "2. Finalizing Plan & Mobilization",
     description: "We handle the paperwork and site preparation to ensure a smooth transition from paper to reality.",
     details: [
       "Submission drawings for local authorities",
@@ -27,7 +27,7 @@ const steps = [
       "Labor mobilization & site setup",
       "Groundbreaking ceremony (Bhoomi Pooja)"
     ],
-    payment: "Agreement - 10% of Project Value"
+    payment: "Plan Finalization & Mobilization - 20% of Project Value"
   },
   {
     title: "3. Sub-Structure Construction",
@@ -39,7 +39,7 @@ const steps = [
       "Quality check for steel & concrete",
       "Site-level marking for walls"
     ],
-    payment: "Plinth Completion - 20% of Project Value"
+    payment: "Plinth Completion - 25% of Project Value"
   },
   {
     title: "4. Super-Structure Construction",
@@ -47,11 +47,11 @@ const steps = [
     details: [
       "Column & Beam casting",
       "Slab shuttering & reinforcement",
-      "Concrete casting (GF/FF/SF)",
+      "Concrete casting (GF/FF/SF/Roof)",
       "Brickwork & solid block masonry",
       "Lintel & Sunshade construction"
     ],
-    payment: "Slab Completions - 30% (Split by Slab)"
+    payment: "Super Structure Completions - 25% of Project Value"
   },
   {
     title: "5. Finishes & Handover",
@@ -63,7 +63,7 @@ const steps = [
       "Painting & deep cleaning",
       "Final snag audit & key handover"
     ],
-    payment: "Finishing & Handover - 35% (Staged)"
+    payment: "Finishing & Handover - 20% of Project Value"
   }
 ];
 
@@ -116,7 +116,7 @@ export default function JourneyPage() {
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 3h12M6 8h12M6 13l8.5 8M6 13h3M9 13c6.667 0 6.667 -10 0 -10" />
                       </svg>
                     </div>
                     <span className="font-semibold text-blue-900 text-sm">{s.payment}</span>

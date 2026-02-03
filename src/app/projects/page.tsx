@@ -743,7 +743,16 @@ export default function ProjectsPage() {
                       {project.status}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-600 mb-4">{project.location}</p>
+                  <div className="space-y-1 mb-4">
+                    <div className="flex items-center justify-between text-xs sm:text-sm">
+                      <span className="text-gray-500">Client</span>
+                      <span className="text-gray-800 font-medium">{project.client ?? "-"}</span>
+                    </div>
+                    <div className="flex items-center justify-between text-xs sm:text-sm">
+                      <span className="text-gray-500">Location</span>
+                      <span className="text-gray-800 font-medium">{project.location}</span>
+                    </div>
+                  </div>
                   <p className="text-sm text-gray-700 line-clamp-2 mb-4">{project.description}</p>
                   {isAdmin && (
                     <div className="mt-auto grid grid-cols-3 gap-2">
