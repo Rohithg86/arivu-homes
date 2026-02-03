@@ -122,40 +122,26 @@ export default function ProjectsPage() {
   };
 
   const renderProjectImages = (project: Project) => {
-    if (!project.images || project.images.length === 0) return null;
-    return (
-      <div className="space-y-2">
-        <button
-          type="button"
-          className="h-48 relative w-full block"
-          onClick={() => openDetails(project.id, 0)}
-          title="Open gallery"
-        >
-          <Image src={project.images[0]} alt={project.name} fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-          <div className="absolute bottom-2 left-3 text-xs font-medium text-white">
-            {project.images.length} photo{project.images.length === 1 ? "" : "s"} — click to open
-          </div>
-        </button>
+    if (!project.images || project.images.length === 0) {
+      return (
+        <div className="relative w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+          <span className="text-gray-400 text-sm">No images</span>
+        </div>
+      );
+    }
 
+    return (
+      <div className="relative w-full h-48 bg-gray-100 cursor-pointer" onClick={() => openDetails(project.id, 0)}>
+        <Image
+          src={project.images[0]}
+          alt={project.name}
+          fill
+          className="object-cover"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
         {project.images.length > 1 && (
-          <div className="px-6">
-            <div className="flex gap-2 overflow-x-auto pb-1">
-              {project.images.map((src, idx) => (
-                <button
-                  key={`${project.id}-thumb-${idx}`}
-                  type="button"
-                  className="relative h-12 w-16 flex-none overflow-hidden rounded border hover:opacity-90"
-                  onClick={() => openDetails(project.id, idx)}
-                  title={`Open image ${idx + 1}`}
-                >
-                  <Image src={src} alt={`${project.name} ${idx + 1}`} fill className="object-cover" />
-                </button>
-              ))}
-            </div>
-            {isFeaturedProject(project) && (
-              <div className="text-xs text-gray-500 mt-1">All site photos shown for Jigani/Magadi</div>
-            )}
+          <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+            +{project.images.length - 1} more
           </div>
         )}
       </div>
