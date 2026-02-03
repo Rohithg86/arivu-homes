@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import path from 'node:path'
-import { writeFile } from 'node:fs/promises'
+import { put } from '@vercel/blob'
 import { prisma } from '@/lib/prisma'
 import { AssetType } from '@prisma/client'
 import { getAdminCookieName, verifyAdminSession } from '@/lib/adminAuth'
-import { mkdir } from 'node:fs/promises'
 
 type UploadBody = {
   type: AssetType
@@ -25,18 +23,35 @@ export async function POST(req: NextRequest) {
     if (!type || !fileName || !fileBase64) {
       return NextResponse.json({ error: 'type, fileName, fileBase64 required' }, { status: 400 })
     }
+
+    // Extract base64 data
     const base64 = fileBase64.split(',').pop() ?? fileBase64
     const buffer = Buffer.from(base64, 'base64')
 
+    // Create a safe filename
     const safeFileName = String(fileName).replace(/[^a-zA-Z0-9._-]/g, '_')
-    const uniqueName = `${Date.now()}-${Math.random().toString(16).slice(2)}-${safeFileName}`
-    const uploadsDir = path.join(process.cwd(), 'public', 'uploads', 'projects')
-    await mkdir(uploadsDir, { recursive: true })
-    const uploadPath = path.join(uploadsDir, uniqueName)
-    await writeFile(uploadPath, buffer)
-    const url = `/uploads/projects/${uniqueName}`
-    const created = await prisma.asset.create({ data: { type, title, description, url } })
-    return NextResponse.json({ ...created, url }, { status: 201 })
+    const uniqueName = `projects/${Date.now()}-${Math.random().toString(16).slice(2)}-${safeFileName}`
+
+    // Upload to Vercel Blob
+    const blob = await put(uniqueName, buffer, {
+      access: 'public',
+      contentType: fileName.endsWith('.png') ? 'image/png' :
+        fileName.endsWith('.jpg') || fileName.endsWith('.jpeg') ? 'image/jpeg' :
+          fileName.endsWith('.gif') ? 'image/gif' :
+            fileName.endsWith('.webp') ? 'image/webp' : 'image/jpeg'
+    })
+
+    // Save to database
+    const created = await prisma.asset.create({
+      data: {
+        type,
+        title,
+        description,
+        url: blob.url
+      }
+    })
+
+    return NextResponse.json({ ...created, url: blob.url }, { status: 201 })
   } catch (error) {
     console.error('Upload error:', error);
     const message = error instanceof Error ? error.message : 'Upload failed';
