@@ -73,7 +73,7 @@ export default function Home() {
             <Link href="/team" className="group flex flex-col h-full rounded-[2rem] p-8 bg-slate-50 border border-transparent hover:border-indigo-200 hover:bg-white hover:shadow-2xl transition-all duration-500">
               <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm group-hover:scale-110 transition-transform duration-500">👥</div>
               <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-indigo-700 transition-colors">Meet Our Team</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">Learn about the experienced professionals crafting your architectural vision.</p>
+              <p className="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">Learn about the experienced professionals crafting your vision into reality.</p>
               <div className="flex items-center text-indigo-600 font-bold text-xs uppercase tracking-widest group-hover:translate-x-2 transition-transform">
                 View Team →
               </div>

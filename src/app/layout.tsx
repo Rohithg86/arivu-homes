@@ -30,12 +30,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span className="text-[11px] font-mono font-bold text-gray-600 mt-1">PENDING...</span>
               </div>
             </div>
-            <nav className="hidden md:flex items-center gap-8 text-[13px] font-bold text-gray-600 uppercase tracking-widest">
+            <nav className="hidden md:flex items-center gap-10 text-[12px] font-black text-gray-900 uppercase tracking-[0.2em]">
               <Link href="/services" className="hover:text-blue-600 transition-colors">Services</Link>
               <Link href="/boq" className="hover:text-blue-600 transition-colors">BOQ Calculator</Link>
               <Link href="/team" className="hover:text-blue-600 transition-colors">Team</Link>
               <Link href="/projects" className="hover:text-blue-600 transition-colors">Projects</Link>
-              <Link href="/admin" className="ml-4 px-6 py-2 rounded-full border border-gray-200 text-gray-900 hover:border-gray-900 hover:bg-gray-50 transition-all font-black text-[10px]">ADMIN</Link>
+              <Link href="/admin" className="hover:text-blue-600 transition-colors">Admin</Link>
             </nav>
             <MobileNav />
           </div>
