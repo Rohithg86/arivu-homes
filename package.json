@@ -20,6 +20,7 @@
     "googleapis": "^156.0.0",
     "lucide-react": "^0.539.0",
     "next": "15.4.10",
+    "nodemailer": "^7.0.13",
     "prisma": "^6.13.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",

@@ -77,26 +77,47 @@ export async function POST(req: NextRequest) {
       }
     } catch (sheetError) {
       console.error("Google Sheets Error (Ignored):", sheetError);
-      // Fall through to CSV backup
+      // Fall through to email notification
     }
 
-    // 2. CSV Fallback (Always run if Sheets failed or just as backup)
+    // 2. Email Notification (Always send email as backup/primary notification)
     try {
-      const csvLine = `"${now}","${name}","${phone}","${email}","${requirement.replace(/"/g, '""')}"\n`;
-      const csvPath = path.join(process.cwd(), "contacts.csv");
+      const nodemailer = require('nodemailer');
 
-      // Check if file exists to add header
-      try {
-        await fs.access(csvPath);
-      } catch {
-        await fs.writeFile(csvPath, `"Timestamp","Name","Phone","Email","Requirement"\n`, "utf8");
-      }
+      // Create transporter using Gmail SMTP
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'contact.arivuhomes@gmail.com',
+          pass: process.env.GMAIL_APP_PASSWORD || '' // App password needed
+        }
+      });
 
-      await fs.appendFile(csvPath, csvLine, "utf8");
-      console.log("Saved to CSV");
-    } catch (csvError) {
-      console.error("CSV File Error:", csvError);
-      // If this fails too, we really have a problem, but still return 200 to user to avoid panic
+      const emailContent = `
+New Contact Form Submission
+
+Timestamp: ${now}
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+Requirement: ${requirement || 'Not specified'}
+
+---
+This is an automated message from Arivu Homes website contact form.
+      `.trim();
+
+      await transporter.sendMail({
+        from: 'contact.arivuhomes@gmail.com',
+        to: 'contact.arivuhomes@gmail.com',
+        subject: `New Contact: ${name}`,
+        text: emailContent,
+        replyTo: email
+      });
+
+      console.log('Email sent successfully');
+    } catch (emailError) {
+      console.error('Email Error:', emailError);
+      // Continue even if email fails
     }
 
     return NextResponse.json({ ok: true });
