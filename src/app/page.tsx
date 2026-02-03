@@ -33,8 +33,8 @@ export default function Home() {
               <Link href="/projects" className="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold">
                 View Projects
               </Link>
-              <Link href="/boq" className="bg-gradient-to-r from-violet-500 to-purple-600 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold">
-                BOQ Calculator
+              <Link href="/journey" className="bg-gradient-to-r from-violet-500 to-purple-600 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold">
+                Your Journey
               </Link>
               <a href="#contact" className="bg-gradient-to-r from-sky-500 to-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold">
                 Contact Us
@@ -45,33 +45,35 @@ export default function Home() {
       </section>
 
       {/* Quick Access Section */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
-        <h2 className="text-xl sm:text-2xl font-bold text-center mb-8 text-gray-900">Quick Access</h2>
-        <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
-          <Link href="/projects" className="rounded-xl p-6 hover:shadow-lg transition-all duration-300 group border" style={{ background: "linear-gradient(180deg,#ecfdf5, #ffffff)" }}>
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🏗️</div>
-            <h3 className="text-xl font-bold mb-3">Current Projects</h3>
-            <p className="text-gray-700 leading-relaxed">Track ongoing projects in Bangalore.</p>
-            <div className="mt-4 text-gray-600 text-sm font-medium group-hover:text-gray-900 transition-colors">
-              View Projects →
-            </div>
-          </Link>
-          <Link href="/boq" className="rounded-xl p-6 hover:shadow-lg transition-all duration-300 group border" style={{ background: "linear-gradient(180deg,#eef2ff, #ffffff)" }}>
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">📊</div>
-            <h3 className="text-xl font-bold mb-3">BOQ Calculator</h3>
-            <p className="text-gray-700 leading-relaxed">Calculate construction costs and quantities with detailed breakdown by category.</p>
-            <div className="mt-4 text-gray-600 text-sm font-medium group-hover:text-gray-900 transition-colors">
-              Calculate Costs →
-            </div>
-          </Link>
-          <Link href="/team" className="rounded-xl p-6 hover:shadow-lg transition-all duration-300 group border" style={{ background: "linear-gradient(180deg,#fdf2f8, #ffffff)" }}>
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">👥</div>
-            <h3 className="text-xl font-bold mb-3">Meet Our Team</h3>
-            <p className="text-gray-700 leading-relaxed">Learn about our experienced professionals and their expertise.</p>
-            <div className="mt-4 text-gray-600 text-sm font-medium group-hover:text-gray-900 transition-colors">
-              View Team →
-            </div>
-          </Link>
+      <section className="relative z-30 max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10 -mt-8 sm:-mt-12">
+        <div className="bg-white/90 backdrop-blur-md rounded-3xl p-6 sm:p-10 shadow-2xl border border-white/20">
+          <h2 className="text-xl sm:text-2xl font-bold text-center mb-8 text-gray-900">Quick Access</h2>
+          <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
+            <Link href="/projects" className="rounded-xl p-6 hover:shadow-lg transition-all duration-300 group border" style={{ background: "linear-gradient(180deg,#ecfdf5, #ffffff)" }}>
+              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🏗️</div>
+              <h3 className="text-xl font-bold mb-3">Current Projects</h3>
+              <p className="text-gray-700 leading-relaxed">Track ongoing projects in Bangalore.</p>
+              <div className="mt-4 text-gray-600 text-sm font-medium group-hover:text-gray-900 transition-colors">
+                View Projects →
+              </div>
+            </Link>
+            <Link href="/journey" className="rounded-xl p-6 hover:shadow-lg transition-all duration-300 group border" style={{ background: "linear-gradient(180deg,#eef2ff, #ffffff)" }}>
+              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🗺️</div>
+              <h3 className="text-xl font-bold mb-3">Your Journey</h3>
+              <p className="text-gray-700 leading-relaxed">A step-by-step guide to building your dream home.</p>
+              <div className="mt-4 text-gray-600 text-sm font-medium group-hover:text-gray-900 transition-colors">
+                Explore Journey →
+              </div>
+            </Link>
+            <Link href="/team" className="rounded-xl p-6 hover:shadow-lg transition-all duration-300 group border" style={{ background: "linear-gradient(180deg,#fdf2f8, #ffffff)" }}>
+              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">👥</div>
+              <h3 className="text-xl font-bold mb-3">Meet Our Team</h3>
+              <p className="text-gray-700 leading-relaxed">Learn about our experienced professionals.</p>
+              <div className="mt-4 text-gray-600 text-sm font-medium group-hover:text-gray-900 transition-colors">
+                View Team →
+              </div>
+            </Link>
+          </div>
         </div>
       </section>
 

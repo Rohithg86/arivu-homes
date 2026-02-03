@@ -26,9 +26,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </div>
                 <HomeLogo className="h-10 sm:h-12 w-auto" />
               </Link>
-              <div className="hidden md:block">
-                <span className="text-[10px] uppercase tracking-wider font-bold text-gray-400 block leading-none">GSTIN</span>
-                <span className="text-xs font-mono font-medium text-gray-600">Pending...</span>
+              <div className="flex flex-col border-l pl-4 ml-1">
+                <span className="text-[10px] uppercase tracking-wider font-extrabold text-blue-600 block leading-none">GSTIN</span>
+                <span className="text-[10px] sm:text-xs font-mono font-bold text-gray-900">Pending...</span>
               </div>
             </div>
             <nav className="hidden sm:flex items-center gap-4 sm:gap-6 text-sm">
