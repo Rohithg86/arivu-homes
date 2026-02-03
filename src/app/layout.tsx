@@ -31,12 +31,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span className="text-[10px] sm:text-xs font-mono font-black text-gray-900 leading-none mt-0.5">PENDING...</span>
               </div>
             </div>
-            <nav className="hidden md:flex items-center gap-4 lg:gap-8 text-sm font-semibold text-gray-600">
-              <Link href="/services" className="hover:text-blue-600 transition-colors">Services</Link>
-              <Link href="/boq" className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-all font-bold shadow-sm">BOQ Calculator</Link>
-              <Link href="/team" className="hover:text-blue-600 transition-colors">Team</Link>
-              <Link href="/projects" className="hover:text-blue-600 transition-colors">Projects</Link>
-              <Link href="/admin" className="px-4 py-2 rounded-full border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-all text-xs uppercase tracking-widest font-bold">Admin</Link>
+            <nav className="hidden md:flex items-center gap-6 lg:gap-10 text-[13px] uppercase tracking-[0.15em] font-bold text-gray-500">
+              <Link href="/services" className="hover:text-blue-600 transition-all duration-300">Services</Link>
+              <Link href="/boq" className="bg-blue-600 text-white px-5 py-2.5 rounded-full hover:bg-blue-700 transition-all duration-300 shadow-md hover:shadow-lg active:scale-95">BOQ Calculator</Link>
+              <Link href="/team" className="hover:text-blue-600 transition-all duration-300">Team</Link>
+              <Link href="/projects" className="hover:text-blue-600 transition-all duration-300">Projects</Link>
+              <Link href="/admin" className="px-5 py-2.5 rounded-full border border-gray-200 text-gray-900 hover:border-gray-900 transition-all duration-300 text-[11px] font-black">Admin</Link>
             </nav>
             <MobileNav />
           </div>
