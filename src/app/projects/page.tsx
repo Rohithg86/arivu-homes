@@ -484,8 +484,6 @@ export default function ProjectsPage() {
 
       {/* Main Content */}
       <main className="max-w-6xl mx-auto px-4 sm:px-6 pb-12">
-        {/* ... existing project form and other sections ... */}
-
         {/* Add/Edit Project Form Modal */}
         {showProjectForm && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={(e) => e.target === e.currentTarget && (setShowProjectForm(false), setEditingProjectId(null))}>
