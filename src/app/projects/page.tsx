@@ -474,8 +474,8 @@ export default function ProjectsPage() {
                   <option value="">Select type</option>
                   <option value="Residential">Residential</option>
                   <option value="Commercial">Commercial</option>
+                  <option value="Farmhouse">Farmhouse</option>
                   <option value="Renovation">Renovation</option>
-                  <option value="Infrastructure">Infrastructure</option>
                 </select>
               </div>
               <div>

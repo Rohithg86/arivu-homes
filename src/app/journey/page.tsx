@@ -102,8 +102,8 @@ export default function JourneyPage() {
       </div>
 
       {/* Video: reduced frame significantly as requested */}
-      <div className="mt-5 sm:mt-6 max-w-2xl mx-auto shadow-2xl rounded-2xl overflow-hidden border bg-black">
-        <div className="relative w-full" style={{ aspectRatio: '21/9' }}>
+      <div className="mt-5 sm:mt-6 max-w-3xl mx-auto shadow-2xl rounded-2xl overflow-hidden border bg-black">
+        <div className="relative w-full" style={{ aspectRatio: '32/9' }}>
           <video
             ref={videoRef}
             className="block w-full h-auto"
