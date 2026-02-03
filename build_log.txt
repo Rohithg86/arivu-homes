@@ -1,0 +1,69 @@
+
+> arivu@0.1.0 build
+> next build
+
+ ΓÜá Warning: Found multiple lockfiles. Selecting C:\Users\Rohith\arivu\package-lock.json.
+   Consider removing the lockfiles at:
+   * C:\Users\Rohith\arivu\arivu-homes\package-lock.json
+
+   Γû▓ Next.js 15.4.10
+   - Environments: .env.local, .env
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully in 10.0s
+   Linting and checking validity of types ...
+
+./src/app/api/contact/route.ts
+41:22  Warning: 'fs' is defined but never used.  @typescript-eslint/no-unused-vars
+42:8  Warning: 'path' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/journey/page.tsx
+6:10  Warning: 'useEffect' is defined but never used.  @typescript-eslint/no-unused-vars
+6:21  Warning: 'useRef' is defined but never used.  @typescript-eslint/no-unused-vars
+6:29  Warning: 'useState' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/projects/page.tsx
+126:9  Warning: 'isFeaturedProject' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/24) ...
+   Generating static pages (6/24) 
+   Generating static pages (12/24) 
+   Generating static pages (18/24) 
+ Γ£ô Generating static pages (24/24)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+Γöî Γùï /                                    39.2 kB         142 kB
+Γö£ Γùï /_not-found                            992 B         101 kB
+Γö£ ╞Æ /admin                               10.9 kB         114 kB
+Γö£ Γùï /admin-login                           976 B         101 kB
+Γö£ ╞Æ /api/admin/login                       146 B        99.9 kB
+Γö£ ╞Æ /api/admin/logout                      146 B        99.9 kB
+Γö£ ╞Æ /api/admin/me                          146 B        99.9 kB
+Γö£ ╞Æ /api/assets                            146 B        99.9 kB
+Γö£ ╞Æ /api/boq                               146 B        99.9 kB
+Γö£ ╞Æ /api/contact                           146 B        99.9 kB
+Γö£ ╞Æ /api/projects                          146 B        99.9 kB
+Γö£ ╞Æ /api/team                              146 B        99.9 kB
+Γö£ ╞Æ /api/upload                            146 B        99.9 kB
+Γö£ Γùï /boq                                 2.27 kB         105 kB
+Γö£ Γùï /journey                             2.96 kB         111 kB
+Γö£ Γùï /projects                            6.45 kB         115 kB
+Γö£ Γùï /services                              164 B         103 kB
+Γö£ ╞Æ /services/[slug]                       164 B         103 kB
+Γö£ Γùï /team                                  182 B         108 kB
+Γö£ Γùï /team/chethan-kumar-s                  182 B         108 kB
+Γö£ Γùï /team/rohith-gopal                     182 B         108 kB
+Γöö Γùï /team/shashank-d                       182 B         108 kB
++ First Load JS shared by all            99.8 kB
+  Γö£ chunks/4bd1b696-cf72ae8a39fa05aa.js  54.1 kB
+  Γö£ chunks/964-b440f7af22c41ca5.js       43.6 kB
+  Γöö other shared chunks (total)          1.99 kB
+
+
+Γùï  (Static)   prerendered as static content
+╞Æ  (Dynamic)  server-rendered on demand
+

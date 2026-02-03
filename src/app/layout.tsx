@@ -31,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span className="text-[10px] sm:text-xs font-mono font-black text-gray-900 leading-none mt-0.5">PENDING...</span>
               </div>
             </div>
-            <nav className="hidden lg:flex items-center gap-4 lg:gap-8 text-sm font-semibold">
+            <nav className="hidden md:flex items-center gap-4 lg:gap-8 text-sm font-semibold">
               <Link href="/services" className="hover:text-blue-600 transition-colors">Services</Link>
               <Link href="/boq" className="hover:text-blue-600 transition-colors">BOQ Calculator</Link>
               <Link href="/team" className="hover:text-blue-600 transition-colors">Team</Link>
