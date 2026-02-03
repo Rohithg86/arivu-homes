@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-const serviceContent: Record<string, {title:string; intro:string; bullets:string[]}> = {
+const serviceContent: Record<string, { title: string; intro: string; bullets: string[] }> = {
   "residential-construction": {
     title: "Residential Construction",
     intro: "Turnkey villas and apartments with quality, transparency, and on-time delivery.",
@@ -64,19 +64,25 @@ const serviceContent: Record<string, {title:string; intro:string; bullets:string
   },
 };
 
-export default async function ServiceDetails({ params }: { params: Promise<{ slug: string }> }){
+export default async function ServiceDetails({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const data = serviceContent[slug];
-  if(!data) return notFound();
+  if (!data) return notFound();
   return (
-    <main className="max-w-6xl mx-auto px-6 py-12">
-      <Link href="/services" className="text-sm text-gray-600 hover:text-gray-900">← Back to Services</Link>
-      <h1 className="mt-3 text-3xl font-bold">{data.title}</h1>
-      <p className="text-gray-700 mt-2 max-w-3xl">{data.intro}</p>
+    <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-8">
+        <div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">{data.title}</h1>
+          <p className="text-gray-600 mt-2 max-w-3xl">{data.intro}</p>
+        </div>
+        <Link href="/" className="text-gray-400 hover:text-gray-900 text-2xl transition-colors bg-white/50 p-2 rounded-full hover:shadow-sm" aria-label="Back to Home">
+          ←
+        </Link>
+      </div>
       <div className="mt-6 rounded-2xl border bg-white/70 backdrop-blur p-6">
         <h2 className="text-xl font-semibold">What we deliver</h2>
         <ul className="mt-3 list-disc pl-6 text-gray-700 space-y-1">
-          {data.bullets.map((b,i)=> <li key={i}>{b}</li>)}
+          {data.bullets.map((b, i) => <li key={i}>{b}</li>)}
         </ul>
       </div>
     </main>

@@ -65,22 +65,15 @@ export default function TeamPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-6 py-8">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="text-center sm:text-left">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">Our Team</h1>
-              <p className="text-xl text-gray-600 max-w-3xl">
-                Meet the experienced professionals behind Arivu Homes Private Limited.
-              </p>
-            </div>
-            <Link href="/" className="self-center sm:self-start text-gray-400 hover:text-gray-900 text-2xl transition-colors bg-white/50 p-2 rounded-full hover:shadow-sm" aria-label="Back to Home">
-              ←
-            </Link>
-          </div>
+    <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-8">
+        <div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">Our Team</h1>
+          <p className="text-gray-600 mt-2">Meet the experienced professionals behind Arivu Homes Private Limited.</p>
         </div>
+        <Link href="/" className="text-gray-400 hover:text-gray-900 text-2xl transition-colors bg-white/50 p-2 rounded-full hover:shadow-sm" aria-label="Back to Home">
+          ←
+        </Link>
       </div>
 
       {/* Team Members */}
@@ -236,6 +229,6 @@ export default function TeamPage() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

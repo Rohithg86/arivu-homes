@@ -3,20 +3,15 @@ import Link from "next/link";
 
 export default function ShashankDBio() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Shashank D</h1>
-              <p className="text-gray-600 mt-1">Senior Architect & Civil Engineer - Arivu Homes Private Limited</p>
-            </div>
-            <Link href="/" className="text-gray-600 hover:text-gray-900">
-              ← Back to Home
-            </Link>
-          </div>
+    <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-8">
+        <div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">Shashank D</h1>
+          <p className="text-gray-600 mt-2">Senior Architect & Civil Engineer - Arivu Homes Private Limited</p>
         </div>
+        <Link href="/" className="text-gray-400 hover:text-gray-900 text-2xl transition-colors bg-white/50 p-2 rounded-full hover:shadow-sm" aria-label="Back to Home">
+          ←
+        </Link>
       </div>
 
       <div className="max-w-4xl mx-auto px-6 py-8">
@@ -36,7 +31,7 @@ export default function ShashankDBio() {
                 <h2 className="text-4xl font-bold mb-2">Shashank D</h2>
                 <p className="text-xl text-purple-100 mb-4">Architecture & Engineering</p>
                 <p className="text-purple-100 text-lg leading-relaxed">
-                  Creative architect and civil engineer with 7+ years of experience in innovative 
+                  Creative architect and civil engineer with 7+ years of experience in innovative
                   design solutions, sustainable architecture, and integrated structural systems.
                 </p>
               </div>
@@ -49,15 +44,15 @@ export default function ShashankDBio() {
             <section className="mb-8">
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Professional Summary</h3>
               <p className="text-gray-700 leading-relaxed mb-4">
-                Shashank D is a visionary architect and experienced civil engineer with 7 plus years of hands-on-experience 
-                in construction execution, planning and interior works. Proven track record of delivering 7 residential  
-                projects and 1 semi-commercial project, along with extensive exposure to 300+ planning layouts and 25+ interior 
+                Shashank D is a visionary architect and experienced civil engineer with 7 plus years of hands-on-experience
+                in construction execution, planning and interior works. Proven track record of delivering 7 residential
+                projects and 1 semi-commercial project, along with extensive exposure to 300+ planning layouts and 25+ interior
                 design projects.
               </p>
               <p className="text-gray-700 leading-relaxed">
-                Known for his forward-thinking approach to design and his ability to integrate 
-                modern architectural trends with structural efficiency, Shashank has been instrumental 
-                in establishing Arivu Constructions as a leader in innovative construction solutions. 
+                Known for his forward-thinking approach to design and his ability to integrate
+                modern architectural trends with structural efficiency, Shashank has been instrumental
+                in establishing Arivu Constructions as a leader in innovative construction solutions.
                 His designs prioritize sustainability, functionality, and aesthetic appeal.
               </p>
             </section>
@@ -78,7 +73,7 @@ export default function ShashankDBio() {
                     <li>• Implementation of green building technologies</li>
                   </ul>
                 </div>
-                
+
                 <div className="border-l-4 border-gray-300 pl-6">
                   <h4 className="text-lg font-semibold text-gray-900">Principal Architect</h4>
                   <p className="text-gray-600 font-medium">SD Constructions (2018 - 2025)</p>
@@ -111,9 +106,9 @@ export default function ShashankDBio() {
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Design Philosophy</h3>
               <div className="bg-purple-50 p-6 rounded-lg">
                 <blockquote className="text-lg italic text-gray-700 mb-4">
-                  &ldquo;Architecture is not just about creating beautiful spaces; it&apos;s about creating 
-                  spaces that enhance human experience while respecting the environment and 
-                  ensuring structural integrity. Every design should tell a story and serve 
+                  &ldquo;Architecture is not just about creating beautiful spaces; it&apos;s about creating
+                  spaces that enhance human experience while respecting the environment and
+                  ensuring structural integrity. Every design should tell a story and serve
                   a purpose beyond aesthetics.&rdquo;
                 </blockquote>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -210,7 +205,7 @@ export default function ShashankDBio() {
                     <p className="text-gray-600 text-sm">Madhanayakanahalli, Bengaluru</p>
                     <p className="text-gray-700 text-sm">3 cornered project, Shops plus duplex residential building </p>
                   </div>
-                    <div className="border-l-4 border-purple-500 pl-4">
+                  <div className="border-l-4 border-purple-500 pl-4">
                     <h4 className="font-semibold text-gray-900">Industrial Warehouse</h4>
                     <p className="text-gray-600 text-sm">Madhanayakanahalli, Bengaluru</p>
                     <p className="text-gray-700 text-sm">PEB Structure : 6000 Sqft Warehouse </p>
@@ -236,6 +231,6 @@ export default function ShashankDBio() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

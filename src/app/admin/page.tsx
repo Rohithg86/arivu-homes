@@ -121,14 +121,17 @@ export default function AdminPage() {
 
   return (
     <div className='mx-auto max-w-3xl px-6 py-10'>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-8">
+        <div>
+          <h1 className='text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight'>Arivu Admin</h1>
+          <p className="text-gray-600 mt-2">Manage your projects, team members, and site assets.</p>
+        </div>
         <div className="flex items-center gap-4">
+          <button onClick={logout} className="px-4 py-2 text-sm rounded bg-gray-100 hover:bg-gray-200 transition-colors">Logout</button>
           <Link href="/" className="text-gray-400 hover:text-gray-900 text-2xl transition-colors bg-white/50 p-2 rounded-full hover:shadow-sm" aria-label="Back to Home">
             ←
           </Link>
-          <h1 className='text-3xl font-semibold'>Arivu Admin</h1>
         </div>
-        <button onClick={logout} className="text-sm text-gray-600 hover:text-gray-900 underline">Logout</button>
       </div>
       <div className='flex gap-4 mb-8'>
         <button className={tab === 'team' ? 'font-bold underline' : ''} onClick={() => setTab('team')}>Team</button>

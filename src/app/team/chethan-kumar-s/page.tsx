@@ -3,20 +3,15 @@ import Link from "next/link";
 
 export default function ChethanShrinivasBio() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Chethan Kumar S</h1>
-              <p className="text-gray-600 mt-1">Chief Engineer - Arivu Homes Private Limited</p>
-            </div>
-            <Link href="/" className="text-gray-600 hover:text-gray-900">
-              ← Back to Home
-            </Link>
-          </div>
+    <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-8">
+        <div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">Chethan Kumar S</h1>
+          <p className="text-gray-600 mt-2">Chief Engineer - Arivu Homes Private Limited</p>
         </div>
+        <Link href="/" className="text-gray-400 hover:text-gray-900 text-2xl transition-colors bg-white/50 p-2 rounded-full hover:shadow-sm" aria-label="Back to Home">
+          ←
+        </Link>
       </div>
 
       <div className="max-w-4xl mx-auto px-6 py-8">
@@ -36,7 +31,7 @@ export default function ChethanShrinivasBio() {
                 <h2 className="text-4xl font-bold mb-2">Chethan Kumar S</h2>
                 <p className="text-xl text-green-100 mb-4">Chief Engineer</p>
                 <p className="text-green-100 text-lg leading-relaxed">
-                  Highly skilled civil engineer with 20+ years of experience in construction management 
+                  Highly skilled civil engineer with 20+ years of experience in construction management
                   and technical leadership across diverse construction projects.
                 </p>
               </div>
@@ -49,15 +44,15 @@ export default function ChethanShrinivasBio() {
             <section className="mb-8">
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Professional Summary</h3>
               <p className="text-gray-700 leading-relaxed mb-4">
-                Chethan Kumar S is a distinguished civil engineer known for his technical expertise 
-                and innovative approach to construction challenges. As Chief Engineer at Arivu Constructions, 
-                he oversees all technical aspects of projects, ensuring structural integrity, safety, 
+                Chethan Kumar S is a distinguished civil engineer known for his technical expertise
+                and innovative approach to construction challenges. As Chief Engineer at Arivu Constructions,
+                he oversees all technical aspects of projects, ensuring structural integrity, safety,
                 and compliance with industry standards.
               </p>
               <p className="text-gray-700 leading-relaxed">
-                His extensive experience in design optimization and construction 
-                methodologies has been instrumental in delivering complex projects on time and within budget. 
-                He is recognized for his ability to solve intricate engineering problems and implement 
+                His extensive experience in design optimization and construction
+                methodologies has been instrumental in delivering complex projects on time and within budget.
+                He is recognized for his ability to solve intricate engineering problems and implement
                 cutting-edge construction technologies.
               </p>
             </section>
@@ -78,7 +73,7 @@ export default function ChethanShrinivasBio() {
                     <li>• Implementation of advanced construction technologies</li>
                   </ul>
                 </div>
-                
+
                 <div className="border-l-4 border-gray-300 pl-6">
                   <h4 className="text-lg font-semibold text-gray-900">Project Manager</h4>
                   <p className="text-gray-600 font-medium">Aiikya Village Sarjapur. (2015-2020 & 2023-2025)</p>
@@ -173,6 +168,6 @@ export default function ChethanShrinivasBio() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

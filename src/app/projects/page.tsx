@@ -456,494 +456,493 @@ export default function ProjectsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
+      <div className="bg-white border-b mb-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">Current Projects</h1>
+              <p className="text-gray-600 mt-2">Our ongoing projects in Bangalore</p>
+            </div>
             <div className="flex items-center gap-4">
+              {isAdmin && (
+                <div className="flex gap-2">
+                  <button onClick={openAddProject} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors shadow-sm text-sm font-medium">
+                    + New
+                  </button>
+                  <button onClick={signOut} className="px-4 py-2 text-sm rounded bg-gray-100 hover:bg-gray-200 transition-colors">
+                    Sign out
+                  </button>
+                </div>
+              )}
               <Link href="/" className="text-gray-400 hover:text-gray-900 text-2xl transition-colors bg-white/50 p-2 rounded-full hover:shadow-sm" aria-label="Back to Home">
                 ←
               </Link>
-              <div>
-                <h1 className="text-3xl font-bold text-gray-900">Current Projects</h1>
-                <p className="text-gray-600 mt-1">Our ongoing projects in Bangalore</p>
-              </div>
-            </div>
-            <div className="flex gap-3 items-center flex-wrap justify-end">
-              {isAdmin && (
-                <>
-                  <button
-                    onClick={openAddProject}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors shadow-sm text-sm font-medium"
-                  >
-                    + New Project
-                  </button>
-                  <button
-                    onClick={signOut}
-                    className="px-4 py-2 text-sm rounded bg-gray-200 hover:bg-gray-300 transition-colors"
-                  >
-                    Sign out
-                  </button>
-                </>
-              )}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Add/Edit Project Form Modal */}
-      {showProjectForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={(e) => e.target === e.currentTarget && (setShowProjectForm(false), setEditingProjectId(null))}>
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
-            <h2 className="text-xl font-semibold mb-1">{editingProjectId ? "Edit Project" : "Add New Project"}</h2>
-            <p className="text-sm text-gray-600 mb-4">Fields marked * are required.</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Project Name</label>
-                <input
-                  type="text"
-                  value={projectForm.name ?? ""}
-                  onChange={(e) => setProjectForm({ ...projectForm, name: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  placeholder="Enter project name"
-                  required
-                />
+      {/* Main Content */}
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 pb-12">
+        {/* ... existing project form and other sections ... */}
+
+        {/* Add/Edit Project Form Modal */}
+        {showProjectForm && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={(e) => e.target === e.currentTarget && (setShowProjectForm(false), setEditingProjectId(null))}>
+            <div className="bg-white rounded-lg p-6 w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
+              <h2 className="text-xl font-semibold mb-1">{editingProjectId ? "Edit Project" : "Add New Project"}</h2>
+              <p className="text-sm text-gray-600 mb-4">Fields marked * are required.</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Project Name</label>
+                  <input
+                    type="text"
+                    value={projectForm.name ?? ""}
+                    onChange={(e) => setProjectForm({ ...projectForm, name: e.target.value })}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                    placeholder="Enter project name"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                  <input
+                    type="text"
+                    value={projectForm.location ?? ""}
+                    onChange={(e) => setProjectForm({ ...projectForm, location: e.target.value })}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                    placeholder="Enter location"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Client</label>
+                  <input
+                    type="text"
+                    value={projectForm.client ?? ""}
+                    onChange={(e) => setProjectForm({ ...projectForm, client: e.target.value })}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                    placeholder="Client name (optional)"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Project Type</label>
+                  <select
+                    value={projectForm.type ?? ""}
+                    onChange={(e) => setProjectForm({ ...projectForm, type: e.target.value })}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                  >
+                    <option value="">Select type</option>
+                    <option value="Residential">Residential</option>
+                    <option value="Commercial">Commercial</option>
+                    <option value="Farmhouse">Farmhouse</option>
+                    <option value="Renovation">Renovation</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                  <select
+                    value={projectForm.status ?? "Planning"}
+                    onChange={(e) => setProjectForm({ ...projectForm, status: e.target.value })}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                  >
+                    <option value="Planning">Planning</option>
+                    <option value="Ongoing">Ongoing</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Near Completion">Near Completion</option>
+                    <option value="Completed">Completed</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+                  <input
+                    type="date"
+                    value={projectForm.startDate ?? ""}
+                    onChange={(e) => setProjectForm({ ...projectForm, startDate: e.target.value })}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Expected Completion</label>
+                  <input
+                    type="date"
+                    value={projectForm.expectedCompletion ?? ""}
+                    onChange={(e) => setProjectForm({ ...projectForm, expectedCompletion: e.target.value })}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Completion %</label>
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    value={projectForm.completionPercentageText ?? ""}
+                    onChange={(e) => {
+                      const digits = e.target.value.replace(/\D/g, "").replace(/^0+(?=\d)/, "");
+                      const clamped = digits ? String(Math.min(100, Number(digits))) : "";
+                      setProjectForm({ ...projectForm, completionPercentageText: clamped });
+                    }}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                    placeholder="0 to 100"
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                  <textarea
+                    value={projectForm.description ?? ""}
+                    onChange={(e) => setProjectForm({ ...projectForm, description: e.target.value })}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                    rows={3}
+                    placeholder="Enter project description"
+                  />
+                </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
-                <input
-                  type="text"
-                  value={projectForm.location ?? ""}
-                  onChange={(e) => setProjectForm({ ...projectForm, location: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  placeholder="Enter location"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Client</label>
-                <input
-                  type="text"
-                  value={projectForm.client ?? ""}
-                  onChange={(e) => setProjectForm({ ...projectForm, client: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  placeholder="Client name (optional)"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Project Type</label>
-                <select
-                  value={projectForm.type ?? ""}
-                  onChange={(e) => setProjectForm({ ...projectForm, type: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2"
+              <div className="flex gap-3 mt-6">
+                <button
+                  type="button"
+                  disabled={saving || !String(projectForm.name ?? "").trim() || !String(projectForm.location ?? "").trim()}
+                  onClick={submitProjectForm}
+                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-60"
                 >
-                  <option value="">Select type</option>
-                  <option value="Residential">Residential</option>
-                  <option value="Commercial">Commercial</option>
-                  <option value="Farmhouse">Farmhouse</option>
-                  <option value="Renovation">Renovation</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                <select
-                  value={projectForm.status ?? "Planning"}
-                  onChange={(e) => setProjectForm({ ...projectForm, status: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                >
-                  <option value="Planning">Planning</option>
-                  <option value="Ongoing">Ongoing</option>
-                  <option value="In Progress">In Progress</option>
-                  <option value="Near Completion">Near Completion</option>
-                  <option value="Completed">Completed</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
-                <input
-                  type="date"
-                  value={projectForm.startDate ?? ""}
-                  onChange={(e) => setProjectForm({ ...projectForm, startDate: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Expected Completion</label>
-                <input
-                  type="date"
-                  value={projectForm.expectedCompletion ?? ""}
-                  onChange={(e) => setProjectForm({ ...projectForm, expectedCompletion: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Completion %</label>
-                <input
-                  type="text"
-                  inputMode="numeric"
-                  pattern="[0-9]*"
-                  value={projectForm.completionPercentageText ?? ""}
-                  onChange={(e) => {
-                    const digits = e.target.value.replace(/\D/g, "").replace(/^0+(?=\d)/, "");
-                    const clamped = digits ? String(Math.min(100, Number(digits))) : "";
-                    setProjectForm({ ...projectForm, completionPercentageText: clamped });
+                  {saving ? "Saving..." : editingProjectId ? "Save Changes" : "Add Project"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowProjectForm(false);
+                    setEditingProjectId(null);
                   }}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  placeholder="0 to 100"
-                />
+                  className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400"
+                >
+                  Cancel
+                </button>
               </div>
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                <textarea
-                  value={projectForm.description ?? ""}
-                  onChange={(e) => setProjectForm({ ...projectForm, description: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  rows={3}
-                  placeholder="Enter project description"
-                />
-              </div>
+              {saveError && <div className="mt-3 text-sm text-red-600">{saveError}</div>}
             </div>
-            <div className="flex gap-3 mt-6">
-              <button
-                type="button"
-                disabled={saving || !String(projectForm.name ?? "").trim() || !String(projectForm.location ?? "").trim()}
-                onClick={submitProjectForm}
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-60"
-              >
-                {saving ? "Saving..." : editingProjectId ? "Save Changes" : "Add Project"}
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setShowProjectForm(false);
-                  setEditingProjectId(null);
-                }}
-                className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400"
-              >
-                Cancel
-              </button>
-            </div>
-            {saveError && <div className="mt-3 text-sm text-red-600">{saveError}</div>}
-          </div>
-        </div>
-      )}
-
-      {(saveSuccess || saveError) && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
-          {saveSuccess && <div className="rounded-xl border bg-green-50 text-green-800 px-4 py-3 text-sm">{saveSuccess}</div>}
-          {saveError && <div className="rounded-xl border bg-red-50 text-red-700 px-4 py-3 text-sm mt-2">{saveError}</div>}
-        </div>
-      )}
-
-      {/* Projects Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Ongoing Projects</h2>
-        {ongoingProjects.length === 0 ? (
-          <div className="rounded-xl border bg-white p-6 text-gray-600">
-            Current projects will be listed here.
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {ongoingProjects.map((project) => (
-              <div key={project.id} className="glass-card rounded-lg shadow-md overflow-hidden">
-                {renderProjectImages(project)}
-                <div className="p-4 sm:p-6">
-                  <div className="space-y-2 mb-3 text-sm flex-grow">
-                    <div className="min-h-[3rem] mb-2">
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 line-clamp-2">{project.name}</h3>
-                    </div>
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-gray-600">Client</span>
-                      <span className="text-gray-800">{project.client ?? "-"}</span>
-                    </div>
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-gray-600">Location</span>
-                      <span className="text-gray-800 line-clamp-1 text-right">{project.location}</span>
-                    </div>
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-gray-600">Type</span>
-                      <span className="text-gray-800">{project.type}</span>
-                    </div>
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-gray-600">Start Date</span>
-                      <span className="text-gray-800">{project.startDate || "-"}</span>
-                    </div>
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-gray-600">Completion</span>
-                      <span className="text-gray-800">{project.expectedCompletion || "-"}</span>
-                    </div>
-                  </div>
-
-                  <div className="mb-4">
-                    <div className="flex justify-between text-sm text-gray-600 mb-1">
-                      <span>Progress</span>
-                      <span>{project.completionPercentage}%</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div
-                        className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                        style={{ width: `${project.completionPercentage}%` }}
-                      ></div>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 pt-4 border-t">
-                    <p className="text-gray-600 text-sm">{project.description}</p>
-                  </div>
-
-                  {isAdmin && (
-                    <div className="mt-4 grid grid-cols-3 gap-2">
-                      <button
-                        type="button"
-                        className="bg-gray-900 text-white px-3 py-2 rounded text-sm hover:bg-gray-800"
-                        onClick={() => openEditProject(project.id)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        type="button"
-                        disabled={uploading}
-                        className="bg-gray-50 text-gray-700 px-3 py-2 rounded text-sm hover:bg-gray-100 disabled:opacity-60"
-                        onClick={() => handleUploadImage(project.id)}
-                      >
-                        {uploading && uploadProjectId === project.id ? "..." : "Upload"}
-                      </button>
-                      <button
-                        type="button"
-                        className="bg-red-50 text-red-700 px-3 py-2 rounded text-sm hover:bg-red-100"
-                        onClick={() => handleDeleteProject(project.id)}
-                      >
-                        Delete
-                      </button>
-                      {uploading && uploadProjectId === project.id && (
-                        <button
-                          type="button"
-                          className="col-span-3 bg-red-50 text-red-700 px-3 py-2 rounded text-sm hover:bg-red-100 mt-1"
-                          onClick={() => setUploadCancel(true)}
-                        >
-                          Cancel Upload
-                        </button>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
           </div>
         )}
 
-        <h2 className="text-xl font-semibold text-gray-900 mt-10 mb-4">Completed Projects</h2>
-        {completedProjects.length === 0 ? (
-          <div className="rounded-xl border bg-white p-6 text-gray-600">
-            Completed projects will be listed here.
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {completedProjects.map((project) => (
-              <div key={project.id} className="glass-card rounded-lg shadow-md overflow-hidden">
-                {renderProjectImages(project)}
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-lg font-semibold text-gray-900 line-clamp-1">{project.name}</h3>
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium shrink-0 ${getStatusColor(project.status)}`}>
-                      {project.status}
-                    </span>
-                  </div>
-                  <div className="space-y-1 mb-4">
-                    <div className="flex items-center justify-between text-xs sm:text-sm">
-                      <span className="text-gray-500">Client</span>
-                      <span className="text-gray-800 font-medium">{project.client ?? "-"}</span>
-                    </div>
-                    <div className="flex items-center justify-between text-xs sm:text-sm">
-                      <span className="text-gray-500">Location</span>
-                      <span className="text-gray-800 font-medium">{project.location}</span>
-                    </div>
-                  </div>
-                  <p className="text-sm text-gray-700 line-clamp-2 mb-4">{project.description}</p>
-                  {isAdmin && (
-                    <div className="mt-auto grid grid-cols-3 gap-2">
-                      <button
-                        type="button"
-                        className="bg-gray-900 text-white px-3 py-2 rounded text-sm hover:bg-gray-800"
-                        onClick={() => openEditProject(project.id)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        type="button"
-                        disabled={uploading}
-                        className="bg-gray-50 text-gray-700 px-3 py-2 rounded text-sm hover:bg-gray-100 disabled:opacity-60"
-                        onClick={() => handleUploadImage(project.id)}
-                      >
-                        {uploading && uploadProjectId === project.id ? "..." : "Upload"}
-                      </button>
-                      <button
-                        type="button"
-                        className="bg-red-50 text-red-700 px-3 py-2 rounded text-sm hover:bg-red-100"
-                        onClick={() => handleDeleteProject(project.id)}
-                      >
-                        Delete
-                      </button>
-                      {uploading && uploadProjectId === project.id && (
-                        <button
-                          type="button"
-                          className="col-span-3 bg-red-50 text-red-700 px-3 py-2 rounded text-sm hover:bg-red-100 mt-1"
-                          onClick={() => setUploadCancel(true)}
-                        >
-                          Cancel Upload
-                        </button>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
+        {(saveSuccess || saveError) && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
+            {saveSuccess && <div className="rounded-xl border bg-green-50 text-green-800 px-4 py-3 text-sm">{saveSuccess}</div>}
+            {saveError && <div className="rounded-xl border bg-red-50 text-red-700 px-4 py-3 text-sm mt-2">{saveError}</div>}
           </div>
         )}
-      </div>
 
-      {projects.length === 0 && (
-        <div className="text-center py-12">
-          <div className="text-gray-400 text-6xl mb-4">🏗️</div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">No projects yet</h3>
-          <p className="text-gray-600 mb-4">Start by adding your first construction project</p>
-          {isAdmin && (
-            <button
-              onClick={openAddProject}
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-            >
-              Add Project
-            </button>
+        {/* Projects Grid */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Ongoing Projects</h2>
+          {ongoingProjects.length === 0 ? (
+            <div className="rounded-xl border bg-white p-6 text-gray-600">
+              Current projects will be listed here.
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {ongoingProjects.map((project) => (
+                <div key={project.id} className="glass-card rounded-lg shadow-md overflow-hidden">
+                  {renderProjectImages(project)}
+                  <div className="p-4 sm:p-6">
+                    <div className="space-y-2 mb-3 text-sm flex-grow">
+                      <div className="min-h-[3rem] mb-2">
+                        <h3 className="text-base sm:text-lg font-semibold text-gray-900 line-clamp-2">{project.name}</h3>
+                      </div>
+                      <div className="space-y-2 mb-4 text-xs sm:text-sm">
+                        <div className="grid grid-cols-[100px_1fr] items-start gap-2">
+                          <span className="text-gray-500 font-medium">Client:</span>
+                          <span className="text-gray-800 font-semibold">{project.client ?? "Private Client"}</span>
+                        </div>
+                        <div className="grid grid-cols-[100px_1fr] items-start gap-2">
+                          <span className="text-gray-500 font-medium">Location:</span>
+                          <span className="text-gray-800 line-clamp-1">{project.location}</span>
+                        </div>
+                        <div className="grid grid-cols-[100px_1fr] items-start gap-2">
+                          <span className="text-gray-500 font-medium">Type:</span>
+                          <span className="text-gray-800">{project.type}</span>
+                        </div>
+                        <div className="grid grid-cols-[100px_1fr] items-start gap-2">
+                          <span className="text-gray-500 font-medium">Start Date:</span>
+                          <span className="text-gray-800">{project.startDate || "-"}</span>
+                        </div>
+                        <div className="grid grid-cols-[100px_1fr] items-start gap-2">
+                          <span className="text-gray-500 font-medium">Completion:</span>
+                          <span className="text-gray-800">{project.expectedCompletion || "-"}</span>
+                        </div>
+                      </div>
+
+                      <div className="mb-4">
+                        <div className="flex justify-between text-sm text-gray-600 mb-1">
+                          <span>Progress</span>
+                          <span>{project.completionPercentage}%</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div
+                            className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                            style={{ width: `${project.completionPercentage}%` }}
+                          ></div>
+                        </div>
+                      </div>
+
+                      <div className="mt-4 pt-4 border-t">
+                        <p className="text-gray-600 text-sm">{project.description}</p>
+                      </div>
+
+                      {isAdmin && (
+                        <div className="mt-4 grid grid-cols-3 gap-2">
+                          <button
+                            type="button"
+                            className="bg-gray-900 text-white px-3 py-2 rounded text-sm hover:bg-gray-800"
+                            onClick={() => openEditProject(project.id)}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            type="button"
+                            disabled={uploading}
+                            className="bg-gray-50 text-gray-700 px-3 py-2 rounded text-sm hover:bg-gray-100 disabled:opacity-60"
+                            onClick={() => handleUploadImage(project.id)}
+                          >
+                            {uploading && uploadProjectId === project.id ? "..." : "Upload"}
+                          </button>
+                          <button
+                            type="button"
+                            className="bg-red-50 text-red-700 px-3 py-2 rounded text-sm hover:bg-red-100"
+                            onClick={() => handleDeleteProject(project.id)}
+                          >
+                            Delete
+                          </button>
+                          {uploading && uploadProjectId === project.id && (
+                            <button
+                              type="button"
+                              className="col-span-3 bg-red-50 text-red-700 px-3 py-2 rounded text-sm hover:bg-red-100 mt-1"
+                              onClick={() => setUploadCancel(true)}
+                            >
+                              Cancel Upload
+                            </button>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           )}
-        </div>
-      )}
 
-      {/* Admin hidden upload input */}
-      {isAdmin && (
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="image/*"
-          multiple
-          className="hidden"
-          onChange={handleFileChange}
-        />
-      )}
-
-      {/* Details modal with image gallery */}
-      {detailsOpen && detailsProject && (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setDetailsOpen(false)} />
-          <div className="relative w-full sm:max-w-4xl bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl border overflow-hidden transition-all duration-300 transform">
-            <div className="flex items-start justify-between gap-4 p-4 sm:p-5 border-b bg-gray-50">
-              <div>
-                <div className="text-lg font-bold text-gray-900">{detailsProject.name}</div>
-                <div className="text-sm text-gray-600">{detailsProject.location} • {detailsProject.type}</div>
-              </div>
-              <button
-                type="button"
-                className="p-2 rounded-full hover:bg-gray-200 transition-colors"
-                onClick={() => setDetailsOpen(false)}
-              >
-                <svg className="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+          <h2 className="text-xl font-semibold text-gray-900 mt-10 mb-4">Completed Projects</h2>
+          {completedProjects.length === 0 ? (
+            <div className="rounded-xl border bg-white p-6 text-gray-600">
+              Completed projects will be listed here.
             </div>
-
-            <div className="p-4 sm:p-6 lg:p-8">
-              {detailsProject.images.length === 0 ? (
-                <div className="text-center py-12 text-gray-500 bg-gray-50 rounded-xl">
-                  No images available for this project.
-                </div>
-              ) : (
-                <div className="grid gap-6">
-                  <div className="relative w-full aspect-[16/9] bg-gray-900 rounded-xl overflow-hidden shadow-inner group">
-                    <Image
-                      src={detailsProject.images[Math.min(detailsImageIndex, detailsProject.images.length - 1)]}
-                      alt={`${detailsProject.name} image`}
-                      fill
-                      className="object-contain"
-                      sizes="(max-width: 1024px) 100vw, 1024px"
-                      unoptimized={detailsProject.images[Math.min(detailsImageIndex, detailsProject.images.length - 1)].includes("vercel-storage.com")}
-                    />
-
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {completedProjects.map((project) => (
+                <div key={project.id} className="glass-card rounded-lg shadow-md overflow-hidden">
+                  {renderProjectImages(project)}
+                  <div className="p-6">
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className="text-lg font-semibold text-gray-900 line-clamp-1">{project.name}</h3>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium shrink-0 ${getStatusColor(project.status)}`}>
+                        {project.status}
+                      </span>
+                    </div>
+                    <div className="space-y-2 mb-4">
+                      <div className="grid grid-cols-[80px_1fr] items-start gap-3">
+                        <span className="text-gray-400 uppercase tracking-wider text-[10px] font-bold mt-0.5">Client</span>
+                        <span className="text-gray-800 font-medium text-xs sm:text-sm">{project.client ?? "Private Client"}</span>
+                      </div>
+                      <div className="grid grid-cols-[80px_1fr] items-start gap-3">
+                        <span className="text-gray-400 uppercase tracking-wider text-[10px] font-bold mt-0.5">Location</span>
+                        <span className="text-gray-800 font-medium text-xs sm:text-sm">{project.location}</span>
+                      </div>
+                    </div>
+                    <p className="text-sm text-gray-700 line-clamp-2 mb-4">{project.description}</p>
                     {isAdmin && (
-                      <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="mt-auto grid grid-cols-3 gap-2">
                         <button
-                          title="Move Left"
-                          disabled={detailsImageIndex === 0 || saving}
-                          onClick={() => handleMoveImage(detailsProject.id, detailsImageIndex, detailsImageIndex - 1)}
-                          className="bg-black/60 text-white p-2 rounded-lg hover:bg-black/80 disabled:opacity-30"
+                          type="button"
+                          className="bg-gray-900 text-white px-3 py-2 rounded text-sm hover:bg-gray-800"
+                          onClick={() => openEditProject(project.id)}
                         >
-                          ←
+                          Edit
                         </button>
                         <button
-                          title="Move Right"
-                          disabled={detailsImageIndex === detailsProject.images.length - 1 || saving}
-                          onClick={() => handleMoveImage(detailsProject.id, detailsImageIndex, detailsImageIndex + 1)}
-                          className="bg-black/60 text-white p-2 rounded-lg hover:bg-black/80 disabled:opacity-30"
+                          type="button"
+                          disabled={uploading}
+                          className="bg-gray-50 text-gray-700 px-3 py-2 rounded text-sm hover:bg-gray-100 disabled:opacity-60"
+                          onClick={() => handleUploadImage(project.id)}
                         >
-                          →
+                          {uploading && uploadProjectId === project.id ? "..." : "Upload"}
                         </button>
                         <button
-                          title="Delete Image"
-                          disabled={saving}
-                          onClick={() => handleDeleteImage(detailsProject.id, detailsImageIndex)}
-                          className="bg-red-600/80 text-white p-2 rounded-lg hover:bg-red-600 disabled:opacity-30"
+                          type="button"
+                          className="bg-red-50 text-red-700 px-3 py-2 rounded text-sm hover:bg-red-100"
+                          onClick={() => handleDeleteProject(project.id)}
                         >
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-4v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                          </svg>
+                          Delete
                         </button>
+                        {uploading && uploadProjectId === project.id && (
+                          <button
+                            type="button"
+                            className="col-span-3 bg-red-50 text-red-700 px-3 py-2 rounded text-sm hover:bg-red-100 mt-1"
+                            onClick={() => setUploadCancel(true)}
+                          >
+                            Cancel Upload
+                          </button>
+                        )}
                       </div>
                     )}
                   </div>
-
-                  <div className="flex items-center justify-between">
-                    <button
-                      type="button"
-                      className="flex items-center px-4 py-2 text-sm font-medium rounded-lg border bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                      disabled={detailsImageIndex <= 0}
-                      onClick={() => setDetailsImageIndex((i) => Math.max(0, i - 1))}
-                    >
-                      ← Previous
-                    </button>
-                    <div className="text-sm font-semibold text-gray-700 bg-gray-100 px-3 py-1 rounded-full">
-                      {detailsImageIndex + 1} / {detailsProject.images.length}
-                    </div>
-                    <button
-                      type="button"
-                      className="flex items-center px-4 py-2 text-sm font-medium rounded-lg border bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                      disabled={detailsImageIndex >= detailsProject.images.length - 1}
-                      onClick={() => setDetailsImageIndex((i) => Math.min(detailsProject.images.length - 1, i + 1))}
-                    >
-                      Next →
-                    </button>
-                  </div>
-
-                  <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
-                    {detailsProject.images.map((src, idx) => (
-                      <button
-                        key={`${detailsProject.id}-thumb-${idx}`}
-                        type="button"
-                        className={`relative h-16 w-16 sm:h-20 sm:w-24 shrink-0 overflow-hidden rounded-lg border-2 transition-all ${idx === detailsImageIndex ? "border-blue-600 scale-105 shadow-md" : "border-transparent opacity-70 hover:opacity-100"
-                          }`}
-                        onClick={() => setDetailsImageIndex(idx)}
-                      >
-                        <Image src={src} alt="thumbnail" fill className="object-cover" />
-                      </button>
-                    ))}
-                  </div>
-
-                  <div className="mt-2 text-gray-700 text-sm sm:text-base leading-relaxed">
-                    {detailsProject.description}
-                  </div>
                 </div>
-              )}
+              ))}
+            </div>
+          )}
+        </div>
+
+        {projects.length === 0 && (
+          <div className="text-center py-12">
+            <div className="text-gray-400 text-6xl mb-4">🏗️</div>
+            <h3 className="text-lg font-medium text-gray-900 mb-2">No projects yet</h3>
+            <p className="text-gray-600 mb-4">Start by adding your first construction project</p>
+            {isAdmin && (
+              <button
+                onClick={openAddProject}
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+              >
+                Add Project
+              </button>
+            )}
+          </div>
+        )}
+
+        {/* Admin hidden upload input */}
+        {isAdmin && (
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            multiple
+            className="hidden"
+            onChange={handleFileChange}
+          />
+        )}
+
+        {/* Details modal with image gallery */}
+        {detailsOpen && detailsProject && (
+          <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setDetailsOpen(false)} />
+            <div className="relative w-full sm:max-w-4xl bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl border overflow-hidden transition-all duration-300 transform">
+              <div className="flex items-start justify-between gap-4 p-4 sm:p-5 border-b bg-gray-50">
+                <div>
+                  <div className="text-lg font-bold text-gray-900">{detailsProject.name}</div>
+                  <div className="text-sm text-gray-600">{detailsProject.location} • {detailsProject.type}</div>
+                </div>
+                <button
+                  type="button"
+                  className="p-2 rounded-full hover:bg-gray-200 transition-colors"
+                  onClick={() => setDetailsOpen(false)}
+                >
+                  <svg className="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="p-4 sm:p-6 lg:p-8">
+                {detailsProject.images.length === 0 ? (
+                  <div className="text-center py-12 text-gray-500 bg-gray-50 rounded-xl">
+                    No images available for this project.
+                  </div>
+                ) : (
+                  <div className="grid gap-6">
+                    <div className="relative w-full aspect-[16/9] bg-gray-900 rounded-xl overflow-hidden shadow-inner group">
+                      <Image
+                        src={detailsProject.images[Math.min(detailsImageIndex, detailsProject.images.length - 1)]}
+                        alt={`${detailsProject.name} image`}
+                        fill
+                        className="object-contain"
+                        sizes="(max-width: 1024px) 100vw, 1024px"
+                        unoptimized={detailsProject.images[Math.min(detailsImageIndex, detailsProject.images.length - 1)].includes("vercel-storage.com")}
+                      />
+
+                      {isAdmin && (
+                        <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <button
+                            title="Move Left"
+                            disabled={detailsImageIndex === 0 || saving}
+                            onClick={() => handleMoveImage(detailsProject.id, detailsImageIndex, detailsImageIndex - 1)}
+                            className="bg-black/60 text-white p-2 rounded-lg hover:bg-black/80 disabled:opacity-30"
+                          >
+                            ←
+                          </button>
+                          <button
+                            title="Move Right"
+                            disabled={detailsImageIndex === detailsProject.images.length - 1 || saving}
+                            onClick={() => handleMoveImage(detailsProject.id, detailsImageIndex, detailsImageIndex + 1)}
+                            className="bg-black/60 text-white p-2 rounded-lg hover:bg-black/80 disabled:opacity-30"
+                          >
+                            →
+                          </button>
+                          <button
+                            title="Delete Image"
+                            disabled={saving}
+                            onClick={() => handleDeleteImage(detailsProject.id, detailsImageIndex)}
+                            className="bg-red-600/80 text-white p-2 rounded-lg hover:bg-red-600 disabled:opacity-30"
+                          >
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-4v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                          </button>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <button
+                        type="button"
+                        className="flex items-center px-4 py-2 text-sm font-medium rounded-lg border bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        disabled={detailsImageIndex <= 0}
+                        onClick={() => setDetailsImageIndex((i) => Math.max(0, i - 1))}
+                      >
+                        ← Previous
+                      </button>
+                      <div className="text-sm font-semibold text-gray-700 bg-gray-100 px-3 py-1 rounded-full">
+                        {detailsImageIndex + 1} / {detailsProject.images.length}
+                      </div>
+                      <button
+                        type="button"
+                        className="flex items-center px-4 py-2 text-sm font-medium rounded-lg border bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        disabled={detailsImageIndex >= detailsProject.images.length - 1}
+                        onClick={() => setDetailsImageIndex((i) => Math.min(detailsProject.images.length - 1, i + 1))}
+                      >
+                        Next →
+                      </button>
+                    </div>
+
+                    <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                      {detailsProject.images.map((src, idx) => (
+                        <button
+                          key={`${detailsProject.id}-thumb-${idx}`}
+                          type="button"
+                          className={`relative h-16 w-16 sm:h-20 sm:w-24 shrink-0 overflow-hidden rounded-lg border-2 transition-all ${idx === detailsImageIndex ? "border-blue-600 scale-105 shadow-md" : "border-transparent opacity-70 hover:opacity-100"
+                            }`}
+                          onClick={() => setDetailsImageIndex(idx)}
+                        >
+                          <Image src={src} alt="thumbnail" fill className="object-cover" />
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="mt-2 text-gray-700 text-sm sm:text-base leading-relaxed">
+                      {detailsProject.description}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </main>
     </div>
   );
 }
