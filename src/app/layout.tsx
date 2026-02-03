@@ -16,27 +16,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-dvh bg-gradient-to-br from-slate-50 via-white to-sky-50 text-gray-900 antialiased">
         <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
           <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 h-16">
-            <div className="flex items-center gap-4">
-              <Link href="/" className="flex items-center gap-2 py-1.5 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-300 group -ml-2 px-2">
+            <div className="flex items-center gap-3">
+              <Link href="/" className="flex items-center gap-2 py-1.5 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-300 group -ml-2 px-2 shrink-0">
                 <div className="relative flex items-center bg-gradient-to-br from-blue-600 to-indigo-600 text-white p-2 rounded-lg shadow-sm group-hover:shadow-md transition-shadow">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
                   </svg>
                   <div className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-yellow-400 rounded-full animate-pulse border-2 border-white"></div>
                 </div>
-                <HomeLogo className="h-10 sm:h-12 w-auto" />
+                <HomeLogo className="h-8 sm:h-12 w-auto" />
               </Link>
-              <div className="flex flex-col border-l pl-4 ml-1">
-                <span className="text-[10px] uppercase tracking-wider font-extrabold text-blue-600 block leading-none">GSTIN</span>
-                <span className="text-[10px] sm:text-xs font-mono font-bold text-gray-900">Pending...</span>
+              <div className="flex flex-col border-l-2 border-blue-100 pl-3 ml-1 shrink-0 bg-blue-50/50 py-1 pr-2 rounded-r-lg">
+                <span className="text-[9px] uppercase tracking-tighter font-black text-blue-700 block leading-none">GSTIN</span>
+                <span className="text-[10px] sm:text-xs font-mono font-black text-gray-900 leading-none mt-0.5">PENDING...</span>
               </div>
             </div>
-            <nav className="hidden sm:flex items-center gap-4 sm:gap-6 text-sm">
-              <Link href="/services" className="hover:text-blue-600">Services</Link>
-              <Link href="/journey" className="hover:text-blue-600">Your Journey</Link>
-              <Link href="/team" className="hover:text-blue-600">Team</Link>
-              <Link href="/projects" className="hover:text-blue-600">Projects</Link>
-              <Link href="/admin" className="px-3 py-1.5 rounded bg-gray-900 text-white hover:bg-gray-800">Admin</Link>
+            <nav className="hidden lg:flex items-center gap-4 lg:gap-8 text-sm font-semibold">
+              <Link href="/services" className="hover:text-blue-600 transition-colors">Services</Link>
+              <Link href="/boq" className="hover:text-blue-600 transition-colors">BOQ Calculator</Link>
+              <Link href="/team" className="hover:text-blue-600 transition-colors">Team</Link>
+              <Link href="/projects" className="hover:text-blue-600 transition-colors">Projects</Link>
+              <Link href="/admin" className="px-4 py-2 rounded-full border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-all">Admin</Link>
             </nav>
             <MobileNav />
           </div>
