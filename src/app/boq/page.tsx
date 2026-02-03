@@ -94,7 +94,7 @@ export default function BOQPage() {
   ) => {
     const newCategories = [...categories];
     const item = newCategories[categoryIndex].items[itemIndex];
-    
+
     if (field === 'quantity') {
       item.quantity = Number(value);
       item.amount = item.quantity * item.rate;
@@ -110,12 +110,12 @@ export default function BOQPage() {
     } else if (field === 'category') {
       item.category = String(value);
     }
-    
+
     // Recalculate category subtotal
     newCategories[categoryIndex].subtotal = newCategories[categoryIndex].items.reduce(
       (sum, item) => sum + item.amount, 0
     );
-    
+
     setCategories(newCategories);
   };
 
@@ -170,8 +170,8 @@ export default function BOQPage() {
               <p className="text-gray-600 mt-1">Construction cost estimation and quantity calculation</p>
             </div>
             <div className="flex gap-3">
-              <Link href="/" className="text-gray-600 hover:text-gray-900">
-                ← Back to Home
+              <Link href="/" className="text-gray-400 hover:text-gray-900 text-2xl transition-colors bg-white/50 p-2 rounded-full hover:shadow-sm" aria-label="Back to Home">
+                ←
               </Link>
               <button
                 onClick={printBOQ}
@@ -194,7 +194,7 @@ export default function BOQPage() {
               <input
                 type="text"
                 value={projectInfo.projectName}
-                onChange={(e) => setProjectInfo({...projectInfo, projectName: e.target.value})}
+                onChange={(e) => setProjectInfo({ ...projectInfo, projectName: e.target.value })}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2"
                 placeholder="Enter project name"
               />
@@ -204,7 +204,7 @@ export default function BOQPage() {
               <input
                 type="text"
                 value={projectInfo.location}
-                onChange={(e) => setProjectInfo({...projectInfo, location: e.target.value})}
+                onChange={(e) => setProjectInfo({ ...projectInfo, location: e.target.value })}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2"
                 placeholder="Enter location"
               />
@@ -214,7 +214,7 @@ export default function BOQPage() {
               <input
                 type="text"
                 value={projectInfo.client}
-                onChange={(e) => setProjectInfo({...projectInfo, client: e.target.value})}
+                onChange={(e) => setProjectInfo({ ...projectInfo, client: e.target.value })}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2"
                 placeholder="Enter client name"
               />
@@ -224,7 +224,7 @@ export default function BOQPage() {
               <input
                 type="date"
                 value={projectInfo.date}
-                onChange={(e) => setProjectInfo({...projectInfo, date: e.target.value})}
+                onChange={(e) => setProjectInfo({ ...projectInfo, date: e.target.value })}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2"
               />
             </div>
@@ -336,7 +336,7 @@ export default function BOQPage() {
               </div>
             </div>
           </div>
-          
+
           <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-gray-50 p-4 rounded-lg">
               <div className="text-sm text-gray-600">Contingency (5%)</div>

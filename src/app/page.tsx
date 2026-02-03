@@ -9,9 +9,9 @@ export default function Home() {
         <HeroSlideshow />
         <div className="absolute inset-0 flex items-center z-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 text-white w-full">
-            <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold text-white leading-tight mb-2">Arivu Homes</h1>
-            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-2 font-medium max-w-3xl">• Building Dreams with Precision • Crafting Excellence Since Day One</p>
-            <p className="text-xs sm:text-sm md:text-base text-white/80 max-w-2xl">End-to-end construction, architectural design, structural engineering, and project management services in Bangalore.</p>
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold text-white leading-tight mb-2">Arivu Homes</h1>
+            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-2 font-medium max-w-3xl leading-snug">• Building Dreams with Precision<br className="sm:hidden" /> • Crafting Excellence Since Day One</p>
+            <p className="text-xs sm:text-sm md:text-base text-white/80 max-w-2xl leading-relaxed">End-to-end construction, architectural design, structural engineering, and project management services in Bangalore.</p>
             <div className="mt-3 flex flex-col sm:flex-row flex-wrap gap-1.5 sm:gap-6 text-sm sm:text-base">
               <p className="flex items-center gap-2">
                 <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur text-xs sm:text-sm">Managing Partner:</span>
@@ -45,36 +45,36 @@ export default function Home() {
       </section>
 
       {/* Quick Access Section */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
-        <div className="bg-white rounded-[2.5rem] p-8 sm:p-14 shadow-xl border border-gray-100 flex flex-col">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 tracking-tight uppercase">Quick Access</h2>
-            <div className="w-20 h-1.5 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-24">
+        <div className="bg-white rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-14 shadow-xl border border-gray-100 flex flex-col">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-xl sm:text-4xl font-black text-gray-900 tracking-tight uppercase">Quick Access</h2>
+            <div className="w-16 sm:w-20 h-1 sm:h-1.5 bg-blue-600 mx-auto mt-3 rounded-full"></div>
           </div>
-          <div className="grid gap-8 md:grid-cols-3">
-            <Link href="/projects" className="group flex flex-col h-full rounded-[2rem] p-8 bg-slate-50 border border-transparent hover:border-emerald-200 hover:bg-white hover:shadow-2xl transition-all duration-500">
-              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm group-hover:scale-110 transition-transform duration-500">🏗️</div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-emerald-700 transition-colors">Current Projects</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">Track ongoing developments and real-time updates across Bangalore.</p>
-              <div className="flex items-center text-emerald-600 font-bold text-xs uppercase tracking-widest group-hover:translate-x-2 transition-transform">
+          <div className="grid gap-4 sm:gap-8 md:grid-cols-3">
+            <Link href="/projects" className="group flex flex-col h-full rounded-2xl sm:rounded-[2rem] p-6 sm:p-8 bg-slate-50 border border-transparent hover:border-emerald-200 hover:bg-white hover:shadow-2xl transition-all duration-500">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-6 shadow-sm group-hover:scale-110 transition-transform duration-500">🏗️</div>
+              <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-900 group-hover:text-emerald-700 transition-colors">Current Projects</h3>
+              <p className="text-gray-600 text-sm leading-relaxed mb-4 sm:mb-8 flex-grow">Track ongoing developments across Bangalore.</p>
+              <div className="flex items-center text-emerald-600 font-bold text-[10px] sm:text-xs uppercase tracking-widest group-hover:translate-x-2 transition-transform">
                 View Projects →
               </div>
             </Link>
 
-            <Link href="/journey" className="group flex flex-col h-full rounded-[2rem] p-8 bg-slate-50 border border-transparent hover:border-blue-200 hover:bg-white hover:shadow-2xl transition-all duration-500">
-              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm group-hover:scale-110 transition-transform duration-500">🗺️</div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-blue-700 transition-colors">Your Journey</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">Explore our meticulous step-by-step process of building your dream home.</p>
-              <div className="flex items-center text-blue-600 font-bold text-xs uppercase tracking-widest group-hover:translate-x-2 transition-transform">
+            <Link href="/journey" className="group flex flex-col h-full rounded-2xl sm:rounded-[2rem] p-6 sm:p-8 bg-slate-50 border border-transparent hover:border-blue-200 hover:bg-white hover:shadow-2xl transition-all duration-500">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-6 shadow-sm group-hover:scale-110 transition-transform duration-500">🗺️</div>
+              <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-900 group-hover:text-blue-700 transition-colors">Your Journey</h3>
+              <p className="text-gray-600 text-sm leading-relaxed mb-4 sm:mb-8 flex-grow">Our step-by-step process of building your dream home.</p>
+              <div className="flex items-center text-blue-600 font-bold text-[10px] sm:text-xs uppercase tracking-widest group-hover:translate-x-2 transition-transform">
                 Explore Journey →
               </div>
             </Link>
 
-            <Link href="/team" className="group flex flex-col h-full rounded-[2rem] p-8 bg-slate-50 border border-transparent hover:border-indigo-200 hover:bg-white hover:shadow-2xl transition-all duration-500">
-              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm group-hover:scale-110 transition-transform duration-500">👥</div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-indigo-700 transition-colors">Meet Our Team</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">Learn about the experienced professionals crafting your vision into reality.</p>
-              <div className="flex items-center text-indigo-600 font-bold text-xs uppercase tracking-widest group-hover:translate-x-2 transition-transform">
+            <Link href="/team" className="group flex flex-col h-full rounded-2xl sm:rounded-[2rem] p-6 sm:p-8 bg-slate-50 border border-transparent hover:border-indigo-200 hover:bg-white hover:shadow-2xl transition-all duration-500">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-6 shadow-sm group-hover:scale-110 transition-transform duration-500">👥</div>
+              <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-900 group-hover:text-indigo-700 transition-colors">Meet Our Team</h3>
+              <p className="text-gray-600 text-sm leading-relaxed mb-4 sm:mb-8 flex-grow">Experienced professionals crafting your vision.</p>
+              <div className="flex items-center text-indigo-600 font-bold text-[10px] sm:text-xs uppercase tracking-widest group-hover:translate-x-2 transition-transform">
                 View Team →
               </div>
             </Link>
@@ -82,7 +82,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10 grid gap-3 sm:gap-6 md:grid-cols-3">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-10 grid gap-3 sm:gap-6 md:grid-cols-3">
         {[
           { name: 'Residential Construction', desc: 'Villas, apartments, turnkey builds', slug: 'residential-construction' },
           { name: 'Commercial Construction', desc: 'Offices, retail, industrial', slug: 'commercial-construction' },
@@ -109,36 +109,42 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="bg-blue-50 py-10 sm:py-16 mb-8 sm:mb-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-10">
+      <section className="bg-blue-50 py-8 sm:py-16 mb-8 sm:mb-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8 sm:mb-10">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">What Our Clients Say</h2>
-            <p className="text-gray-600 mt-2">Stories of trust and satisfaction from our valued partners.</p>
+            <p className="text-gray-600 mt-2 text-sm sm:text-base">Stories of trust and satisfaction from our valued partners.</p>
           </div>
           <TestimonialSlideshow />
         </div>
       </section>
 
-      <section id="contact" className="max-w-6xl mx-auto px-6 pb-8 sm:pb-16">
-        <div className="bg-gradient-to-br from-slate-50 to-gray-100 rounded-2xl border-2 border-slate-200 p-8 shadow-lg">
+      <section id="contact" className="max-w-6xl mx-auto px-4 sm:px-6 pb-6 sm:pb-16">
+        <div className="bg-gradient-to-br from-slate-50 to-gray-100 rounded-2xl border-2 border-slate-200 p-6 sm:p-8 shadow-lg">
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Get In Touch</h2>
-            <p className="text-gray-600 mb-6">Ready to start your construction project? Contact our team today.</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <div className="text-2xl mb-3">📍</div>
-                <h3 className="font-semibold text-gray-900 mb-2">Location</h3>
-                <p className="text-gray-600">Bangalore, Karnataka</p>
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">Get In Touch</h2>
+            <p className="text-gray-600 mb-6 text-sm sm:text-base">Ready to start your construction project? Contact our team today.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 text-left sm:text-center">
+              <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md flex items-center sm:block gap-4">
+                <div className="text-2xl mb-0 sm:mb-3">📍</div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-0.5 sm:mb-2 text-sm sm:text-base">Location</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm">Bangalore, Karnataka</p>
+                </div>
               </div>
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <div className="text-2xl mb-3">📞</div>
-                <h3 className="font-semibold text-gray-900 mb-2">Phone</h3>
-                <p className="text-gray-600">+91-6361867464</p>
+              <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md flex items-center sm:block gap-4">
+                <div className="text-2xl mb-0 sm:mb-3">📞</div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-0.5 sm:mb-2 text-sm sm:text-base">Phone</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm">+91-6361867464</p>
+                </div>
               </div>
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <div className="text-2xl mb-3">✉️</div>
-                <h3 className="font-semibold text-gray-900 mb-2">Email</h3>
-                <p className="text-gray-600">contact.arivuhomes@gmail.com</p>
+              <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md flex items-center sm:block gap-4">
+                <div className="text-2xl mb-0 sm:mb-3">✉️</div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-0.5 sm:mb-2 text-sm sm:text-base">Email</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm truncate">contact.arivuhomes@gmail.com</p>
+                </div>
               </div>
             </div>
           </div>
