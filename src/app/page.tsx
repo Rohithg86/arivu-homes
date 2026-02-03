@@ -45,32 +45,32 @@ export default function Home() {
       </section>
 
       {/* Quick Access Section */}
-      <section className="relative z-30 max-w-6xl mx-auto px-4 sm:px-6 -mt-10 sm:-mt-16 mb-12 sm:mb-20">
-        <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-2xl border border-gray-100">
-          <h2 className="text-xl sm:text-2xl font-bold text-center mb-8 text-gray-900">Quick Access</h2>
-          <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
-            <Link href="/projects" className="group relative overflow-hidden rounded-2xl p-6 bg-gradient-to-b from-emerald-50 to-white border border-emerald-100/50 hover:shadow-xl transition-all duration-500">
-              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-500">🏗️</div>
+      <section className="relative z-30 max-w-6xl mx-auto px-4 sm:px-6 -mt-8 sm:-mt-12 mb-12 sm:mb-20">
+        <div className="bg-white/95 backdrop-blur-sm rounded-[2rem] p-6 sm:p-10 shadow-2xl border border-gray-100/50">
+          <h2 className="text-xl sm:text-2xl font-bold text-center mb-10 text-gray-900 tracking-tight">Quick Access</h2>
+          <div className="grid gap-6 sm:gap-8 md:grid-cols-3">
+            <Link href="/projects" className="group relative rounded-2xl p-7 bg-gradient-to-br from-emerald-50/50 to-white border border-emerald-100/30 hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+              <div className="text-4xl mb-5 group-hover:scale-110 transition-transform duration-500">🏗️</div>
               <h3 className="text-xl font-bold mb-2 group-hover:text-emerald-700 transition-colors">Current Projects</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-4">Track ongoing developments and updates across Bangalore.</p>
+              <p className="text-gray-600 text-sm leading-relaxed mb-6">Track ongoing developments and real-time updates across Bangalore.</p>
               <div className="flex items-center text-emerald-600 font-bold text-xs uppercase tracking-widest group-hover:translate-x-2 transition-transform">
                 View Projects →
               </div>
             </Link>
 
-            <Link href="/journey" className="group relative overflow-hidden rounded-2xl p-6 bg-gradient-to-b from-blue-50 to-white border border-blue-100/50 hover:shadow-xl transition-all duration-500">
-              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-500">🗺️</div>
+            <Link href="/journey" className="group relative rounded-2xl p-7 bg-gradient-to-br from-blue-50/50 to-white border border-blue-100/30 hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+              <div className="text-4xl mb-5 group-hover:scale-110 transition-transform duration-500">🗺️</div>
               <h3 className="text-xl font-bold mb-2 group-hover:text-blue-700 transition-colors">Your Journey</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-4">Discover the step-by-step process of building with us.</p>
+              <p className="text-gray-600 text-sm leading-relaxed mb-6">Explore our meticulous step-by-step process of building your dream home.</p>
               <div className="flex items-center text-blue-600 font-bold text-xs uppercase tracking-widest group-hover:translate-x-2 transition-transform">
-                Meet Arivu →
+                Explore Journey →
               </div>
             </Link>
 
-            <Link href="/team" className="group relative overflow-hidden rounded-2xl p-6 bg-gradient-to-b from-indigo-50 to-white border border-indigo-100/50 hover:shadow-xl transition-all duration-500">
-              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-500">👥</div>
+            <Link href="/team" className="group relative rounded-2xl p-7 bg-gradient-to-br from-indigo-50/50 to-white border border-indigo-100/30 hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+              <div className="text-4xl mb-5 group-hover:scale-110 transition-transform duration-500">👥</div>
               <h3 className="text-xl font-bold mb-2 group-hover:text-indigo-700 transition-colors">Meet Our Team</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-4">Learn about the experts crafting your vision into reality.</p>
+              <p className="text-gray-600 text-sm leading-relaxed mb-6">Learn about the experienced professionals crafting your architectural vision.</p>
               <div className="flex items-center text-indigo-600 font-bold text-xs uppercase tracking-widest group-hover:translate-x-2 transition-transform">
                 View Team →
               </div>
