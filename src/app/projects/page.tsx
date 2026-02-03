@@ -70,7 +70,7 @@ export default function ProjectsPage() {
   }
 
   useEffect(() => {
-    (async () => {
+    try {
       const [projectsRes, meRes] = await Promise.all([
         fetch("/api/projects", { cache: "no-store" }),
         fetch("/api/admin/me"),
@@ -78,7 +78,7 @@ export default function ProjectsPage() {
       if (projectsRes.ok) {
         const data = (await projectsRes.json()) as unknown as Array<Partial<Project>>;
         const normalized = data.map((p) => ({
-          id: Number(p.id),
+          id: Number(p.id || 0),
           name: String(p.name ?? ""),
           location: String(p.location ?? ""),
           client: (p.client ?? "") as string,
@@ -95,8 +95,13 @@ export default function ProjectsPage() {
       if (meRes.ok) {
         const me = (await meRes.json()) as { isAdmin: boolean };
         setIsAdmin(!!me.isAdmin);
+      } else {
+        setIsAdmin(false);
       }
-    })();
+    } catch (err) {
+      console.error("Auth check failed:", err);
+      setIsAdmin(false);
+    }
   }, []);
 
   // ESC key handler for modals
@@ -132,13 +137,20 @@ export default function ProjectsPage() {
 
     return (
       <div className="relative w-full h-48 bg-gray-100 cursor-pointer" onClick={() => openDetails(project.id, 0)}>
-        <Image
-          src={project.images[0]}
-          alt={project.name}
-          fill
-          className="object-cover"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        />
+        {project.images[0] && project.images[0].startsWith("http") ? (
+          <Image
+            src={project.images[0]}
+            alt={project.name}
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            unoptimized={project.images[0].includes("vercel-storage.com")}
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">
+            Broken Link
+          </div>
+        )}
         {project.images.length > 1 && (
           <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
             +{project.images.length - 1} more
