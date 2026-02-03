@@ -1,4 +1,7 @@
 import { HeroSlideshow } from "@/components/HeroSlideshow";
+import Link from "next/link";
+import { ContactWidget } from "@/components/ContactWidget";
+import Image from "next/image"; // Image is used in other sections too
 
 export default function Home() {
   return (
