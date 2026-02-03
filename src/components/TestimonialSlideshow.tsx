@@ -56,7 +56,7 @@ export function TestimonialSlideshow() {
                         transition={{ duration: 0.5 }}
                         className="text-center w-full"
                     >
-                        <div className="text-4xl sm:text-5xl text-blue-200 mb-4 font-serif">"</div>
+                        <div className="text-4xl sm:text-5xl text-blue-200 mb-4 font-serif">&quot;</div>
                         <p className="text-lg sm:text-xl md:text-2xl text-gray-800 font-medium leading-relaxed italic mb-6">
                             {TESTIMONIALS[index].text}
                         </p>
