@@ -363,6 +363,20 @@ export default function ProjectsPage() {
   const completedProjects = projects.filter((p) => p.status === "Completed");
   const detailsProject = detailsProjectId ? projects.find((p) => p.id === detailsProjectId) ?? null : null;
 
+  const handleDeleteProject = async (projectId: number) => {
+    if (!isAdmin) return;
+    if (!confirm("Are you sure you want to delete this project?")) return;
+
+    try {
+      const res = await fetch(`/api/projects?id=${projectId}`, { method: "DELETE" });
+      if (!res.ok) throw new Error("Delete failed");
+      await refreshProjects();
+      setSaveSuccess("Project deleted successfully.");
+    } catch {
+      setSaveError("Failed to delete project. Please try again.");
+    }
+  };
+
   async function signOut() {
     await fetch("/api/admin/logout", { method: "POST" });
     setIsAdmin(false);
@@ -380,16 +394,21 @@ export default function ProjectsPage() {
               <p className="text-gray-600 mt-1">Our ongoing projects in Bangalore</p>
             </div>
             <div className="flex gap-3 items-center flex-wrap justify-end">
-              <Link href="/" className="text-gray-600 hover:text-gray-900">
-                ← Back to Home
-              </Link>
               {isAdmin && (
-                <button
-                  onClick={signOut}
-                  className="px-4 py-2 text-sm rounded bg-gray-200 hover:bg-gray-300"
-                >
-                  Sign out
-                </button>
+                <>
+                  <button
+                    onClick={openAddProject}
+                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors shadow-sm text-sm font-medium"
+                  >
+                    + New Project
+                  </button>
+                  <button
+                    onClick={signOut}
+                    className="px-4 py-2 text-sm rounded bg-gray-200 hover:bg-gray-300 transition-colors"
+                  >
+                    Sign out
+                  </button>
+                </>
               )}
             </div>
           </div>
@@ -599,7 +618,7 @@ export default function ProjectsPage() {
                 </div>
 
                 {isAdmin && (
-                  <div className="mt-4 grid grid-cols-2 gap-2">
+                  <div className="mt-4 grid grid-cols-3 gap-2">
                     <button
                       type="button"
                       className="bg-gray-900 text-white px-3 py-2 rounded text-sm hover:bg-gray-800"
@@ -614,6 +633,13 @@ export default function ProjectsPage() {
                       onClick={() => handleUploadImage(project.id)}
                     >
                       {uploading && uploadProjectId === project.id ? "Uploading..." : "Upload Image(s)"}
+                    </button>
+                    <button
+                      type="button"
+                      className="bg-red-50 text-red-700 px-3 py-2 rounded text-sm hover:bg-red-100"
+                      onClick={() => handleDeleteProject(project.id)}
+                    >
+                      Delete
                     </button>
                     {uploading && uploadProjectId === project.id && (
                       <button
@@ -650,13 +676,13 @@ export default function ProjectsPage() {
                   </div>
                   <p className="text-sm text-gray-600">{project.location}</p>
                   {isAdmin && (
-                    <div className="mt-4 grid grid-cols-2 gap-2">
+                    <div className="mt-4 grid grid-cols-3 gap-2">
                       <button
                         type="button"
                         className="bg-gray-900 text-white px-3 py-2 rounded text-sm hover:bg-gray-800"
                         onClick={() => openEditProject(project.id)}
                       >
-                        Edit Project
+                        Edit
                       </button>
                       <button
                         type="button"
@@ -664,12 +690,19 @@ export default function ProjectsPage() {
                         className="bg-gray-50 text-gray-700 px-3 py-2 rounded text-sm hover:bg-gray-100 disabled:opacity-60"
                         onClick={() => handleUploadImage(project.id)}
                       >
-                        {uploading && uploadProjectId === project.id ? "Uploading..." : "Upload Image(s)"}
+                        {uploading && uploadProjectId === project.id ? "..." : "Upload"}
+                      </button>
+                      <button
+                        type="button"
+                        className="bg-red-50 text-red-700 px-3 py-2 rounded text-sm hover:bg-red-100"
+                        onClick={() => handleDeleteProject(project.id)}
+                      >
+                        Delete
                       </button>
                       {uploading && uploadProjectId === project.id && (
                         <button
                           type="button"
-                          className="col-span-2 bg-red-50 text-red-700 px-3 py-2 rounded text-sm hover:bg-red-100"
+                          className="col-span-3 bg-red-50 text-red-700 px-3 py-2 rounded text-sm hover:bg-red-100"
                           onClick={() => setUploadCancel(true)}
                         >
                           Cancel Upload
@@ -677,114 +710,126 @@ export default function ProjectsPage() {
                       )}
                     </div>
                   )}
-                </div>
+                  Cancel Upload
+                </button>
+                      )}
               </div>
-            ))}
-          </div>
-        )}
-
-        {projects.length === 0 && (
-          <div className="text-center py-12">
-            <div className="text-gray-400 text-6xl mb-4">🏗️</div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No projects yet</h3>
-            <p className="text-gray-600 mb-4">Start by adding your first construction project</p>
-            {isAdmin && (
-              <button
-                onClick={openAddProject}
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-              >
-                Add Project
-              </button>
             )}
           </div>
-        )}
-      </div>
-
-      {/* Single hidden file input for uploads (admin only) */}
-      {isAdmin && (
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="image/*"
-          multiple
-          className="hidden"
-          onChange={handleFileChange}
-        />
-      )}
-
-      {/* Details modal with full image gallery */}
-      {detailsOpen && detailsProject && (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
-          <div className="absolute inset-0 bg-black/60" onClick={() => setDetailsOpen(false)} onKeyDown={(e) => e.key === "Escape" && setDetailsOpen(false)} />
-          <div className="relative w-full sm:max-w-4xl bg-white rounded-t-2xl sm:rounded-2xl shadow-xl border overflow-hidden">
-            <div className="flex items-start justify-between gap-4 p-4 sm:p-5 border-b">
-              <div>
-                <div className="text-lg font-semibold">{detailsProject.name}</div>
-                <div className="text-sm text-gray-600">{detailsProject.location}</div>
               </div>
-              <button
-                type="button"
-                className="text-sm text-gray-500 hover:text-gray-900"
-                onClick={() => setDetailsOpen(false)}
-              >
-                Close
-              </button>
-            </div>
+            ))}
+    </div>
+  )
+}
 
-            <div className="p-4 sm:p-5">
-              {detailsProject.images.length === 0 ? (
-                <div className="text-sm text-gray-600">No images yet.</div>
-              ) : (
-                <div className="grid gap-4">
-                  <div className="relative w-full aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden">
-                    <Image
-                      src={detailsProject.images[Math.min(detailsImageIndex, detailsProject.images.length - 1)]}
-                      alt={`${detailsProject.name} image`}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between text-sm text-gray-600">
-                    <button
-                      type="button"
-                      className="px-3 py-1 rounded border hover:bg-gray-50 disabled:opacity-50"
-                      disabled={detailsImageIndex <= 0}
-                      onClick={() => setDetailsImageIndex((i) => Math.max(0, i - 1))}
-                    >
-                      Prev
-                    </button>
-                    <div>
-                      {detailsImageIndex + 1} / {detailsProject.images.length}
-                    </div>
-                    <button
-                      type="button"
-                      className="px-3 py-1 rounded border hover:bg-gray-50 disabled:opacity-50"
-                      disabled={detailsImageIndex >= detailsProject.images.length - 1}
-                      onClick={() => setDetailsImageIndex((i) => Math.min(detailsProject.images.length - 1, i + 1))}
-                    >
-                      Next
-                    </button>
-                  </div>
-                  <div className="flex gap-2 overflow-x-auto pb-1">
-                    {detailsProject.images.map((src, idx) => (
-                      <button
-                        key={`${detailsProject.id}-thumb-${idx}`}
-                        type="button"
-                        className={`relative h-14 w-20 flex-none overflow-hidden rounded border ${idx === detailsImageIndex ? "ring-2 ring-blue-600" : ""
-                          }`}
-                        onClick={() => setDetailsImageIndex(idx)}
-                        title={`Image ${idx + 1}`}
-                      >
-                        <Image src={src} alt={`${detailsProject.name} thumb ${idx + 1}`} fill className="object-cover" />
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+{
+  projects.length === 0 && (
+    <div className="text-center py-12">
+      <div className="text-gray-400 text-6xl mb-4">🏗️</div>
+      <h3 className="text-lg font-medium text-gray-900 mb-2">No projects yet</h3>
+      <p className="text-gray-600 mb-4">Start by adding your first construction project</p>
+      {isAdmin && (
+        <button
+          onClick={openAddProject}
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+        >
+          Add Project
+        </button>
       )}
     </div>
+  )
+}
+      </div >
+
+  {/* Single hidden file input for uploads (admin only) */ }
+{
+  isAdmin && (
+    <input
+      ref={fileInputRef}
+      type="file"
+      accept="image/*"
+      multiple
+      className="hidden"
+      onChange={handleFileChange}
+    />
+  )
+}
+
+{/* Details modal with full image gallery */ }
+{
+  detailsOpen && detailsProject && (
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
+      <div className="absolute inset-0 bg-black/60" onClick={() => setDetailsOpen(false)} onKeyDown={(e) => e.key === "Escape" && setDetailsOpen(false)} />
+      <div className="relative w-full sm:max-w-4xl bg-white rounded-t-2xl sm:rounded-2xl shadow-xl border overflow-hidden">
+        <div className="flex items-start justify-between gap-4 p-4 sm:p-5 border-b">
+          <div>
+            <div className="text-lg font-semibold">{detailsProject.name}</div>
+            <div className="text-sm text-gray-600">{detailsProject.location}</div>
+          </div>
+          <button
+            type="button"
+            className="text-sm text-gray-500 hover:text-gray-900"
+            onClick={() => setDetailsOpen(false)}
+          >
+            Close
+          </button>
+        </div>
+
+        <div className="p-4 sm:p-5">
+          {detailsProject.images.length === 0 ? (
+            <div className="text-sm text-gray-600">No images yet.</div>
+          ) : (
+            <div className="grid gap-4">
+              <div className="relative w-full aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden">
+                <Image
+                  src={detailsProject.images[Math.min(detailsImageIndex, detailsProject.images.length - 1)]}
+                  alt={`${detailsProject.name} image`}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="flex items-center justify-between text-sm text-gray-600">
+                <button
+                  type="button"
+                  className="px-3 py-1 rounded border hover:bg-gray-50 disabled:opacity-50"
+                  disabled={detailsImageIndex <= 0}
+                  onClick={() => setDetailsImageIndex((i) => Math.max(0, i - 1))}
+                >
+                  Prev
+                </button>
+                <div>
+                  {detailsImageIndex + 1} / {detailsProject.images.length}
+                </div>
+                <button
+                  type="button"
+                  className="px-3 py-1 rounded border hover:bg-gray-50 disabled:opacity-50"
+                  disabled={detailsImageIndex >= detailsProject.images.length - 1}
+                  onClick={() => setDetailsImageIndex((i) => Math.min(detailsProject.images.length - 1, i + 1))}
+                >
+                  Next
+                </button>
+              </div>
+              <div className="flex gap-2 overflow-x-auto pb-1">
+                {detailsProject.images.map((src, idx) => (
+                  <button
+                    key={`${detailsProject.id}-thumb-${idx}`}
+                    type="button"
+                    className={`relative h-14 w-20 flex-none overflow-hidden rounded border ${idx === detailsImageIndex ? "ring-2 ring-blue-600" : ""
+                      }`}
+                    onClick={() => setDetailsImageIndex(idx)}
+                    title={`Image ${idx + 1}`}
+                  >
+                    <Image src={src} alt={`${detailsProject.name} thumb ${idx + 1}`} fill className="object-cover" />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+    </div >
   );
 }
