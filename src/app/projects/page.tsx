@@ -398,27 +398,12 @@ export default function ProjectsPage() {
                 ← Back to Home
               </Link>
               {isAdmin && (
-                <>
-                  <button
-                    type="button"
-                    onClick={openAddProject}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-                  >
-                    Add New Project
-                  </button>
-                  <button
-                    type="button"
-                    onClick={signOut}
-                    className="border border-gray-300 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-50"
-                  >
-                    Sign out
-                  </button>
-                </>
-              )}
-              {!isAdmin && (
-                <Link href="/admin-login" className="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800">
-                  Admin Login
-                </Link>
+                <button
+                  onClick={signOut}
+                  className="px-4 py-2 text-sm rounded bg-gray-200 hover:bg-gray-300"
+                >
+                  Sign out
+                </button>
               )}
             </div>
           </div>

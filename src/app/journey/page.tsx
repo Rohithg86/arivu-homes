@@ -101,9 +101,9 @@ export default function JourneyPage() {
         </Link>
       </div>
 
-      {/* Video: minimal height, ultra-wide */}
-      <div className="mt-5 sm:mt-6 max-w-2xl mx-auto shadow-lg rounded-lg overflow-hidden border bg-black">
-        <div className="relative w-full" style={{ aspectRatio: '48/9' }}>
+      {/* Video: extremely minimal height */}
+      <div className="mt-5 sm:mt-6 max-w-3xl mx-auto shadow-md rounded-md overflow-hidden border bg-black">
+        <div className="relative w-full" style={{ aspectRatio: '60/9' }}>
           <video
             ref={videoRef}
             className="block w-full h-auto"
