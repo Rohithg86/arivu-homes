@@ -125,18 +125,18 @@ export default function JourneyPage() {
               </div>
             </div>
 
-            <div className="hidden md:block md:col-span-4 rounded-2xl bg-slate-50 border border-slate-100 p-6">
-              <div className="h-full flex flex-col justify-center items-center text-center space-y-2">
-                <div className="text-blue-200">
-                  <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
-                    {i === 0 && <path d="M11 20H4a2 2 0 01-2-2V5a2 2 0 012-2h16a2 2 0 012 2v6h-2V5H4v13h7v2m9-10l-1.41-1.41L12.58 14.59l2.83 2.82L20 10m-2 10h4v-2h-4v2z" />}
-                    {i === 1 && <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z" />}
-                    {i === 2 && <path d="M12 3L2 12h3v8h14v-8h3L12 3zm0 4.19l7 6.31v1.5H5v-1.5l7-6.31zM9 18v-5h6v5H9z" />}
-                    {i === 3 && <path d="M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm2-2h-2V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2z" />}
-                    {i === 4 && <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z" />}
-                  </svg>
+            <div className="hidden md:block md:col-span-4 rounded-2xl bg-white border border-slate-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+              <div className="relative h-full w-full min-h-[200px]">
+                <Image
+                  src={`/images/journey/step-${i + 1}.png`}
+                  alt="Arivu Standard"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-4">
+                  <span className="text-[10px] font-bold text-white uppercase tracking-widest opacity-80 mb-1">Arivu Standard</span>
+                  <span className="text-white font-bold text-xs">Excellence by Design</span>
                 </div>
-                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Arivu Standard</span>
               </div>
             </div>
           </div>
