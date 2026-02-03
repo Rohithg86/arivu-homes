@@ -80,11 +80,14 @@ export default function JourneyPage() {
         </Link>
       </div>
 
-      <div className="space-y-8">
+      <div className="relative space-y-12">
+        {/* Vertical Timeline Line */}
+        <div className="absolute left-6 md:left-[2.75rem] top-0 bottom-0 w-1 bg-gradient-to-b from-blue-600 via-indigo-600 to-transparent hidden sm:block opacity-20 rounded-full" />
+
         {steps.map((s, i) => (
-          <div key={i} className="relative grid md:grid-cols-12 gap-6 bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow">
-            <div className="md:col-span-1">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-lg">
+          <div key={i} className="relative grid md:grid-cols-12 gap-6 bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow z-10">
+            <div className="md:col-span-1 flex flex-col items-center">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shrink-0">
                 {i + 1}
               </div>
             </div>
