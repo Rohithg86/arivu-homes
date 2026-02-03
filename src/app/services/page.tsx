@@ -13,8 +13,15 @@ const services = [
 export default function ServicesPage() {
   return (
     <main className="max-w-6xl mx-auto px-6 py-12">
-      <h1 className="text-3xl font-bold">Our Services</h1>
-      <p className="text-gray-600 mt-2">Explore our end-to-end offerings across design, engineering, and construction.</p>
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-8">
+        <div>
+          <h1 className="text-3xl font-bold">Our Services</h1>
+          <p className="text-gray-600 mt-2">Explore our end-to-end offerings across design, engineering, and construction.</p>
+        </div>
+        <Link href="/" className="text-gray-400 hover:text-gray-900 text-2xl transition-colors bg-white/50 p-2 rounded-full hover:shadow-sm" aria-label="Back to Home">
+          ←
+        </Link>
+      </div>
       <div className="mt-8 grid gap-6 md:grid-cols-2">
         {services.map(s => (
           <Link key={s.slug} href={`/services/${s.slug}`} className="rounded-2xl border bg-white/70 backdrop-blur p-6 hover:shadow-md transition">

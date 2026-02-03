@@ -69,18 +69,16 @@ export default function TeamPage() {
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-6 py-8">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Our Team</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Meet the experienced professionals behind Arivu Homes Private Limited. Our team combines
-              decades of expertise in construction, engineering, and architecture to deliver
-              exceptional results for every project.
-            </p>
-            <div className="mt-6">
-              <Link href="/" className="text-gray-600 hover:text-gray-900">
-                ← Back to Home
-              </Link>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="text-center sm:text-left">
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">Our Team</h1>
+              <p className="text-xl text-gray-600 max-w-3xl">
+                Meet the experienced professionals behind Arivu Homes Private Limited.
+              </p>
             </div>
+            <Link href="/" className="self-center sm:self-start text-gray-400 hover:text-gray-900 text-2xl transition-colors bg-white/50 p-2 rounded-full hover:shadow-sm" aria-label="Back to Home">
+              ←
+            </Link>
           </div>
         </div>
       </div>

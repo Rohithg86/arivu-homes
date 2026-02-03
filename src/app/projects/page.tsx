@@ -459,9 +459,14 @@ export default function ProjectsPage() {
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Current Projects</h1>
-              <p className="text-gray-600 mt-1">Our ongoing projects in Bangalore</p>
+            <div className="flex items-center gap-4">
+              <Link href="/" className="text-gray-400 hover:text-gray-900 text-2xl transition-colors bg-white/50 p-2 rounded-full hover:shadow-sm" aria-label="Back to Home">
+                ←
+              </Link>
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900">Current Projects</h1>
+                <p className="text-gray-600 mt-1">Our ongoing projects in Bangalore</p>
+              </div>
             </div>
             <div className="flex gap-3 items-center flex-wrap justify-end">
               {isAdmin && (

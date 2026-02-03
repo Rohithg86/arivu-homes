@@ -44,7 +44,7 @@ function toBase64(file: File) {
 }
 
 export default function AdminPage() {
-  const [tab, setTab] = useState<'team'|'assets'|'projects'>('team')
+  const [tab, setTab] = useState<'team' | 'assets' | 'projects'>('team')
   const teamForm = useForm<TeamForm>({ defaultValues: { name: '', role: '' } })
   const assetForm = useForm<UploadForm>()
   const projectForm = useForm<ProjectForm>({
@@ -120,17 +120,22 @@ export default function AdminPage() {
 
   return (
     <div className='mx-auto max-w-3xl px-6 py-10'>
-      <div className="flex items-center justify-between mb-6">
-        <h1 className='text-3xl font-semibold'>Arivu Admin</h1>
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center gap-4">
+          <Link href="/" className="text-gray-400 hover:text-gray-900 text-2xl transition-colors bg-white/50 p-2 rounded-full hover:shadow-sm" aria-label="Back to Home">
+            ←
+          </Link>
+          <h1 className='text-3xl font-semibold'>Arivu Admin</h1>
+        </div>
         <button onClick={logout} className="text-sm text-gray-600 hover:text-gray-900 underline">Logout</button>
       </div>
       <div className='flex gap-4 mb-8'>
-        <button className={tab==='team'?'font-bold underline':''} onClick={()=>setTab('team')}>Team</button>
-        <button className={tab==='assets'?'font-bold underline':''} onClick={()=>setTab('assets')}>Assets</button>
-        <button className={tab==='projects'?'font-bold underline':''} onClick={()=>setTab('projects')}>Projects</button>
+        <button className={tab === 'team' ? 'font-bold underline' : ''} onClick={() => setTab('team')}>Team</button>
+        <button className={tab === 'assets' ? 'font-bold underline' : ''} onClick={() => setTab('assets')}>Assets</button>
+        <button className={tab === 'projects' ? 'font-bold underline' : ''} onClick={() => setTab('projects')}>Projects</button>
       </div>
 
-      {tab==='team' && (
+      {tab === 'team' && (
         <form className='grid gap-4' onSubmit={submitTeam}>
           <input className='border p-2' placeholder='Name' {...teamForm.register('name', { required: true })} />
           <input className='border p-2' placeholder='Role' {...teamForm.register('role', { required: true })} />
@@ -140,7 +145,7 @@ export default function AdminPage() {
         </form>
       )}
 
-      {tab==='assets' && (
+      {tab === 'assets' && (
         <form className='grid gap-4' onSubmit={submitAsset}>
           <select className='border p-2' {...assetForm.register('type', { required: true })}>
             <option value=''>Select Type</option>
@@ -156,7 +161,7 @@ export default function AdminPage() {
         </form>
       )}
 
-      {tab==="projects" && (
+      {tab === "projects" && (
         <div className="space-y-10">
           <form className="grid gap-3" onSubmit={submitProject}>
             <div className="flex items-center justify-between">
