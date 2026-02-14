@@ -108,6 +108,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="max-w-6xl mx-auto px-6 py-10 text-sm text-gray-600">
             <div>Bangalore  <a href="tel:+916361867464" className="hover:text-blue-600 transition-colors">+91-6361867464</a>  <a href="mailto:contact.arivuhomes@gmail.com" className="hover:text-blue-600 transition-colors">contact.arivuhomes@gmail.com</a></div>
             <div className="mt-1">© {new Date().getFullYear()} Arivu Homes Private Limited</div>
+            <div className="mt-4 flex gap-4 text-xs text-gray-500">
+              <a href="https://www.instagram.com/arivuhomes/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors flex items-center gap-1">
+                <span>Instagram</span>
+                <span className="text-[10px]">↗</span>
+              </a>
+              <a href="https://wa.me/916361867464" target="_blank" rel="noopener noreferrer" className="hover:text-green-600 transition-colors flex items-center gap-1">
+                <span>WhatsApp</span>
+                <span className="text-[10px]">↗</span>
+              </a>
+            </div>
           </div>
         </footer>
         <script

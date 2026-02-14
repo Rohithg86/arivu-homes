@@ -728,73 +728,71 @@ export default function ProjectsPage() {
           )}
 
           <h2 className="text-xl font-semibold text-gray-900 mt-10 mb-4">Select Completed Projects</h2>
-          {completedProjects.length === 0 ? (
-            <div className="rounded-xl border bg-white p-6 text-gray-600 text-center italic">
-              Stay Tuned for More updates
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {completedProjects.map((project) => (
-                <div key={project.id} className="glass-card rounded-lg shadow-md overflow-hidden">
-                  {renderProjectImages(project)}
-                  <div className="p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <h3 className="text-lg font-semibold text-gray-900 line-clamp-1">{project.name}</h3>
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium shrink-0 ${getStatusColor(project.status)}`}>
-                        {project.status}
-                      </span>
-                    </div>
-                    <div className="space-y-2 mb-4">
-                      <div className="grid grid-cols-[80px_1fr] items-start gap-3">
-                        <span className="text-gray-400 uppercase tracking-wider text-[10px] font-bold mt-0.5">Client</span>
-                        <span className="text-gray-800 font-medium text-xs sm:text-sm">{project.client ?? "Private Client"}</span>
-                      </div>
-                      <div className="grid grid-cols-[80px_1fr] items-start gap-3">
-                        <span className="text-gray-400 uppercase tracking-wider text-[10px] font-bold mt-0.5">Location</span>
-                        <span className="text-gray-800 font-medium text-xs sm:text-sm">{project.location}</span>
-                      </div>
-                    </div>
-                    <p className="text-sm text-gray-700 line-clamp-2 mb-4">{project.description}</p>
-                    {isAdmin && (
-                      <div className="mt-auto grid grid-cols-3 gap-2">
-                        <button
-                          type="button"
-                          className="bg-gray-900 text-white px-3 py-2 rounded text-sm hover:bg-gray-800"
-                          onClick={() => openEditProject(project.id)}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          type="button"
-                          disabled={uploading}
-                          className="bg-gray-50 text-gray-700 px-3 py-2 rounded text-sm hover:bg-gray-100 disabled:opacity-60"
-                          onClick={() => handleUploadImage(project.id)}
-                        >
-                          {uploading && uploadProjectId === project.id ? "..." : "Upload"}
-                        </button>
-                        <button
-                          type="button"
-                          className="bg-red-50 text-red-700 px-3 py-2 rounded text-sm hover:bg-red-100"
-                          onClick={() => handleDeleteProject(project.id)}
-                        >
-                          Delete
-                        </button>
-                        {uploading && uploadProjectId === project.id && (
-                          <button
-                            type="button"
-                            className="col-span-3 bg-red-50 text-red-700 px-3 py-2 rounded text-sm hover:bg-red-100 mt-1"
-                            onClick={() => setUploadCancel(true)}
-                          >
-                            Cancel Upload
-                          </button>
-                        )}
-                      </div>
-                    )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {completedProjects.map((project) => (
+              <div key={project.id} className="glass-card rounded-lg shadow-md overflow-hidden">
+                {renderProjectImages(project)}
+                <div className="p-6">
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="text-lg font-semibold text-gray-900 line-clamp-1">{project.name}</h3>
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium shrink-0 ${getStatusColor(project.status)}`}>
+                      {project.status}
+                    </span>
                   </div>
+                  <div className="space-y-2 mb-4">
+                    <div className="grid grid-cols-[80px_1fr] items-start gap-3">
+                      <span className="text-gray-400 uppercase tracking-wider text-[10px] font-bold mt-0.5">Client</span>
+                      <span className="text-gray-800 font-medium text-xs sm:text-sm">{project.client ?? "Private Client"}</span>
+                    </div>
+                    <div className="grid grid-cols-[80px_1fr] items-start gap-3">
+                      <span className="text-gray-400 uppercase tracking-wider text-[10px] font-bold mt-0.5">Location</span>
+                      <span className="text-gray-800 font-medium text-xs sm:text-sm">{project.location}</span>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-700 line-clamp-2 mb-4">{project.description}</p>
+                  {isAdmin && (
+                    <div className="mt-auto grid grid-cols-3 gap-2">
+                      <button
+                        type="button"
+                        className="bg-gray-900 text-white px-3 py-2 rounded text-sm hover:bg-gray-800"
+                        onClick={() => openEditProject(project.id)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        type="button"
+                        disabled={uploading}
+                        className="bg-gray-50 text-gray-700 px-3 py-2 rounded text-sm hover:bg-gray-100 disabled:opacity-60"
+                        onClick={() => handleUploadImage(project.id)}
+                      >
+                        {uploading && uploadProjectId === project.id ? "..." : "Upload"}
+                      </button>
+                      <button
+                        type="button"
+                        className="bg-red-50 text-red-700 px-3 py-2 rounded text-sm hover:bg-red-100"
+                        onClick={() => handleDeleteProject(project.id)}
+                      >
+                        Delete
+                      </button>
+                      {uploading && uploadProjectId === project.id && (
+                        <button
+                          type="button"
+                          className="col-span-3 bg-red-50 text-red-700 px-3 py-2 rounded text-sm hover:bg-red-100 mt-1"
+                          onClick={() => setUploadCancel(true)}
+                        >
+                          Cancel Upload
+                        </button>
+                      )}
+                    </div>
+                  )}
                 </div>
-              ))}
-            </div>
-          )}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 rounded-xl border bg-white p-6 text-gray-600 text-center italic">
+            Stay Tuned for More updates
+          </div>
         </div>
 
         {projects.length === 0 && (
