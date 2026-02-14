@@ -20,6 +20,56 @@ export const metadata: Metadata = {
     "Turnkey Construction",
     "Civil Contractors"
   ],
+  openGraph: {
+    title: "Arivu Homes Private Limited",
+    description: "End-to-end construction and architectural design services in Bangalore.",
+    url: "https://arivuhomes.com",
+    siteName: "Arivu Homes Private Limited",
+    locale: "en_IN",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness", // More specific than Organization for local SEO
+  "name": "Arivu Homes Private Limited",
+  "image": "https://arivuhomes.com/logo-home.jpg", // Assuming this exists or will be resolved
+  "url": "https://arivuhomes.com",
+  "telephone": "+916361867464",
+  "email": "contact.arivuhomes@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Bangalore",
+    "addressRegion": "Karnataka",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "addressLocality": "Bangalore"
+    // specific lat/long can be added if known, for now locality is good
+  },
+  "sameAs": [
+    "https://www.instagram.com/arivuhomes/",
+    "https://wa.me/916361867464"
+  ],
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "opens": "09:00",
+    "closes": "18:00"
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -60,6 +110,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="mt-1">© {new Date().getFullYear()} Arivu Homes Private Limited</div>
           </div>
         </footer>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </body>
     </html>
   );
