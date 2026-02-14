@@ -8,6 +8,18 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Arivu Homes Private Limited - Building Dreams with Precision",
   description: "Building Dreams with Precision • Crafting Excellence Since Day One. End-to-end construction, architectural design, structural engineering, and project management services in Bangalore.",
+  keywords: [
+    "Arivu Homes",
+    "House Construction in Bangalore",
+    "Construction in Bangalore",
+    "Architects in Bangalore",
+    "Homes in Bangalore",
+    "Interiors in Bangalore",
+    "Structural Engineering",
+    "Villas in Bangalore",
+    "Turnkey Construction",
+    "Civil Contractors"
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

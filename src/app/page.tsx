@@ -18,7 +18,7 @@ export default function Home() {
                 <Link href="/team/rohith-gopal" className="underline hover:text-white/80 font-bold">Rohith Gopal</Link>
               </p>
               <p className="flex items-center gap-2">
-                <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur text-xs sm:text-sm">Chief Engineer:</span>
+                <span className="inline-block px-2 py-0.5 rounded bg-white/20 backdrop-blur text-xs sm:text-sm">Managing Partner:</span>
                 <Link href="/team/chethan-kumar-s" className="underline hover:text-white/80 font-bold">Chethan Kumar S</Link>
               </p>
               <p className="flex items-center gap-2">

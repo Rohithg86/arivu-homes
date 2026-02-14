@@ -729,8 +729,8 @@ export default function ProjectsPage() {
 
           <h2 className="text-xl font-semibold text-gray-900 mt-10 mb-4">Select Completed Projects</h2>
           {completedProjects.length === 0 ? (
-            <div className="rounded-xl border bg-white p-6 text-gray-600">
-              Completed projects will be listed here.
+            <div className="rounded-xl border bg-white p-6 text-gray-600 text-center italic">
+              Stay Tuned for More updates
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">

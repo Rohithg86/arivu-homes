@@ -7,7 +7,7 @@ export default function ChethanShrinivasBio() {
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-8">
         <div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">Chethan Kumar S</h1>
-          <p className="text-gray-600 mt-2">Chief Engineer - Arivu Homes Private Limited</p>
+          <p className="text-gray-600 mt-2">Managing Partner - Arivu Homes Private Limited</p>
         </div>
         <Link href="/" className="text-gray-400 hover:text-gray-900 text-2xl transition-colors bg-white/50 p-2 rounded-full hover:shadow-sm" aria-label="Back to Home">
           ←
@@ -29,7 +29,7 @@ export default function ChethanShrinivasBio() {
               </div>
               <div className="flex-1">
                 <h2 className="text-4xl font-bold mb-2">Chethan Kumar S</h2>
-                <p className="text-xl text-green-100 mb-4">Chief Engineer</p>
+                <p className="text-xl text-green-100 mb-4">Managing Partner</p>
                 <p className="text-green-100 text-lg leading-relaxed">
                   Highly skilled civil engineer with 20+ years of experience in construction management
                   and technical leadership across diverse construction projects.
@@ -45,7 +45,7 @@ export default function ChethanShrinivasBio() {
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Professional Summary</h3>
               <p className="text-gray-700 leading-relaxed mb-4">
                 Chethan Kumar S is a distinguished civil engineer known for his technical expertise
-                and innovative approach to construction challenges. As Chief Engineer at Arivu Constructions,
+                and innovative approach to construction challenges. As Managing Partner at Arivu Constructions,
                 he oversees all technical aspects of projects, ensuring structural integrity, safety,
                 and compliance with industry standards.
               </p>
@@ -62,7 +62,7 @@ export default function ChethanShrinivasBio() {
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Professional Experience</h3>
               <div className="space-y-6">
                 <div className="border-l-4 border-green-500 pl-6">
-                  <h4 className="text-lg font-semibold text-gray-900">Chief Engineer</h4>
+                  <h4 className="text-lg font-semibold text-gray-900">Managing Partner</h4>
                   <p className="text-green-600 font-medium">Arivu Homes Private Limited (2026 - Present)</p>
                   <ul className="text-gray-700 mt-2 space-y-1">
                     <li>• Technical oversight of all construction projects</li>

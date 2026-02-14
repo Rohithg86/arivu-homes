@@ -60,10 +60,10 @@ export function TestimonialSlideshow() {
                         <p className="text-lg sm:text-xl md:text-2xl text-gray-800 font-medium leading-relaxed italic mb-6">
                             {TESTIMONIALS[index].text}
                         </p>
-                        <div>
+                        {/* <div>
                             <h4 className="text-gray-900 font-bold text-lg">{TESTIMONIALS[index].name}</h4>
                             <p className="text-sm text-gray-600">{TESTIMONIALS[index].role} • {TESTIMONIALS[index].location}</p>
-                        </div>
+                        </div> */}
                     </motion.div>
                 </AnimatePresence>
             </div>
